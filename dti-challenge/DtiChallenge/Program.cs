@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using DtiChallenge;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var addReminderService = new AddReminderService(new ReminderRepository());
+var reminderRepository = new ReminderRepository();
+
+var addReminderService = new AddReminderService(reminderRepository);
+var showReminderService = new ShowReminderService(reminderRepository);
+var deleteReminderSerive = new DeleteReminderService(reminderRepository);
 
 app.MapPost("/reminders", (Reminder input) =>
 {
@@ -32,6 +37,20 @@ app.MapPost("/reminders", (Reminder input) =>
     return Results.Created("/reminders", null);
 })
 .WithName("PostReminders")
+.WithOpenApi();
+
+app.MapGet("/reminders", () => {
+    return showReminderService.execute();
+}
+)
+.WithName("GetReminders")
+.WithOpenApi();
+
+app.MapDelete("/reminders/{id}", (int id) => {
+    deleteReminderSerive.execute(id);
+}
+)
+.WithName("DeleteReminders")
 .WithOpenApi();
 
 app.Run();
