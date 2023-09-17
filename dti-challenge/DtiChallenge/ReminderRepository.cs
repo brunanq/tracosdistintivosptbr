@@ -3,19 +3,18 @@ namespace DtiChallenge;
 
 public class ReminderRepository
 {
-    private List<Reminder> reminders;
+    private List<Reminder> arrayList; 
 
     public ReminderRepository() {
-        reminders = new List<Reminder>();
+        this.arrayList = new List<Reminder>();
     }
 
-    public Reminder save(Reminder reminder) {
-        var id = reminders.Count() + 1;
+    public Reminder save(Reminder input) {
+        var id = arrayList.Count() + 1;
+        var itemToBeSaved = new Reminder(id, input.title, input.date);
 
-        var reminderToBeSaved = new Reminder(id, reminder.title, reminder.date);
+        arrayList.Add(itemToBeSaved);
 
-        reminders.Add(reminderToBeSaved);
-
-        return reminderToBeSaved;
+        return itemToBeSaved;
     }
 }
