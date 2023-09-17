@@ -22,16 +22,14 @@ var addReminderService = new AddReminderService(new ReminderRepository());
 
 app.MapPost("/reminders", (Reminder input) =>
 {
-    Reminder result;
-
     try{
-        result = addReminderService.execute(input);
+        addReminderService.execute(input);
     }
     catch(Exception e) {
         return Results.BadRequest(e.Message);
     }
 
-    return Results.Created("/reminders", result);
+    return Results.Created("/reminders", null);
 })
 .WithName("PostReminders")
 .WithOpenApi();
