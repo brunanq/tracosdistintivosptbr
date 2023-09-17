@@ -1,3 +1,6 @@
+using System.Data.Common;
+using Microsoft.AspNetCore.Http.HttpResults;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,29 +19,27 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/reminders", (Reminder input) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    try {
+        var data = DateOnly.ParseExact(input.date, "dd/MM/yyyy");
+        var hoje = DateOnly.FromDateTime(DateTime.Now);
+        if (data < hoje) {
+            return Results.BadRequest("Data inválida - tem q ser dps de hoje");
+        }
+    } catch {
+        return Results.BadRequest("Data inválida");
+    }
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    if(string.IsNullOrWhiteSpace(input.title)) {
+        return Results.BadRequest("Coloque um título");
+    }
+    
+    return Results.Ok();
 })
-.WithName("GetWeatherForecast")
+.WithName("PostReminders")
 .WithOpenApi();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+ record Reminder(string title, string date) {}
