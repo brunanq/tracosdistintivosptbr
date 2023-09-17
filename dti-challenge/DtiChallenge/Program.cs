@@ -1,5 +1,4 @@
-using System.Data.Common;
-using Microsoft.AspNetCore.Http.HttpResults;
+using DtiChallenge;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,27 +18,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+var addReminderService = new AddReminderService(new ReminderRepository());
+
 app.MapPost("/reminders", (Reminder input) =>
 {
-    try {
-        var data = DateOnly.ParseExact(input.date, "dd/MM/yyyy");
-        var hoje = DateOnly.FromDateTime(DateTime.Now);
-        if (data < hoje) {
-            return Results.BadRequest("Data inválida - tem q ser dps de hoje");
-        }
-    } catch {
-        return Results.BadRequest("Data inválida");
+    Reminder result;
+
+    try{
+        result = addReminderService.execute(input);
+    }
+    catch(Exception e) {
+        return Results.BadRequest(e.Message);
     }
 
-    if(string.IsNullOrWhiteSpace(input.title)) {
-        return Results.BadRequest("Coloque um título");
-    }
-    
-    return Results.Ok();
+    return Results.Created("/reminders", result);
 })
 .WithName("PostReminders")
 .WithOpenApi();
 
 app.Run();
-
- record Reminder(string title, string date) {}
