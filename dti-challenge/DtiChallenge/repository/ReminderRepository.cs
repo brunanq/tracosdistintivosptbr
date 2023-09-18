@@ -24,7 +24,8 @@ public class ReminderRepository
         return this.arrayList;
     }
 
-    public void delete(int index) {
-        this.arrayList.RemoveAt(index);
+    public void delete(int id) {
+        var item = this.arrayList.Single(item => item.id == id);
+        this.arrayList.Remove(item);
     }
 }

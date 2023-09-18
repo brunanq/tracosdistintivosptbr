@@ -34,7 +34,7 @@ function ListReminders() {
 
     return(
         <div>
-            <p>Reminders List:</p>
+            <p>Your reminders:</p>
             {listItems}
         </div>
     )
