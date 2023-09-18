@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './img.png';
 import './App.css';
 import CreateReminderForm from './components/CreateReminderForm';
 import ListReminders from './components/ListReminders';

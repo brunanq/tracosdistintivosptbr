@@ -1,3 +1,5 @@
+
+
 function Reminder(props) {
 
     function deleteReminder(id) {
@@ -6,11 +8,11 @@ function Reminder(props) {
 
     return(
         <div>
-            <p>Title {props.title} </p>
-         
-            <p>Date{props.date} </p>
-            <br />
-            <button onClick={deleteReminder(props.id)}>Delete</button>
+            <p>Date: {props.date} </p>
+            <p>Title: {props.title} </p>
+            <button onClick={deleteReminder(props.id)}>
+            Delete
+            </button>
         </div>
     )
 }
