@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CreateReminderForm(props) {
+function CreateReminderForm() {
     const [state, setState] = React.useState({
         title: "",
         date: ""
@@ -12,8 +12,6 @@ function CreateReminderForm(props) {
         ...state,
         [event.target.title]: value
         });
-
-        props.value();
     }
 
     function handleOnClick() {
