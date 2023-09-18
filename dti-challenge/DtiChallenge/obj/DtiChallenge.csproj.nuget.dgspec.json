@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj": {}
+    "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj": {}
   },
   "projects": {
-    "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj": {
+    "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
+        "projectUniqueName": "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
         "projectName": "DtiChallenge",
-        "projectPath": "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
-        "packagesPath": "/Users/ernestoqueiroz/.nuget/packages/",
-        "outputPath": "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/obj/",
+        "projectPath": "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
+        "packagesPath": "/home/brunanq/.nuget/packages/",
+        "outputPath": "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ernestoqueiroz/.nuget/NuGet/NuGet.Config"
+          "/home/brunanq/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -66,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/221/sdk/7.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }

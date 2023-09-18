@@ -7,10 +7,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <CreateReminderForm></CreateReminderForm>
-        <ListReminders></ListReminders>
+        <img src={logo} className="App-logo" alt="logo" /> 
       </header>
+      <main>
+        <section className="createReminder">
+          <CreateReminderForm></CreateReminderForm>
+        </section>
+        <section className="listReminder">
+          <ListReminders></ListReminders>
+        </section>  
+      </main>
     </div>
   );
 }

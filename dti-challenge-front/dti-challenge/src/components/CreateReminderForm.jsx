@@ -37,15 +37,19 @@ function CreateReminderForm() {
     return(
         <div className="reminderForm">
           <form>
-            <label>
-            <h1>Title <input type="text" title="title" value={state.title} onChange={handleChange} /></h1> 
-            </label>
             
             <label>
-            <h1>Date <input type="text" title="date" value={state.date} onChange={handleChange} /></h1>  
+                <h1>Title </h1>
             </label>
+            <input type="text" title="title" value={state.title} onChange={handleChange} />
+          
+            <label>
+                <h1>Date </h1>  
+            </label>
+             <input type="text" title="date" value={state.date} onChange={handleChange} />
         </form>
         <button className="reminderBtn" onClick={handleOnClick}>Create</button>
+        <hr></hr>
         </div>
     )
 }
