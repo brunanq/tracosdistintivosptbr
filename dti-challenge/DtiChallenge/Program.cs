@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -31,7 +32,9 @@ app.MapPost("/reminders", (Reminder input) =>
         addReminderService.execute(input);
     }
     catch(Exception e) {
-        return Results.BadRequest(e.Message);
+        var error = new Error(e.Message);
+
+        return Results.BadRequest(error);
     }
 
     return Results.Created("/reminders", null);
@@ -52,5 +55,10 @@ app.MapDelete("/reminders/{id}", (int id) => {
 )
 .WithName("DeleteReminders")
 .WithOpenApi();
+
+ app.UseCors(options => options
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true));
 
 app.Run();
