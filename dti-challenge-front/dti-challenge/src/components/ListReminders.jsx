@@ -7,26 +7,10 @@ function sortRemindersByDate(listOfReminders) {
     }).reverse()
 }
 
-function ListReminders() {
-    const [reminders, setReminders] = React.useState([])
-
-    const fetchReminders = () => {
-      fetch("http://localhost:5242/reminders/")
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          setReminders(data)
-        })
-    }
-  
-    React.useEffect(() => {
-        fetchReminders()
-    }, [])
-
+function ListReminders(props) {
     let remindersList = []
 
-    remindersList = sortRemindersByDate(reminders)
+    remindersList = sortRemindersByDate(props.value)
 
     let listItems = remindersList.map((item) => {
         return <Reminder title={item.title} id={item.id} date={item.date}/>

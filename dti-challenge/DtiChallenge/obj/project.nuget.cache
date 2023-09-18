@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "6UXyHOI68tgAKJgUDLCrA8oXqN2vBPrefpziXXQUYyhK7Dt4HTSisKuunvOFyBZMNlEKzz3UD+F7QrXzmKNbzQ==",
+  "dgSpecHash": "RkiYHFIL0/sLU6QAG1fXP2dlQwFzCH6qWm0x2T4HKD3WdvtXq4EfMFFfcrt7ufOY32VtKM5kG6Iv2xZyFvkZNg==",
   "success": true,
-  "projectFilePath": "/home/brunanq/projeto-super-secreto/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
+  "projectFilePath": "/Users/ernestoqueiroz/Repositories/projeto-super-secreto/dti-challenge/DtiChallenge/DtiChallenge.csproj",
   "expectedPackageFiles": [
-    "/home/brunanq/.nuget/packages/microsoft.aspnetcore.openapi/7.0.11/microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "/home/brunanq/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "/Users/ernestoqueiroz/.nuget/packages/microsoft.aspnetcore.openapi/7.0.11/microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/ernestoqueiroz/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
   ],
   "logs": []
 }
