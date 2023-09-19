@@ -81,3 +81,7 @@ p {
 .deleteBtn:hover{
   background-color: rgb(201, 45, 45);
 }
+
+.your-reminders {
+  padding-bottom: 20px;
+}

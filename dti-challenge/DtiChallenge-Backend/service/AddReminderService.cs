@@ -30,10 +30,3 @@ public class AddReminderService
         }
     }
 }
-
-
-/*
- Anotar nas premissas: 
-- Considerei que é só é possível criar lembrete para o futuro, portanto o dia atual não seria um input válido. 
-- A aplicação foi feita na lingua inglesa, pelo motivo de que havia sido avisado que o projeto seria internacional. 
-*/

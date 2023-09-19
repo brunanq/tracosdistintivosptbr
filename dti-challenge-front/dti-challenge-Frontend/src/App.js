@@ -30,7 +30,7 @@ function App() {
         <section className="createReminder">
           <CreateReminderForm></CreateReminderForm>
         </section>
-        <section className="listReminder">
+        <section className="your-reminders">
           <ListReminders value={reminders}></ListReminders>
         </section>  
       </main>
