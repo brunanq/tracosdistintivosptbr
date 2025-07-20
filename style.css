@@ -1,107 +1,94 @@
 body {
   font-family: Arial, sans-serif;
-  padding: 15px;
-  background: #f9f9f9;
+  background-color: #fafafa;
+  padding: 20px;
   color: #222;
+  margin: 0;
 }
 
-h1, h2 {
-  margin-bottom: 10px;
-}
-
-.container {
-  display: flex;
-  gap: 20px;
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .filters {
-  flex: 0 0 250px;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 6px #ccc;
-  height: fit-content;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.filter {
-  margin-bottom: 10px;
-}
-
-.filter label {
-  font-weight: 600;
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  align-items: center;
+  gap: 10px 30px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.filter input[type="radio"] {
-  margin-left: 5px;
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.filter-group label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.filter-group input[type="radio"] {
   cursor: pointer;
 }
 
-.tables-wrapper {
-  flex: 1;
+.container-tables {
   display: flex;
-  gap: 30px;
-  overflow-x: auto;
-}
-
-.table-container {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 6px #ccc;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
-  min-width: 350px;
-  text-align: center;
-  font-size: 1.1rem;
+  background: white;
+  box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+  width: 400px;
+  max-width: 100%;
 }
 
-table th,
-table td {
-  border: 1px solid #aaa;
-  padding: 8px;
-  vertical-align: middle;
-}
-
-table th {
-  background: #ddd;
+table thead th,
+table tbody th {
+  background-color: #ddd;
   font-weight: 700;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
 }
 
-#vowel-table td.high {
-  background: #c6e5ff;
-}
-
-#vowel-table td.mid {
-  background: #a0d2ff;
-}
-
-#vowel-table td.low {
-  background: #79b9ff;
-}
-
-[data-phonemes] {
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  font-size: 1.3rem;
   cursor: default;
-  user-select: none;
-  padding: 4px;
-  border-radius: 4px;
-  transition: background-color 0.25s ease;
+  background-color: #e6ffe6; /* destaque padrão */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  color: black;
 }
 
-.highlight {
-  background-color: #ffe066 !important;
-  font-weight: bold;
-  color: #222;
+table td.empty {
+  background-color: #f8f8f8;
+  color: #bbb;
+  cursor: default;
 }
 
-.filter input[type="radio"]:checked + label {
-  font-weight: bold;
+table td.dimmed {
+  background-color: #f0f0f0 !important;
+  color: #ccc !important;
+  cursor: default;
+}
+
+@media (max-width: 900px) {
+  .container-tables {
+    flex-direction: column;
+    align-items: center;
+  }
 }
