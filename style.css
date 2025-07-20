@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     font-size: 14px;
   }
+//tabela
 
 .consonant-chart {
   display: table;
@@ -83,6 +84,7 @@ body {
   border: 1px solid #aaa;
   border-radius: 8px;
 }
+//fim tabela
 
   
   .ipa-grid {
