@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const phonemes = [
-    // Consonants (só os que você passou)
     { symbol: 'p', type: 'consonant', voiced: false, place: 'bilabial', manner: 'plosive' },
     { symbol: 'b', type: 'consonant', voiced: true, place: 'bilabial', manner: 'plosive' },
     { symbol: 't', type: 'consonant', voiced: false, place: 'alveolar', manner: 'plosive' },
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { symbol: 'l', type: 'consonant', voiced: true, place: 'alveolar', manner: 'lateral' },
     { symbol: 'ʎ', type: 'consonant', voiced: true, place: 'palatal', manner: 'lateral' },
 
-    // Affricates
     { symbol: 'tʃ', type: 'consonant', voiced: false, place: 'alveolopalatal', manner: 'affricate' },
     { symbol: 'dʒ', type: 'consonant', voiced: true, place: 'alveolopalatal', manner: 'affricate' },
   ];
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // Mapa: manner → place → fonemas
+  // Organiza fonemas em objeto para lookup
   const phonemeMap = {};
   manners.forEach(manner => {
     phonemeMap[manner] = {};
@@ -69,32 +67,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = document.createElement('table');
     table.className = 'consonant-chart';
 
-    // Cabeçalho
     const thead = document.createElement('thead');
-    const headRow = document.createElement('tr');
+    const headerRow = document.createElement('tr');
 
-    headRow.appendChild(document.createElement('th')); // canto vazio
+    // Célula vazia canto superior esquerdo
+    headerRow.appendChild(document.createElement('th'));
 
+    // Cabeçalho lugares
     places.forEach(place => {
       const th = document.createElement('th');
       th.className = 'place';
       th.textContent = capitalize(place);
-      headRow.appendChild(th);
+      headerRow.appendChild(th);
     });
-    thead.appendChild(headRow);
+
+    thead.appendChild(headerRow);
     table.appendChild(thead);
 
-    // Corpo
     const tbody = document.createElement('tbody');
 
     manners.forEach(manner => {
       const tr = document.createElement('tr');
 
+      // Cabeçalho modo
       const mannerTh = document.createElement('th');
       mannerTh.className = 'manner';
       mannerTh.textContent = capitalize(manner);
       tr.appendChild(mannerTh);
 
+      // Células fonemas
       places.forEach(place => {
         const td = document.createElement('td');
         td.className = 'cell';
@@ -132,29 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const allCells = container.querySelectorAll('td.cell');
     const allPhonemes = container.querySelectorAll('div.phoneme');
 
-    allPhonemes.forEach(phonemeDiv => {
+    allPhonemes.forEach(phDiv => {
       let show = true;
 
-      if (voicingVal !== 'all' && String(phonemeDiv.dataset.voiced) !== voicingVal) {
+      if (voicingVal !== 'all' && String(phDiv.dataset.voiced) !== voicingVal) {
         show = false;
       }
-
-      if (placeVal !== 'all' && phonemeDiv.dataset.place !== placeVal) {
+      if (placeVal !== 'all' && phDiv.dataset.place !== placeVal) {
         show = false;
       }
-
-      if (mannerVal !== 'all' && phonemeDiv.dataset.manner !== mannerVal) {
+      if (mannerVal !== 'all' && phDiv.dataset.manner !== mannerVal) {
         show = false;
       }
 
       if (show) {
-        phonemeDiv.classList.remove('inactive');
+        phDiv.classList.remove('inactive');
       } else {
-        phonemeDiv.classList.add('inactive');
+        phDiv.classList.add('inactive');
       }
     });
 
-    // Destaque da célula (fundo verde) se algum fonema ativo
     allCells.forEach(cell => {
       const activePhonemes = cell.querySelectorAll('div.phoneme:not(.inactive)');
       if (activePhonemes.length > 0) {
