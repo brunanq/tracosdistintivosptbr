@@ -4,6 +4,25 @@ body {
   padding: 20px;
 }
 
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
 table.consonant-chart {
   border-collapse: collapse;
   margin: auto;
@@ -16,7 +35,8 @@ table.consonant-chart {
   padding: 8px;
   text-align: center;
   min-width: 60px;
-  min-height: 40px;
+  min-height: 50px;
+  vertical-align: middle;
   position: relative;
 }
 
@@ -31,34 +51,32 @@ tbody th.manner {
 }
 
 .cell {
-  background-color: #d4edda; /* cor clara padrão de destaque */
+  background-color: #f1f1f1;
   transition: background-color 0.3s ease;
+  vertical-align: middle;
+  border-radius: 6px;
 }
 
-.cell.empty {
-  background-color: #f1f1f1; /* cor neutra para células sem fonema */
+.cell.dimmed {
+  background-color: #f8f9fa !important;
 }
 
 .phoneme {
+  font-weight: normal;
+  color: #999;
+  margin: 3px 0;
+  padding: 4px 0;
+  user-select: none;
+  display: block;
+}
+
+.cell:not(.dimmed) .phoneme {
   font-weight: bold;
   color: black;
-  display: inline-block;
-  padding: 4px 6px;
-  margin: 1px;
-  background-color: white;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease;
 }
 
-/* Quando o filtro desativa um fonema */
-.phoneme.inactive {
-  color: #999;
-  background-color: #f8f9fa;
-  border-color: transparent;
-}
-
-/* Quando a célula inteira precisa ser apagada visualmente */
-.cell.dimmed {
-  background-color: #f8f9fa !important;
+.cell:not(.dimmed) {
+  background-color: #a4d4a5; /* verde claro para célula ativa */
+  border: 2px solid #4caf50;
+  border-radius: 6px;
 }
