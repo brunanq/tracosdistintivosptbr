@@ -1,77 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Distinctive Features Filter</title>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabela de Fonemas</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <h1>Tabela de Fonemas</h1>
 
-<h1>Filtro de Traços Distintivos</h1>
+  <section class="filters">
+    <h2>Filtros</h2>
+    <div class="filter-list">
+      <label><input type="checkbox" data-feature="consonantal" value="+"> [+] consonantal</label>
+      <label><input type="checkbox" data-feature="consonantal" value="-"> [-] consonantal</label>
+      <label><input type="checkbox" data-feature="silabica" value="+"> [+] silábica</label>
+      <label><input type="checkbox" data-feature="silabica" value="-"> [-] silábica</label>
+      <label><input type="checkbox" data-feature="soante" value="+"> [+] soante</label>
+      <label><input type="checkbox" data-feature="coronal" value="+"> [+] coronal</label>
+      <label><input type="checkbox" data-feature="anterior" value="+"> [+] anterior</label>
+      <label><input type="checkbox" data-feature="continuo" value="+"> [+] contínuo</label>
+      <label><input type="checkbox" data-feature="nasal" value="+"> [+] nasal</label>
+      <label><input type="checkbox" data-feature="lateral" value="+"> [+] lateral</label>
+      <label><input type="checkbox" data-feature="vozeado" value="+"> [+] vozeado</label>
+      <label><input type="checkbox" data-feature="soltura" value="+"> [+] soltura retardada</label>
+      <label><input type="checkbox" data-feature="alto" value="+"> [+] alto</label>
+      <label><input type="checkbox" data-feature="baixo" value="+"> [+] baixo</label>
+      <label><input type="checkbox" data-feature="recuado" value="+"> [+] recuado</label>
+      <label><input type="checkbox" data-feature="arredondado" value="+"> [+] arredondado</label>
+    </div>
+  </section>
 
-<div class="filters" id="filters">
-  <div class="filter-group" id="consonant-filters">
-    <strong>Filtros para Consoantes</strong>
-    <label><input type="checkbox" data-feature="consonantal" checked> [+] Consonantal</label>
-    <label><input type="checkbox" data-feature="silabica"> [+] Silábica</label>
-    <label><input type="checkbox" data-feature="soante"> [+] Soante</label>
-    <label><input type="checkbox" data-feature="coronal"> [+] Coronal</label>
-    <label><input type="checkbox" data-feature="anterior"> [+] Anterior</label>
-    <label><input type="checkbox" data-feature="continuo"> [+] Contínuo</label>
-    <label><input type="checkbox" data-feature="nasal"> [+] Nasal</label>
-    <label><input type="checkbox" data-feature="lateral"> [+] Lateral</label>
-    <label><input type="checkbox" data-feature="vozeado"> [+] Vozeado</label>
-    <label><input type="checkbox" data-feature="soltura_retardada"> [+] Soltura retardada</label>
-    <label><input type="checkbox" data-feature="alto"> [+] Alto</label>
-    <label><input type="checkbox" data-feature="baixo"> [+] Baixo</label>
-    <label><input type="checkbox" data-feature="recuado"> [+] Recuado</label>
-    <label><input type="checkbox" data-feature="arredondado"> [+] Arredondado</label>
-  </div>
-</div>
+  <div id="consonant-chart" class="phoneme-chart"></div>
+  <div id="vowel-chart" class="vowel-section"></div>
 
-<h2>Consoantes</h2>
-<table id="consonant-table">
-  <thead>
-    <tr>
-      <th>Modo\Lugar</th>
-      <th>Oclusiva</th>
-      <th>Labiodental</th>
-      <th>Alveolar</th>
-      <th>Pós-alveolar</th>
-      <th>Palatal</th>
-      <th>Velar</th>
-      <th>Uvular</th>
-      <th>Glotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Conteúdo gerado via JS -->
-  </tbody>
-</table>
-
-<h2>Vogais</h2>
-<table id="vowels-table">
-  <tbody>
-    <tr>
-      <td class="phoneme-cell" data-phoneme="i" data-features='{"alto":true,"baixo":false,"recuado":false}'>i</td>
-      <td class="phoneme-cell" data-phoneme="u" data-features='{"alto":true,"baixo":false,"recuado":true}'>u</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td class="phoneme-cell" data-phoneme="e" data-features='{"alto":false,"baixo":false,"recuado":false}'>e</td>
-      <td class="phoneme-cell" data-phoneme="o" data-features='{"alto":false,"baixo":false,"recuado":true}'>o</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td class="phoneme-cell" data-phoneme="ɛ" data-features='{"alto":false,"baixo":true,"recuado":false}'>ɛ</td>
-      <td class="phoneme-cell" data-phoneme="ɔ" data-features='{"alto":false,"baixo":true,"recuado":true}'>ɔ</td>
-      <td class="phoneme-cell" data-phoneme="a" data-features='{"alto":false,"baixo":true,"recuado":true}'>a</td>
-      <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-  </tbody>
-</table>
-
-<script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
