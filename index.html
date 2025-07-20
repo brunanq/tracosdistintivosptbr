@@ -3,29 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filtro de Traços Fonológicos</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Filtro de Traços Distintivos</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Tabela de Fonemas</h1>
-
-  <section id="filters">
-    <h2>Filtros</h2>
-    <div class="filters-grid">
-      <!-- Filtros gerados por JS -->
-    </div>
-  </section>
-
-  <section id="tabela-consoantes">
-    <h2>Consoantes</h2>
-    <table id="consonant-table"></table>
-  </section>
-
-  <section id="tabela-vogais">
-    <h2>Vogais</h2>
-    <div id="vowel-grid"></div>
-  </section>
-
+  <div class="container">
+    <aside class="filters">
+      <h2>Filtros</h2>
+      <div id="feature-filters"></div>
+    </aside>
+    <main>
+      <section class="tables">
+        <div class="consonant-table">
+          <h2>Consoantes</h2>
+          <table id="consonant-table"></table>
+        </div>
+        <div class="vowel-table">
+          <h2>Vogais e Glides</h2>
+          <div id="vowel-grid">
+            <div class="vowel-row">
+              <span>[i]</span><span>[ɪ]</span> <span>[u]</span><span>[ʊ]</span>
+            </div>
+            <div class="vowel-row">
+              <span>[e]</span> <span>[o]</span>
+            </div>
+            <div class="vowel-row">
+              <span>[ɛ]</span> <span>[ɔ]</span><span>[a]</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
