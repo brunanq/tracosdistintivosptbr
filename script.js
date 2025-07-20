@@ -36,16 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     { symbol: 'dʒ', type: 'consonant', voiced: true, place: 'alveolopalatal', manner: 'affricate' },
   ];
 
-  // Listas para ordem de lugares e modos
   const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
   const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
 
-  // Função utilitária para capitalizar
-  function capitalize(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // Mapa para armazenar fonemas por manner/place
+  // Mapa: manner → place → fonemas
   const phonemeMap = {};
   manners.forEach(manner => {
     phonemeMap[manner] = {};
@@ -54,72 +52,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Preenche o mapa só com fonemas que você colocou
-  phonemes.forEach(p => {
-    if (phonemeMap[p.manner] && phonemeMap[p.manner][p.place]) {
-      phonemeMap[p.manner][p.place].push(p);
+  phonemes.forEach(ph => {
+    if (phonemeMap[ph.manner] && phonemeMap[ph.manner][ph.place]) {
+      phonemeMap[ph.manner][ph.place].push(ph);
     }
   });
 
-  // Referências para filtros e container da tabela
   const container = document.getElementById('ipaGrid');
-  const typeFilter = document.getElementById('typeFilter');
   const voicingFilter = document.getElementById('voicingFilter');
   const placeFilter = document.getElementById('placeFilter');
   const mannerFilter = document.getElementById('mannerFilter');
 
-  // Função para montar a tabela completa
   function buildTable() {
     container.innerHTML = '';
 
     const table = document.createElement('table');
     table.className = 'consonant-chart';
 
-    // Cabeçalho - lugares
+    // Cabeçalho
     const thead = document.createElement('thead');
     const headRow = document.createElement('tr');
 
-    headRow.appendChild(document.createElement('th')); // Canto vazio
+    headRow.appendChild(document.createElement('th')); // canto vazio
+
     places.forEach(place => {
       const th = document.createElement('th');
-      th.textContent = capitalize(place);
       th.className = 'place';
+      th.textContent = capitalize(place);
       headRow.appendChild(th);
     });
     thead.appendChild(headRow);
     table.appendChild(thead);
 
-    // Corpo - modos e fonemas
+    // Corpo
     const tbody = document.createElement('tbody');
 
     manners.forEach(manner => {
       const tr = document.createElement('tr');
+
       const mannerTh = document.createElement('th');
-      mannerTh.textContent = capitalize(manner);
       mannerTh.className = 'manner';
+      mannerTh.textContent = capitalize(manner);
       tr.appendChild(mannerTh);
 
       places.forEach(place => {
         const td = document.createElement('td');
         td.className = 'cell';
 
-        // Adiciona fonemas na célula
         const phonemesHere = phonemeMap[manner][place];
-
         if (phonemesHere.length === 0) {
           td.classList.add('empty');
         } else {
           phonemesHere.forEach(ph => {
-            const span = document.createElement('span');
-            span.className = 'phoneme';
-            span.textContent = ph.symbol;
-            // Guarda atributos para filtros
-            span.dataset.voiced = ph.voiced;
-            span.dataset.place = ph.place;
-            span.dataset.manner = ph.manner;
-            td.appendChild(span);
+            const div = document.createElement('div');
+            div.className = 'phoneme';
+            div.textContent = ph.symbol;
+            div.dataset.voiced = ph.voiced;
+            div.dataset.place = ph.place;
+            div.dataset.manner = ph.manner;
+            td.appendChild(div);
           });
         }
+
         tr.appendChild(td);
       });
 
@@ -130,70 +124,51 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(table);
   }
 
-  // Função que aplica filtros e destaca as células/fonemas
   function applyFilters() {
-    const selectedType = typeFilter.value;
     const voicingVal = voicingFilter.value;
     const placeVal = placeFilter.value;
     const mannerVal = mannerFilter.value;
 
-    // Todas as células e fonemas
     const allCells = container.querySelectorAll('td.cell');
-    const allPhonemes = container.querySelectorAll('span.phoneme');
+    const allPhonemes = container.querySelectorAll('div.phoneme');
 
-    allPhonemes.forEach(span => {
+    allPhonemes.forEach(phonemeDiv => {
       let show = true;
 
-      // Tipo (consoante/vogal)
-      if (selectedType !== 'all' && 'consonant' !== selectedType) {
-        // só temos consoantes, então se filtra vogais, esconda tudo
+      if (voicingVal !== 'all' && String(phonemeDiv.dataset.voiced) !== voicingVal) {
         show = false;
       }
 
-      // Voicing
-      if (show && voicingVal !== 'all' && String(span.dataset.voiced) !== voicingVal) {
-        show = false;
-      }
-      // Place
-      if (show && placeVal !== 'all' && span.dataset.place !== placeVal) {
-        show = false;
-      }
-      // Manner
-      if (show && mannerVal !== 'all' && span.dataset.manner !== mannerVal) {
+      if (placeVal !== 'all' && phonemeDiv.dataset.place !== placeVal) {
         show = false;
       }
 
-      // Aplica classe
+      if (mannerVal !== 'all' && phonemeDiv.dataset.manner !== mannerVal) {
+        show = false;
+      }
+
       if (show) {
-        span.classList.remove('inactive');
+        phonemeDiv.classList.remove('inactive');
       } else {
-        span.classList.add('inactive');
+        phonemeDiv.classList.add('inactive');
       }
     });
 
-    // Agora destacamos células completas que têm pelo menos um fonema ativo
-    allCells.forEach(td => {
-      const phonemesInCell = td.querySelectorAll('span.phoneme:not(.inactive)');
-      if (phonemesInCell.length > 0) {
-        td.classList.remove('dimmed');
+    // Destaque da célula (fundo verde) se algum fonema ativo
+    allCells.forEach(cell => {
+      const activePhonemes = cell.querySelectorAll('div.phoneme:not(.inactive)');
+      if (activePhonemes.length > 0) {
+        cell.classList.remove('dimmed');
       } else {
-        td.classList.add('dimmed');
+        cell.classList.add('dimmed');
       }
     });
   }
-
-  // Evento para mostrar/ocultar filtros conforme tipo selecionado
-  typeFilter.addEventListener('change', () => {
-    const val = typeFilter.value;
-    // Como só temos consoantes, manter os filtros consonantais sempre visíveis
-    applyFilters();
-  });
 
   voicingFilter.addEventListener('change', applyFilters);
   placeFilter.addEventListener('change', applyFilters);
   mannerFilter.addEventListener('change', applyFilters);
 
-  // Inicializa tabela e filtros
   buildTable();
   applyFilters();
 });
