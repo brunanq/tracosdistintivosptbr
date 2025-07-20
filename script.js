@@ -1,61 +1,80 @@
-const features = {
-  "p": ["+consonantal", "-silabica", "-soante", "+anterior", "-continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "b": ["+consonantal", "-silabica", "-soante", "+anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "t": ["+consonantal", "-silabica", "-soante", "+coronal", "+anterior", "-continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "d": ["+consonantal", "-silabica", "-soante", "+coronal", "+anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "k": ["+consonantal", "-silabica", "-soante", "-anterior", "-continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "g": ["+consonantal", "-silabica", "-soante", "-anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "m": ["+consonantal", "-silabica", "+soante", "+anterior", "-continuo", "+nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "n": ["+consonantal", "-silabica", "+soante", "+coronal", "+anterior", "-continuo", "+nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "ɲ": ["+consonantal", "-silabica", "+soante", "+coronal", "-anterior", "-continuo", "+nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "r": ["+consonantal", "-silabica", "+soante", "+coronal", "+anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "ɾ": ["+consonantal", "-silabica", "+soante", "+coronal", "+anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "f": ["+consonantal", "-silabica", "-soante", "+anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "v": ["+consonantal", "-silabica", "-soante", "+anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "s": ["+consonantal", "-silabica", "-soante", "+coronal", "+anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "z": ["+consonantal", "-silabica", "-soante", "+coronal", "+anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "ʃ": ["+consonantal", "-silabica", "-soante", "+coronal", "-anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "ʒ": ["+consonantal", "-silabica", "-soante", "+coronal", "-anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "x": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "ɣ": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "χ": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "ʁ": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "h": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
-  "ɦ": ["+consonantal", "-silabica", "-soante", "-anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "tʃ": ["+consonantal", "-silabica", "-soante", "+coronal", "-anterior", "-continuo", "-nasal", "-lateral", "-vozeado", "+soltura retardada"],
-  "dʒ": ["+consonantal", "-silabica", "-soante", "+coronal", "-anterior", "-continuo", "-nasal", "-lateral", "+vozeado", "+soltura retardada"],
-  "ɹ": ["+consonantal", "-silabica", "+soante", "+coronal", "+anterior", "+continuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
-  "l": ["+consonantal", "-silabica", "+soante", "+coronal", "+anterior", "-continuo", "-nasal", "+lateral", "+vozeado", "-soltura retardada"],
-  "ʎ": ["+consonantal", "-silabica", "+soante", "+coronal", "-anterior", "-continuo", "-nasal", "+lateral", "+vozeado", "-soltura retardada"],
+// Traços por fonema
+const featuresByPhoneme = {
+  // Consoantes (apenas exemplo parcial; complete conforme necessário)
+  "p": ["+consonantal", "-silábico", "-soante", "+anterior", "-contínuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
+  "b": ["+consonantal", "-silábico", "-soante", "+anterior", "-contínuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
+  "t": ["+consonantal", "-silábico", "-soante", "+anterior", "-contínuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada", "+coronal"],
+  "d": ["+consonantal", "-silábico", "-soante", "+anterior", "-contínuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada", "+coronal"],
+  "k": ["+consonantal", "-silábico", "-soante", "-anterior", "-contínuo", "-nasal", "-lateral", "-vozeado", "-soltura retardada"],
+  "g": ["+consonantal", "-silábico", "-soante", "-anterior", "-contínuo", "-nasal", "-lateral", "+vozeado", "-soltura retardada"],
 
   // Vogais e glides
-  "i": ["-consonantal", "+silabica", "+soante", "+continuo", "+alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
-  "ɪ": ["-consonantal", "-silabica", "+soante", "+continuo", "+alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
-  "u": ["-consonantal", "+silabica", "+soante", "+continuo", "+alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
-  "ʊ": ["-consonantal", "-silabica", "+soante", "+continuo", "+alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
-  "e": ["-consonantal", "+silabica", "+soante", "+continuo", "-alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
-  "o": ["-consonantal", "+silabica", "+soante", "+continuo", "-alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
-  "ɛ": ["-consonantal", "+silabica", "+soante", "+continuo", "-alto", "+baixo", "-recuado", "-arredondado", "+vozeado"],
-  "ɔ": ["-consonantal", "+silabica", "+soante", "+continuo", "-alto", "+baixo", "+recuado", "+arredondado", "+vozeado"],
-  "a": ["-consonantal", "+silabica", "+soante", "+continuo", "-alto", "+baixo", "+recuado", "-arredondado", "+vozeado"],
+  "i": ["-consonantal", "+silábico", "+soante", "+contínuo", "+alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
+  "ɪ": ["-consonantal", "-silábico", "+soante", "+contínuo", "+alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
+  "u": ["-consonantal", "+silábico", "+soante", "+contínuo", "+alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
+  "ʊ": ["-consonantal", "-silábico", "+soante", "+contínuo", "+alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
+  "e": ["-consonantal", "+silábico", "+soante", "+contínuo", "-alto", "-baixo", "-recuado", "-arredondado", "+vozeado"],
+  "o": ["-consonantal", "+silábico", "+soante", "+contínuo", "-alto", "-baixo", "+recuado", "+arredondado", "+vozeado"],
+  "ɛ": ["-consonantal", "+silábico", "+soante", "+contínuo", "-alto", "+baixo", "-recuado", "-arredondado", "+vozeado"],
+  "ɔ": ["-consonantal", "+silábico", "+soante", "+contínuo", "-alto", "+baixo", "+recuado", "+arredondado", "+vozeado"],
+  "a": ["-consonantal", "+silábico", "+soante", "+contínuo", "-alto", "+baixo", "+recuado", "-arredondado", "+vozeado"]
 };
 
-function getSelectedFeatures() {
-  return Array.from(document.querySelectorAll(".filters input:checked")).map(input =>
-    `${input.dataset.value}${input.name}`
-  );
-}
+// Lógica de dependências entre traços
+const dependencies = {
+  "+consonantal": [["-silábico"]],
+  "+silábico": ["-consonantal", "+soante", "+contínuo"],
+  "+soante": ["+vozeado"],
+  "+contínuo": ["-soltura retardada"],
+  "+soltura retardada": ["-contínuo"],
+  "+nasal": ["-lateral", "-aproximante", "-silábico", "+consonantal"],
+  "+lateral": ["-nasal", "-aproximante", "-silábico", "+consonantal"],
+  "+aproximante": ["-nasal", "-lateral", "-silábico", "+consonantal"]
+};
 
-function filterPhonemes() {
-  const selected = getSelectedFeatures();
-  document.querySelectorAll("span[data-phoneme]").forEach(el => {
-    const phoneme = el.dataset.phoneme;
-    const phonemeFeatures = features[phoneme] || [];
-    const matches = selected.every(f => phonemeFeatures.includes(f));
-    el.classList.toggle("hidden", !matches);
+// Quando clica em um traço
+document.querySelectorAll('.toggle-group input').forEach(input => {
+  input.addEventListener('change', () => {
+    const traço = input.name;
+    const valor = input.value;
+    aplicarDependencias(traço, valor);
+    atualizarDestaque();
+  });
+});
+
+// Aplica as dependências lógicas
+function aplicarDependencias(traço, valor) {
+  const dependentes = dependencies[`${valor}${traço}`];
+  if (!dependentes) return;
+
+  dependentes.forEach(dep => {
+    const depTraço = dep.slice(1);
+    const depValor = dep[0];
+    const radio = document.querySelector(`input[name="${depTraço}"][value="${depValor}"]`);
+    if (radio && !radio.checked) {
+      radio.checked = true;
+      aplicarDependencias(depTraço, depValor); // recursivo
+    }
   });
 }
 
-document.querySelectorAll(".filters input").forEach(input =>
-  input.addEventListener("change", filterPhonemes)
-);
+// Atualiza a tabela para destacar fonemas compatíveis com os traços selecionados
+function atualizarDestaque() {
+  // Traços selecionados
+  const selecionados = [];
+  document.querySelectorAll('.toggle-group input:checked').forEach(input => {
+    selecionados.push(`${input.value}${input.name}`);
+  });
+
+  // Para cada célula com fonemas
+  document.querySelectorAll('td span').forEach(span => {
+    const fonema = span.textContent;
+    const traçosDoFonema = featuresByPhoneme[fonema] || [];
+    const combina = selecionados.every(sel => traçosDoFonema.includes(sel));
+    if (combina) {
+      span.classList.add('highlight');
+    } else {
+      span.classList.remove('highlight');
+    }
+  });
+}
