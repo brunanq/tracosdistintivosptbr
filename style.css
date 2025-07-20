@@ -24,7 +24,7 @@ h1 {
   font-size: 14px;
 }
 
-/* Tabela de consoantes */
+/* Tabela consonantal */
 
 .consonant-chart {
   display: table;
@@ -49,11 +49,12 @@ h1 {
 .manner,
 .cell {
   display: table-cell;
-  padding: 10px;
+  padding: 0;
   border: 1px solid #aaa;
   text-align: center;
   vertical-align: middle;
   min-width: 80px;
+  min-height: 50px;
 }
 
 .chart-header .place {
@@ -66,53 +67,55 @@ h1 {
   background-color: #eee;
 }
 
-/* Aqui está o ajuste para que os fonemas fiquem lado a lado */
+/* CELULAS DUPLAS DE FONEMAS */
 .cell {
-  font-size: 20px;
-  display: flex;
-  gap: 6px; /* Espaço entre os fonemas */
-  justify-content: center;
-  flex-wrap: wrap; /* Quebra linha se precisar */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* espaço para até dois fonemas */
+  gap: 4px;
+  padding: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+  justify-items: center;
+  align-items: center;
 }
 
-/* Estilo dos fonemas (quadrados) */
 .ipa-symbol {
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  background: white;
+  width: 100%;
+  padding: 8px;
+  background: #f5f5f5;
   border: 2px solid #ccc;
   border-radius: 6px;
-  cursor: default;
-  font-weight: 400;
-  color: #999;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+  text-align: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
 }
 
-/* Fonemas destacados pelo filtro */
 .ipa-symbol.match {
-  background-color: #c1f0d2;
-  border-color: #147b43;
-  font-weight: 700;
-  color: #147b43;
+  background-color: #34a853;
+  color: white;
+  font-weight: bold;
+  border-color: #0b5d2e;
 }
 
-/* Fonemas "desativados" (não selecionados) */
 .ipa-symbol.no-match {
-  background-color: #f5f5f5;
+  background-color: #eee;
+  color: #bbb;
   border-color: #ddd;
-  color: #ccc;
-  font-weight: 400;
 }
 
-/* Grid geral dos fonemas fora da tabela (se usar) */
-.ipa-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 10px;
-  max-width: 800px;
-  margin: auto;
+/* VOGAIS (opcional, não exibidas nesse modelo) */
+.vowel-section {
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.vowel-list {
+  font-size: 1.4em;
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 8px;
 }
