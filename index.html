@@ -1,59 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IPA Chart with Filters</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Distinctive Features Filter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 15px 25px;
+    background: #f9f9f9;
+    color: #222;
+  }
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    margin-bottom: 25px;
+  }
+  .filter-group {
+    border: 1px solid #ccc;
+    padding: 12px 15px;
+    border-radius: 6px;
+    background: #fff;
+    min-width: 140px;
+    font-size: 14px;
+  }
+  .filter-group label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  .filter-group label strong {
+    flex: 1 0 auto;
+  }
+  table {
+    margin: 0 auto 40px auto;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 50px;
+  }
+  th {
+    background-color: #eee;
+    font-weight: 700;
+  }
+  td.empty {
+    background-color: #f0f0f0;
+  }
+  td.phoneme-cell {
+    cursor: default;
+    font-weight: bold;
+    font-size: 18px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  td.phoneme-cell.inactive {
+    color: #bbb;
+    background-color: #fafafa;
+  }
+  /* vogais com destaque */
+  #vowels-table td.phoneme-cell {
+    font-size: 22px;
+  }
+</style>
 </head>
 <body>
 
-  <h1>IPA Chart</h1>
+<h1>Filtro de Traços Distintivos</h1>
 
-  <div class="filters">
-    <label>
-      Voicing:
-      <select id="voicingFilter">
-        <option value="all">All</option>
-        <option value="true">Voiced</option>
-        <option value="false">Voiceless</option>
-      </select>
-    </label>
-
-    <label>
-      Place:
-      <select id="placeFilter">
-        <option value="all">All</option>
-        <option value="bilabial">Bilabial</option>
-        <option value="labiodental">Labiodental</option>
-        <option value="alveolar">Alveolar</option>
-        <option value="postalveolar">Postalveolar</option>
-        <option value="alveolopalatal">Alveolopalatal</option>
-        <option value="palatal">Palatal</option>
-        <option value="velar">Velar</option>
-        <option value="uvular">Uvular</option>
-        <option value="glottal">Glottal</option>
-      </select>
-    </label>
-
-    <label>
-      Manner:
-      <select id="mannerFilter">
-        <option value="all">All</option>
-        <option value="plosive">Plosive</option>
-        <option value="nasal">Nasal</option>
-        <option value="trill">Trill</option>
-        <option value="tap">Tap</option>
-        <option value="fricative">Fricative</option>
-        <option value="affricate">Affricate</option>
-        <option value="approximant">Approximant</option>
-        <option value="lateral">Lateral</option>
-      </select>
-    </label>
+<div class="filters" id="filters">
+  <div class="filter-group" id="consonant-filters">
+    <strong>Filtros para Consoantes</strong>
+    <label><input type="checkbox" data-feature="consonantal" checked> [+] Consonantal</label>
+    <label><input type="checkbox" data-feature="silabica"> [+] Silábica</label>
+    <label><input type="checkbox" data-feature="soante"> [+] Soante</label>
+    <label><input type="checkbox" data-feature="coronal"> [+] Coronal</label>
+    <label><input type="checkbox" data-feature="anterior"> [+] Anterior</label>
+    <label><input type="checkbox" data-feature="continuo"> [+] Contínuo</label>
+    <label><input type="checkbox" data-feature="nasal"> [+] Nasal</label>
+    <label><input type="checkbox" data-feature="lateral"> [+] Lateral</label>
+    <label><input type="checkbox" data-feature="vozeado"> [+] Vozeado</label>
+    <label><input type="checkbox" data-feature="soltura_retardada"> [+] Soltura retardada</label>
+    <label><input type="checkbox" data-feature="alto"> [+] Alto</label>
+    <label><input type="checkbox" data-feature="baixo"> [+] Baixo</label>
+    <label><input type="checkbox" data-feature="recuado"> [+] Recuado</label>
+    <label><input type="checkbox" data-feature="arredondado"> [+] Arredondado</label>
   </div>
+</div>
 
-  <div id="ipaGrid"></div>
+<h2>Consoantes</h2>
+<table id="consonant-table">
+  <thead>
+    <tr>
+      <th>Modo\Lugar</th>
+      <th>Oclusiva</th>
+      <th>Labiodental</th>
+      <th>Alveolar</th>
+      <th>Pós-alveolar</th>
+      <th>Palatal</th>
+      <th>Velar</th>
+      <th>Uvular</th>
+      <th>Glotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Linhas serão geradas por JS -->
+  </tbody>
+</table>
 
-  <script src="script.js"></script>
+<h2>Vogais</h2>
+<table id="vowels-table">
+  <tbody>
+    <tr>
+      <td class="phoneme-cell" data-phoneme="i" data-features='{"alto":true,"baixo":false,"recuado":false}'>i</td>
+      <td class="phoneme-cell" data-phoneme="u" data-features='{"alto":true,"baixo":false,"recuado":true}'>u</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="phoneme-cell" data-phoneme="e" data-features='{"alto":false,"baixo":false,"recuado":false}'>e</td>
+      <td class="phoneme-cell" data-phoneme="o" data-features='{"alto":false,"baixo":false,"recuado":true}'>o</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="phoneme-cell" data-phoneme="ɛ" data-features='{"alto":false,"baixo":true,"recuado":false}'>ɛ</td>
+      <td class="phoneme-cell" data-phoneme="ɔ" data-features='{"alto":false,"baixo":true,"recuado":true}'>ɔ</td>
+      <td class="phoneme-cell" data-phoneme="a" data-features='{"alto":false,"baixo":true,"recuado":true}'>a</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  (() => {
+    // Dados consoantes com traços (features) usados nos filtros:
+    const consonants = [
+      // symbol, modo, lugar, e traços distintivos usados para filtros
+      { symbol: 'p', manner: 'oclusiva', place: 'oclusiva', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:false, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'b', manner: 'oclusiva', place: 'oclusiva', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 't', manner: 'oclusiva', place: 'alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:false, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'd', manner: 'oclusiva', place: 'alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'k', manner: 'oclusiva', place: 'velar', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:false, soltura_retardada:true, alto:false, baixo:false, recuado:true, arredondado:false } },
+      { symbol: 'g', manner: 'oclusiva', place: 'velar', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:true, alto:false, baixo:false, recuado:true, arredondado:false } },
+
+      { symbol: 'm', manner: 'nasal', place: 'bilabial', features: { consonantal:true, silabica:false, soante:true, coronal:false, anterior:true, continuo:false, nasal:true, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'n', manner: 'nasal', place: 'alveolar', features: { consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:true, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ɲ', manner: 'nasal', place: 'palatal', features: { consonantal:true, silabica:false, soante:true, coronal:false, anterior:false, continuo:false, nasal:true, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+
+      { symbol: 'r', manner: 'vibrante', place: 'alveolar', features: { consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ɾ', manner: 'tap', place: 'alveolar', features: { consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+
+      { symbol: 'f', manner: 'fricativa', place: 'labiodental', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'v', manner: 'fricativa', place: 'labiodental', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 's', manner: 'fricativa', place: 'alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'z', manner: 'fricativa', place: 'alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ʃ', manner: 'fricativa', place: 'pós-alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ʒ', manner: 'fricativa', place: 'pós-alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'x', manner: 'fricativa', place: 'velar', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:true, arredondado:false } },
+      { symbol: 'ɣ', manner: 'fricativa', place: 'velar', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:true, arredondado:false } },
+      { symbol: 'χ', manner: 'fricativa', place: 'uvular', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ʁ', manner: 'fricativa', place: 'uvular', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'h', manner: 'fricativa', place: 'glotal', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ɦ', manner: 'fricativa', place: 'glotal', features: { consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+
+      { symbol: 'tʃ', manner: 'africada', place: 'pós-alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:false, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'dʒ', manner: 'africada', place: 'pós-alveolar', features: { consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:true, soltura_retardada:true, alto:false, baixo:false, recuado:false, arredondado:false } },
+
+      { symbol: 'ɹ', manner: 'aproximante', place: 'alveolar', features: { consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+
+      { symbol: 'l', manner: 'lateral', place: 'alveolar', features: { consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:true, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+      { symbol: 'ʎ', manner: 'lateral', place: 'palatal', features: { consonantal:true, silabica:false, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:true, vozeado:true, soltura_retardada:false, alto:false, baixo:false, recuado:false, arredondado:false } },
+    ];
+
+    // Ordem dos lugares e modos na tabela, conforme pedido:
+    const placesOrder = ['oclusiva', 'labiodental', 'alveolar', 'pós-alveolar', 'palatal', 'velar', 'uvular', 'glotal'];
+    const mannersOrder = ['oclusiva', 'nasal', 'vibrante', 'tap', 'fricativa', 'africada', 'lateral', 'aproximante'];
+
+    // Mapeamento para nomes bonitinhos nas colunas e linhas
+    const placeNames = {
+      'oclusiva': 'Oclusiva',
+      'labiodental': 'Labiodental',
+      'alveolar': 'Alveolar',
+      'pós-alveolar': 'Pós-alveolar',
+      'palatal': 'Palatal',
+      'velar': 'Velar',
+      'uvular': 'Uvular',
+      'glotal': 'Glotal'
+    };
+    const mannerNames = {
+      'oclusiva': 'Oclusiva',
+      'nasal': 'Nasal',
+      'vibrante': 'Vibrante',
+      'tap': 'Tap',
+      'fricativa': 'Fricativa',
+      'africada': 'Africada',
+      'lateral': 'Lateral',
+      'aproximante': 'Aproximante'
+    };
+
+    // Cria a tabela de consoantes dinâmica
+    const tbody = document.querySelector('#consonant-table tbody');
+    mannersOrder.forEach(manner => {
+      const tr = document.createElement('tr');
+      // Cabeçalho da linha (modo)
+      const th = document.createElement('th');
+      th.textContent = mannerNames[manner] || manner;
+      tr.appendChild(th);
+
+      placesOrder.forEach(place => {
+        const td = document.createElement('td');
+        td.classList.add('phoneme-cell');
+        // Procura consoantes que batem no lugar e modo
+        const consonantsFiltered = consonants.filter(c => c.manner === manner && c.place === place);
+        if(consonantsFiltered.length) {
+          // Coloca os símbolos na célula, separados por espaço
+          td.textContent = consonantsFiltered.map(c => `[${c.symbol}]`).join(' ');
+          // Salva os dados para filtro
+          td.dataset.features = JSON.stringify(consonantsFiltered[0].features);
+          td.dataset.manner = manner;
+          td.dataset.place = place;
+        } else {
+          td.classList.add('empty');
+          td.textContent = '';
+        }
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+
+    // Função para checar se consonante bate com filtros
+    function consonantMatchesFilters(features, filters) {
+      // features é objeto com traços booleanos
+      // filters é objeto {feature: true/false/null} (true = [+], false=[-], null=ignorados)
+      for(const f in filters) {
+        if(filters[f] === null) continue; // ignorar filtro não marcado
+        const val = features[f] || false;
+        if(val !== filters[f]) {
+          return false; // não bate
+        }
+      }
+      return true;
+    }
+
+    // Relações lógicas específicas para os filtros dados, implementadas no updateFilters()
+    function aplicarLogicas(filtros) {
+      // Ajustes complexos da lógica:
+
+      // silábico e consonantal são opostos, não pode marcar [+] nos dois
+      if(filtros.silabica === true) filtros.consonantal = false;
+      if(filtros.consonantal === true) filtros.silabica = false;
+
+      // [+] silábico implica [+] contínuo (só pra consoantes, para vogais não aplicamos)
+      if(filtros.silabica === true) filtros.continuo = true;
+
+      // [+] nasal implica [-] lateral e [-] aproximante
+      if(filtros.nasal === true) {
+        filtros.lateral = false;
+        filtros.aproximante = false;
+      }
+
+      // [+] soante implica [+] nasal ou [+] lateral ou [+] aproximante
+      if(filtros.soante === true) {
+        // Como no filtro temos só true/false/null, aqui a lógica é que pelo menos um desses seja true
+        // Se nenhum for true, força algum
+        if(!(filtros.nasal || filtros.lateral || filtros.aproximante)) {
+          filtros.nasal = true; // arbitrário, mas não tira filtro pra não esconder tudo
+        }
+      }
+
+      // [+] soante implica [+] vozeado
+      if(filtros.soante === true) filtros.vozeado = true;
+
+      // [+] contínuo implica [-] soltura retardada
+      if(filtros.continuo === true) filtros.soltura_retardada = false;
+
+      // [+] anterior aplica filtro para lugares: só bilabial, labiodental e alveolar (+)
+      // Portanto, lugares diferentes desses devem ser "desativados" se filtro anterior=+
+      if(filtros.anterior === true) {
+        filtros.allowedPlaces = ['oclusiva','labiodental','alveolar'];
+      } else {
+        filtros.allowedPlaces = null; // todos permitidos
+      }
+
+      return filtros;
+    }
+
+    // Faz o update visual da tabela consoante
+    function updateConsonantTable(filtros) {
+      const tds = document.querySelectorAll('#consonant-table td.phoneme-cell');
+      tds.forEach(td => {
+        const features = JSON.parse(td.dataset.features || '{}');
+        let matches = consonantMatchesFilters(features, filtros);
+
+        // Se tiver filtro anterior [+], checar lugares permitidos
+        if(filtros.allowedPlaces) {
+          if(!filtros.allowedPlaces.includes(td.dataset.place)) {
+            matches = false;
+          }
+        }
+
+        td.classList.toggle('inactive', !matches);
+      });
+    }
+
+    // Pega estado dos filtros em objeto
+    function getFilters() {
+      const inputs = document.querySelectorAll('#consonant-filters input[type=checkbox]');
+      let filtros = {};
+      inputs.forEach(input => {
+        if(input.checked) {
+          filtros[input.dataset.feature] = true;
+        } else {
+          filtros[input.dataset.feature] = null; // desmarcado = ignorar
+        }
+      });
+      return filtros;
+    }
+
+    // Conecta evento dos filtros
+    function setupFilters() {
+      const inputs = document.querySelectorAll('#consonant-filters input[type=checkbox]');
+      inputs.forEach(input => {
+        input.addEventListener('change', () => {
+          let filtros = getFilters();
+          filtros = aplicarLogicas(filtros);
+          // Atualiza os checkboxes após a lógica para evitar conflitos silábico/consonantal
+          if(filtros.consonantal === false) {
+            document.querySelector('input[data-feature="consonantal"]').checked = false;
+          }
+          if(filtros.silabica === true) {
+            document.querySelector('input[data-feature="silabica"]').checked = true;
+            document.querySelector('input[data-feature="consonantal"]').checked = false;
+          }
+          updateConsonantTable(filtros);
+        });
+      });
+      // Trigger inicial
+      updateConsonantTable(aplicarLogicas(getFilters()));
+    }
+
+    setupFilters();
+
+  })();
+</script>
 </body>
 </html>
