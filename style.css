@@ -25,14 +25,13 @@ h1 {
   gap: 10px;
   font-weight: bold;
   user-select: none;
+  min-width: 150px;
   position: relative;
 }
 
-.feature-name {
+.filter-name {
   min-width: 120px;
 }
-
-/* Toggle triplo */
 
 .toggle-switch {
   position: relative;
@@ -62,8 +61,6 @@ h1 {
   z-index: 2;
 }
 
-/* Posicionamentos */
-
 .toggle-switch.pos-neutral .toggle-thumb {
   left: calc(50% - 13px);
   background: #ccc;
@@ -79,8 +76,6 @@ h1 {
   background: #e04c4c; /* vermelho */
 }
 
-/* Fundo com cores indicativas */
-
 .toggle-switch.pos-plus {
   background: #c8f0cd;
   border-color: #3cb371;
@@ -90,90 +85,6 @@ h1 {
   background: #f0c8c8;
   border-color: #e04c4c;
 }
-
-/* Indicadores [+] [-] [ ]*/
-
-.toggle-switch .label-left,
-.toggle-switch .label-center,
-.toggle-switch .label-right {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: #555;
-  user-select: none;
-  pointer-events: none;
-}
-
-.toggle-switch .label-left {
-  left: 8px;
-  color: #3cb371;
-}
-.toggle-switch .label-center {
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #777;
-}
-.toggle-switch .label-right {
-  right: 8px;
-  color: #e04c4c;
-}
-
-/* Tooltip info icon e piscar */
-
-.info-icon {
-  display: inline-block;
-  margin-left: 6px;
-  color: #0055aa;
-  font-weight: bold;
-  cursor: help;
-  position: relative;
-  font-family: Arial, sans-serif;
-  user-select: none;
-  font-size: 18px;
-  line-height: 1;
-}
-
-.info-icon:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-
-.tooltip {
-  visibility: hidden;
-  opacity: 0;
-  width: max-content;
-  max-width: 220px;
-  background-color: #222;
-  color: #fff;
-  text-align: left;
-  border-radius: 5px;
-  padding: 6px 8px;
-  position: absolute;
-  z-index: 1000;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: opacity 0.3s;
-  pointer-events: none;
-  font-size: 0.85rem;
-  line-height: 1.2;
-  box-shadow: 0 0 8px rgba(0,0,0,0.5);
-}
-
-/* Piscar */
-
-@keyframes blink {
-  0%, 100% { background-color: #e6ffe6; }
-  50% { background-color: #ffff99; }
-}
-
-.blink {
-  animation: blink 1s ease 0s 3;
-}
-
-/* Tabelas */
 
 .container-tables {
   display: flex;
@@ -223,9 +134,9 @@ table td.dimmed {
   cursor: default;
 }
 
-table td.highlight {
-  background-color: #a8e6a1 !important;
-  color: #004400 !important;
+table td.highlighted {
+  background-color: #90ee90 !important;
+  color: #006400 !important;
   font-weight: bolder;
 }
 
