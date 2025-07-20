@@ -35,15 +35,105 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   };
 
-  // Consoantes e vogais idem versão anterior (omitido aqui por brevidade, usar mesmo array)
+  // Consoantes
+  const consonants = [
+    { symbol:'p', place:'oclusiva', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'b', place:'oclusiva', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
 
-  // Estado dos filtros: 'all' | true | false
+    { symbol:'t', place:'alveolar', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'d', place:'alveolar', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'k', place:'velar', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'g', place:'velar', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'m', place:'bilabial', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:false, anterior:true, continuo:false, nasal:true, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+    { symbol:'n', place:'alveolar', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:true, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+    { symbol:'ɲ', place:'palatal', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:false, continuo:false, nasal:true, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'r', place:'alveolar', manner:'vibrante', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'ɾ', place:'alveolar', manner:'tap', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'f', place:'labiodental', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'v', place:'labiodental', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'s', place:'alveolar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'z', place:'alveolar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'ʃ', place:'postalveolar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ʒ', place:'postalveolar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'x', place:'velar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ɣ', place:'velar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'χ', place:'uvular', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ʁ', place:'uvular', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'h', place:'glotal', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ɦ', place:'glotal', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'tʃ', place:'postalveolar', manner:'africada', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:false, solturaRetardada:true} },
+    { symbol:'dʒ', place:'postalveolar', manner:'africada', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, aproximante:false, vozeado:true, solturaRetardada:true} },
+
+    { symbol:'ɹ', place:'alveolar', manner:'aproximante', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:true, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'l', place:'alveolar', manner:'lateral', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:true, aproximante:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'w', place:'bilabial', manner:'aproximante', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, aproximante:true, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'j', place:'palatal', manner:'aproximante', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, aproximante:true, vozeado:true, solturaRetardada:false} },
+  ];
+
+  // Vogais - ordenadas em linhas alto/meio/baixo e colunas anterior/recuado
+  // Inclui glides aproximantes alto + anterior/recuado (j,w)
+
+  // Para simplificar, só usei 3x4 (alto, meio, baixo) x (anterior, central, recuado, arredondado)
+  // Com as features relevantes
+
+  // Ajustado para 3 linhas (alto, meio, baixo) e 4 colunas (anterior, central, recuado, arredondado)
+  const vowels = [
+    [ // alto
+      { symbol:'i', features:{consonantal:false, silabica:true, soante:true, anterior:true, recuado:false, alto:true, baixo:false, arredondado:false} },
+      { symbol:'ɨ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:true, baixo:false, arredondado:false} },
+      { symbol:'u', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:true, baixo:false, arredondado:true} },
+      { symbol:'ʉ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:true, baixo:false, arredondado:true} },
+    ],
+    [ // meio
+      { symbol:'e', features:{consonantal:false, silabica:true, soante:true, anterior:true, recuado:false, alto:false, baixo:false, arredondado:false} },
+      { symbol:'ɘ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:false, arredondado:false} },
+      { symbol:'o', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:false, arredondado:true} },
+      { symbol:'ɵ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:false, arredondado:true} },
+    ],
+    [ // baixo
+      { symbol:'a', features:{consonantal:false, silabica:true, soante:true, anterior:true, recuado:false, alto:false, baixo:true, arredondado:false} },
+      { symbol:'ɐ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:true, arredondado:false} },
+      { symbol:'ɑ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:true, arredondado:true} },
+      { symbol:'ɒ', features:{consonantal:false, silabica:true, soante:true, anterior:false, recuado:true, alto:false, baixo:true, arredondado:true} },
+    ]
+  ];
+
+  const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'palatal', 'velar', 'uvular', 'glotal', 'oclusiva'];
+  // Aqui uso places mais usadas (porém só as do array dos consonantes acima)
+
+  // Organizar os manners em ordem mais lógica para a tabela
+  const manners = [
+    'oclusiva',
+    'africada',
+    'fricativa',
+    'nasal',
+    'aproximante',
+    'lateral',
+    'vibrante',
+    'tap',
+  ];
+
+  // Inicializa estado dos filtros com "all" (neutro)
   const filters = {};
   features.forEach(f => filters[f] = 'all');
 
   const filtersContainer = document.getElementById('filters');
 
-  // Cria toggle-switch para cada traço
+  // Cria toggles para cada traço
   features.forEach(feature => {
     const group = document.createElement('div');
     group.className = 'filter-group';
@@ -58,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.className = 'toggle-switch pos-neutral';
     toggle.title = 'Clique para alternar: neutro → [+] → [-] → neutro';
 
-    // Labels [+] [ ] [-]
     const labelLeft = document.createElement('span');
     labelLeft.className = 'label-left';
     labelLeft.textContent = '[+]';
@@ -77,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     group.appendChild(toggle);
     filtersContainer.appendChild(group);
 
-    // Clique alterna entre os três estados
     toggle.addEventListener('click', () => {
       let state = filters[feature]; // all, true, false
       if(state === 'all') state = true;
@@ -102,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else toggle.classList.add('pos-minus');
   }
 
-  // Função piscar e info igual versão anterior
+  // Piscar e info
   function showInfoForFeature(featureName, message) {
     const group = document.querySelector(`.filter-group[data-feature="${featureName}"]`);
     if (!group) return;
@@ -141,22 +229,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if(filters[otherFeature] !== rule.val){
           filters[otherFeature] = rule.val;
 
-          // Atualiza toggle visualmente
           updateToggleUI(otherFeature);
 
           showInfoForFeature(otherFeature, rule.msg);
 
+          // recursivo para regras encadeadas
           applyLogicRules(otherFeature);
         }
       }
     }
   }
 
-  // --- Resto do código igual: montar tabelas e função updateHighlight ---
-  // Aqui colar os arrays consonants, vowels, places, manners e montar as tabelas
-  // (igual ao código anterior)
-
-  // Função updateHighlight:
+  // Atualiza realce nas tabelas
   function updateHighlight() {
     const allTds = [...document.querySelectorAll('table td')];
     allTds.forEach(td => {
@@ -182,16 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Montar as tabelas consonantTable e vowelTable (copiar o código anterior)
-
-  // Repetir código para criar tabelas como na versão anterior, colar aqui...
-
-  // Criar tabela consonantal
+  // Criação da tabela de consoantes
   const consonantTable = document.getElementById('consonant-table');
   const thead = document.createElement('thead');
   const trHead = document.createElement('tr');
   trHead.appendChild(document.createElement('th'));
-  places.forEach(place => {
+  // As colunas de lugar
+  const placesOrder = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'palatal', 'velar', 'uvular', 'glotal', 'oclusiva'];
+  placesOrder.forEach(place => {
     const th = document.createElement('th');
     th.textContent = place;
     trHead.appendChild(th);
@@ -200,13 +282,26 @@ document.addEventListener('DOMContentLoaded', () => {
   consonantTable.appendChild(thead);
 
   const tbody = document.createElement('tbody');
-  manners.forEach(manner => {
+
+  const mannersOrder = [
+    'oclusiva',
+    'africada',
+    'fricativa',
+    'nasal',
+    'aproximante',
+    'lateral',
+    'vibrante',
+    'tap',
+  ];
+
+  mannersOrder.forEach(manner => {
     const tr = document.createElement('tr');
     const th = document.createElement('th');
     th.textContent = manner;
     tr.appendChild(th);
 
-    places.forEach(place => {
+    placesOrder.forEach(place => {
+      // Ache o símbolo da consoante com essa place + manner
       const consonant = consonants.find(c => c.place === place && c.manner === manner);
       const td = document.createElement('td');
       if(consonant){
@@ -218,17 +313,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       tr.appendChild(td);
     });
+
     tbody.appendChild(tr);
   });
   consonantTable.appendChild(tbody);
 
-  // Criar tabela vogais
+  // Tabela vogais (3 linhas alto, meio, baixo e 4 colunas anterior, central, recuado, arredondado)
   const vowelTable = document.getElementById('vowel-table');
   const theadVowel = document.createElement('thead');
   const trVowelHead = document.createElement('tr');
-  trVowelHead.appendChild(document.createElement('th'));
-  trVowelHead.appendChild(document.createElement('th'));
-  ['anterior', 'recuado'].forEach(h => {
+  trVowelHead.appendChild(document.createElement('th')); // linha
+  trVowelHead.appendChild(document.createElement('th')); // descrição linha
+  ['anterior', 'central', 'recuado', 'arredondado'].forEach(h => {
     const th = document.createElement('th');
     th.textContent = h;
     trVowelHead.appendChild(th);
@@ -237,27 +333,26 @@ document.addEventListener('DOMContentLoaded', () => {
   vowelTable.appendChild(theadVowel);
 
   const tbodyVowel = document.createElement('tbody');
-  const vowelRowsLabels = ['alto', 'meio', 'baixo'];
-  vowels.forEach((row, i) => {
+  ['alto', 'meio', 'baixo'].forEach((alt, i) => {
     const tr = document.createElement('tr');
     const th1 = document.createElement('th');
-    th1.textContent = vowelRowsLabels[i];
+    th1.textContent = alt;
     tr.appendChild(th1);
 
     const th2 = document.createElement('th');
     th2.textContent = i === 0 ? 'topo' : i === 1 ? 'meio' : 'baixo';
     tr.appendChild(th2);
 
-    row.forEach(vowel => {
+    vowels[i].forEach(vowel => {
       const td = document.createElement('td');
       td.textContent = vowel.symbol;
       td.dataset.features = JSON.stringify(vowel.features);
       tr.appendChild(td);
     });
+
     tbodyVowel.appendChild(tr);
   });
   vowelTable.appendChild(tbodyVowel);
 
   updateHighlight();
-
 });
