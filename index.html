@@ -1,80 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tabela de Fonemas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="filters">
-    <h2>Filtros por traços</h2>
-    <div class="filter-grid">
-      <div class="filter-item" data-feature="consonantal">consonantal: 
-        <label><input type="radio" name="consonantal" value="+" /> [+]</label>
-        <label><input type="radio" name="consonantal" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="silábico">silábico: 
-        <label><input type="radio" name="silábico" value="+" /> [+]</label>
-        <label><input type="radio" name="silábico" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="soante">soante:
-        <label><input type="radio" name="soante" value="+" /> [+]</label>
-        <label><input type="radio" name="soante" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="contínuo">contínuo:
-        <label><input type="radio" name="contínuo" value="+" /> [+]</label>
-        <label><input type="radio" name="contínuo" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="soltura retardada">soltura retardada:
-        <label><input type="radio" name="soltura retardada" value="+" /> [+]</label>
-        <label><input type="radio" name="soltura retardada" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="nasal">nasal:
-        <label><input type="radio" name="nasal" value="+" /> [+]</label>
-        <label><input type="radio" name="nasal" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="lateral">lateral:
-        <label><input type="radio" name="lateral" value="+" /> [+]</label>
-        <label><input type="radio" name="lateral" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="aproximante">aproximante:
-        <label><input type="radio" name="aproximante" value="+" /> [+]</label>
-        <label><input type="radio" name="aproximante" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="vozeado">vozeado:
-        <label><input type="radio" name="vozeado" value="+" /> [+]</label>
-        <label><input type="radio" name="vozeado" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="anterior">anterior:
-        <label><input type="radio" name="anterior" value="+" /> [+]</label>
-        <label><input type="radio" name="anterior" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="alto">alto:
-        <label><input type="radio" name="alto" value="+" /> [+]</label>
-        <label><input type="radio" name="alto" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="baixo">baixo:
-        <label><input type="radio" name="baixo" value="+" /> [+]</label>
-        <label><input type="radio" name="baixo" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="recuado">recuado:
-        <label><input type="radio" name="recuado" value="+" /> [+]</label>
-        <label><input type="radio" name="recuado" value="-" /> [-]</label>
-      </div>
-      <div class="filter-item" data-feature="arredondado">arredondado:
-        <label><input type="radio" name="arredondado" value="+" /> [+]</label>
-        <label><input type="radio" name="arredondado" value="-" /> [-]</label>
-      </div>
-    </div>
-  </div>
+  <h1>Tabela de Fonemas</h1>
 
-  <div id="tabela-container">
-    <h2>Tabela de Fonemas</h2>
-    <div id="tabela-fonemas"></div>
+  <div id="filters" class="filters"></div>
 
-    <h2>Vogais</h2>
-    <div id="tabela-vogais"></div>
+  <div id="table-container" class="table-container"></div>
+
+  <h2>Vogais</h2>
+  <div class="vowel-grid">
+    <div></div>       <div class="vowel">[i]</div> <div class="vowel">[u]</div>
+    <div></div>       <div class="vowel">[e]</div> <div class="vowel">[o]</div>
+    <div class="vowel">[ɛ]</div> <div class="vowel">[ɔ]</div> <div class="vowel">[a]</div>
   </div>
 
   <script src="script.js"></script>
