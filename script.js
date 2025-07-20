@@ -32,12 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
   const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
 
-  // Helper para capitalizar o rótulo
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // Cria estrutura para agrupar os fonemas na tabela
+  // Monta o mapa de fonemas por modo e lugar
   const consonantMap = {};
   manners.forEach(manner => {
     consonantMap[manner] = {};
@@ -52,27 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Referências aos elementos do DOM
   const tableContainer = document.getElementById('ipaGrid');
-  const typeFilter = document.getElementById('typeFilter');
   const voicingFilter = document.getElementById('voicingFilter');
   const placeFilter = document.getElementById('placeFilter');
   const mannerFilter = document.getElementById('mannerFilter');
 
-  // Cria a tabela
   function createTable() {
-    tableContainer.innerHTML = ''; // limpa antes
+    tableContainer.innerHTML = '';
 
     const table = document.createElement('div');
     table.className = 'consonant-chart';
 
-    // Cabeçalho colunas - lugares
+    // Cabeçalho da tabela
     const header = document.createElement('div');
     header.className = 'chart-header';
 
     const cornerCell = document.createElement('div');
     cornerCell.className = 'corner';
-    cornerCell.textContent = '';
     header.appendChild(cornerCell);
 
     places.forEach(place => {
@@ -84,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     table.appendChild(header);
 
-    // Linhas - modos
+    // Linhas da tabela
     manners.forEach(manner => {
       const row = document.createElement('div');
       row.className = 'chart-row';
@@ -98,19 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const cell = document.createElement('div');
         cell.className = 'cell';
 
-        // Insere os fonemas nessa célula (cada símbolo dentro de uma span)
-        const phonemesInCell = consonantMap[manner][place];
-        phonemesInCell.forEach(ph => {
+        consonantMap[manner][place].forEach(ph => {
           const span = document.createElement('span');
-          span.textContent = ph.symbol;
           span.classList.add('ipa-symbol');
-          // Armazena propriedades para filtro
-          span.dataset.voiced = ph.voiced;
+          span.textContent = ph.symbol;
+          span.dataset.voiced = String(ph.voiced);
           span.dataset.place = ph.place;
           span.dataset.manner = ph.manner;
           cell.appendChild(span);
-          // Espaço entre símbolos se tiver mais de 1
-          cell.appendChild(document.createTextNode(' '));
+          cell.appendChild(document.createTextNode(' ')); // Espaço entre fonemas
         });
 
         row.appendChild(cell);
@@ -122,10 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tableContainer.appendChild(table);
   }
 
-  // Aplica filtros mudando classes dos spans da tabela
   function applyFilters() {
     const allSpans = tableContainer.querySelectorAll('.ipa-symbol');
-    const selectedType = typeFilter.value;
     const voicedVal = voicingFilter.value;
     const placeVal = placeFilter.value;
     const mannerVal = mannerFilter.value;
@@ -133,11 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     allSpans.forEach(span => {
       let match = true;
 
-      if (selectedType !== 'all' && selectedType !== 'consonant') {
-        match = false; // só temos consoantes na tabela
-      }
-
-      if (voicedVal !== 'all' && String(span.dataset.voiced) !== voicedVal) {
+      if (voicedVal !== 'all' && span.dataset.voiced !== voicedVal) {
         match = false;
       }
       if (placeVal !== 'all' && span.dataset.place !== placeVal) {
@@ -156,12 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // Mostrar/ocultar filtros conforme tipo selecionado (se quiser mais tarde)
-  typeFilter.addEventListener('change', () => {
-    // Aqui só consoantes, então mantém filtros visíveis
-    applyFilters();
-  });
 
   voicingFilter.addEventListener('change', applyFilters);
   placeFilter.addEventListener('change', applyFilters);
