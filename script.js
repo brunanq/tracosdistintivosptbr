@@ -1,4 +1,5 @@
-const phonemes = [
+document.addEventListener('DOMContentLoaded', () => {
+    const phonemes = [
     // Consonants
     { symbol: 'p', type: 'consonant', voiced: false, place: 'bilabial', manner: 'plosive' },
     { symbol: 'b', type: 'consonant', voiced: true, place: 'bilabial', manner: 'plosive' },
@@ -183,4 +184,4 @@ tableContainer.appendChild(table);
   );
   
   renderChart();
-  
+});
