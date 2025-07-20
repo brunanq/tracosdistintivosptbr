@@ -3,36 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tabela de Fonemas</title>
+  <title>Filtro de Traços Distintivos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Tabela de Fonemas</h1>
 
-  <section class="filters">
-    <h2>Filtros</h2>
-    <div class="filter-list">
-      <label><input type="checkbox" data-feature="consonantal" value="+"> [+] consonantal</label>
-      <label><input type="checkbox" data-feature="consonantal" value="-"> [-] consonantal</label>
-      <label><input type="checkbox" data-feature="silabica" value="+"> [+] silábica</label>
-      <label><input type="checkbox" data-feature="silabica" value="-"> [-] silábica</label>
-      <label><input type="checkbox" data-feature="soante" value="+"> [+] soante</label>
-      <label><input type="checkbox" data-feature="coronal" value="+"> [+] coronal</label>
-      <label><input type="checkbox" data-feature="anterior" value="+"> [+] anterior</label>
-      <label><input type="checkbox" data-feature="continuo" value="+"> [+] contínuo</label>
-      <label><input type="checkbox" data-feature="nasal" value="+"> [+] nasal</label>
-      <label><input type="checkbox" data-feature="lateral" value="+"> [+] lateral</label>
-      <label><input type="checkbox" data-feature="vozeado" value="+"> [+] vozeado</label>
-      <label><input type="checkbox" data-feature="soltura" value="+"> [+] soltura retardada</label>
-      <label><input type="checkbox" data-feature="alto" value="+"> [+] alto</label>
-      <label><input type="checkbox" data-feature="baixo" value="+"> [+] baixo</label>
-      <label><input type="checkbox" data-feature="recuado" value="+"> [+] recuado</label>
-      <label><input type="checkbox" data-feature="arredondado" value="+"> [+] arredondado</label>
-    </div>
-  </section>
-
-  <div id="consonant-chart" class="phoneme-chart"></div>
-  <div id="vowel-chart" class="vowel-section"></div>
+  <section id="filters"></section>
+  <section id="tabela-consoantes"></section>
+  <section id="tabela-vogais"></section>
 
   <script src="script.js"></script>
 </body>
