@@ -80,18 +80,26 @@ h1 {
 }
 
 .ipa-symbol {
-  padding: 15px;
-  background: white;
-  border: 2px solid #ccc;
-  text-align: center;
+  padding: 4px 6px;
   font-size: 18px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  color: #999;           /* cor padrão clara */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: inline-block;
   user-select: none;
 }
 
 .ipa-symbol.match {
-  background-color: #c1f0d2;
-  border-color: #34a853;
-  font-weight: bold;
+  color: #147b43;        /* verde escuro para destacado */
+  font-weight: 700;
+  background-color: #d7f3d9;
+  border-radius: 4px;
+}
+
+.ipa-symbol.no-match {
+  color: #ccc;           /* cinza claro para desbotado */
+  font-weight: 400;
+  background-color: transparent;
+}
+
 }
