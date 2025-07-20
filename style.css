@@ -1,100 +1,56 @@
 body {
-  font-family: sans-serif;
-  background: #fff;
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  background: #fafafa;
   color: #333;
-  padding: 20px;
 }
 
-h1 {
-  text-align: center;
+#filters {
+  margin-bottom: 2rem;
 }
 
-.filters {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.filter-list {
+.filter-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+  gap: 1rem;
 }
 
-label {
-  font-size: 0.9rem;
+.filter-item {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 6px;
 }
 
-.phoneme-chart {
-  display: table;
+#tabela-fonemas, #tabela-vogais {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+table {
   border-collapse: collapse;
-  margin: auto;
+  width: 100%;
 }
 
-.chart-row {
-  display: table-row;
-}
-
-.chart-header, .manner-label {
-  display: table-cell;
-  font-weight: bold;
-  background-color: #ccc;
-  padding: 8px;
+th, td {
+  border: 1px solid #ccc;
   text-align: center;
+  padding: 1rem;
+  min-width: 60px;
 }
 
-.chart-cell {
-  display: table-cell;
-  border: 1px solid #999;
-  min-width: 80px;
-  min-height: 50px;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-}
-
-.phoneme {
+.fonema {
   display: inline-block;
-  margin: 2px;
-  padding: 6px;
-  background-color: #eaeaea;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  margin: 0 0.2rem;
+  font-size: 1.2rem;
   font-weight: bold;
-}
-
-.phoneme.highlight {
-  background-color: #a5f0c1;
   color: black;
+  background: #e0e0e0;
+  padding: 0.3rem;
+  border-radius: 6px;
 }
 
-.vowel-section {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.vowel-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 80px);
-  grid-template-rows: repeat(3, 60px);
-  gap: 10px;
-  justify-content: center;
-  margin: auto;
-}
-
-.vowel-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #eee;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  font-size: 1.5em;
-  font-weight: bold;
-  width: 80px;
-  height: 60px;
-}
-
-.vowel.highlight {
-  background: #a5f0c1;
+.fonema.inativo {
+  background: #f3f3f3;
+  color: #aaa;
 }
