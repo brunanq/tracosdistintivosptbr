@@ -1,69 +1,147 @@
-const featureState = {};
-const rules = {
-  'consonantal': { '+': { 'silábica': '-' } },
-  'silábica': {
-    '+': { 'consonantal': '-', 'soante': '+', 'contínuo': '+' }
-  },
-  'soante': { '+': { 'vozeado': '+' } },
-  'contínuo': { '+': { 'soltura retardada': '-' } },
-  'soltura retardada': { '+': { 'contínuo': '-' } },
-  'nasal': { '+': { 'lateral': '-', 'aproximante': '-' } },
-  'lateral': { '+': { 'nasal': '-', 'aproximante': '-' } },
-  'aproximante': { '+': { 'nasal': '-', 'lateral': '-' } }
-};
+document.addEventListener('DOMContentLoaded', () => {
+  // Todos os traços que vamos filtrar
+  const features = [
+    'consonantal', 'silabica', 'soante', 'coronal', 'anterior',
+    'continuo', 'nasal', 'lateral', 'vozeado', 'solturaRetardada',
+    'alto', 'baixo', 'recuado', 'arredondado'
+  ];
 
-const phonemeFeatures = {
-  // Consoantes (apenas exemplos — adicione os demais conforme necessário)
-  'p': ['+consonantal', '-silábica', '-soante', '+anterior', '-contínuo', '-nasal', '-lateral', '-vozeado', '-soltura retardada'],
-  'b': ['+consonantal', '-silábica', '-soante', '+anterior', '-contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  't': ['+consonantal', '-silábica', '-soante', '+anterior', '-contínuo', '-nasal', '-lateral', '-vozeado', '-soltura retardada'],
-  'd': ['+consonantal', '-silábica', '-soante', '+anterior', '-contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  'm': ['+consonantal', '-silábica', '+soante', '+anterior', '-contínuo', '+nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  'n': ['+consonantal', '-silábica', '+soante', '+anterior', '-contínuo', '+nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  'ɲ': ['+consonantal', '-silábica', '+soante', '+coronal', '-contínuo', '+nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  'l': ['+consonantal', '-silábica', '+soante', '+coronal', '-contínuo', '-nasal', '+lateral', '+vozeado', '-soltura retardada'],
-  'ʎ': ['+consonantal', '-silábica', '+soante', '+coronal', '-contínuo', '-nasal', '+lateral', '+vozeado', '-soltura retardada'],
-  's': ['+consonantal', '-silábica', '-soante', '+anterior', '+contínuo', '-nasal', '-lateral', '-vozeado', '-soltura retardada'],
-  'z': ['+consonantal', '-silábica', '-soante', '+anterior', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada'],
-  'tʃ': ['+consonantal', '-silábica', '-soante', '+coronal', '-contínuo', '-nasal', '-lateral', '-vozeado', '+soltura retardada'],
-  'dʒ': ['+consonantal', '-silábica', '-soante', '+coronal', '-contínuo', '-nasal', '-lateral', '+vozeado', '+soltura retardada'],
+  // Relações lógicas para manter consistência dos filtros
+  const logicMap = {
+    consonantal: { silabica: false },
+    silabica: { consonantal: false, soante: true, continuo: true },
+    soante: { vozeado: true },
+    continuo: { solturaRetardada: false },
+    solturaRetardada: { continuo: false },
+    nasal: { lateral: false, aproximante: false, silabica: false, consonantal: true },
+    lateral: { nasal: false, aproximante: false, silabica: false, consonantal: true },
+    aproximante: { lateral: false, nasal: false, silabica: false, consonantal: true },
+  };
 
-  // Vogais e glides
-  'i': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '+alto', '-baixo', '-recuado', '-arredondado'],
-  'ɪ': ['-consonantal', '-silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '+alto', '-baixo', '-recuado', '-arredondado'],
-  'u': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '+alto', '-baixo', '+recuado', '+arredondado'],
-  'ʊ': ['-consonantal', '-silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '+alto', '-baixo', '+recuado', '+arredondado'],
-  'a': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '-alto', '+baixo', '+recuado', '-arredondado'],
-  'e': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '-alto', '-baixo', '-recuado', '-arredondado'],
-  'o': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '-alto', '-baixo', '+recuado', '+arredondado'],
-  'ɛ': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '-alto', '+baixo', '-recuado', '-arredondado'],
-  'ɔ': ['-consonantal', '+silábica', '+soante', '-coronal', '+contínuo', '-nasal', '-lateral', '+vozeado', '-soltura retardada', '-alto', '+baixo', '+recuado', '+arredondado']
-};
+  // Lista de consoantes e traços
+  const consonants = [
+    { symbol:'p', place:'oclusiva', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'b', place:'oclusiva', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
 
-function applyRules(changedFeature, value) {
-  const affected = rules[changedFeature]?.[value];
-  if (!affected) return;
-  Object.entries(affected).forEach(([key, val]) => {
-    featureState[key] = val;
-    const input = document.querySelector(`input[name="${key}"][value="${val}"]`);
-    if (input) input.checked = true;
+    { symbol:'t', place:'alveolar', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'d', place:'alveolar', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'k', place:'velar', manner:'oclusiva', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'g', place:'velar', manner:'oclusiva', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'m', place:'bilabial', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:false, anterior:true, continuo:false, nasal:true, lateral:false, vozeado:true, solturaRetardada:false} },
+    { symbol:'n', place:'alveolar', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:true, lateral:false, vozeado:true, solturaRetardada:false} },
+    { symbol:'ɲ', place:'palatal', manner:'nasal', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:false, continuo:false, nasal:true, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'r', place:'alveolar', manner:'vibrante', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'ɾ', place:'alveolar', manner:'tap', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'f', place:'labiodental', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'v', place:'labiodental', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'s', place:'alveolar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'z', place:'alveolar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'ʃ', place:'postalveolar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ʒ', place:'postalveolar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'x', place:'velar', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ɣ', place:'velar', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'χ', place:'uvular', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ʁ', place:'uvular', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'h', place:'glotal', manner:'fricativa', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:false, solturaRetardada:false} },
+    { symbol:'ɦ', place:'glotal', manner:'fricativa', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'tʃ', place:'postalveolar', manner:'africada', voiced:false, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:false, solturaRetardada:true} },
+    { symbol:'dʒ', place:'postalveolar', manner:'africada', voiced:true, features:{consonantal:true, silabica:false, soante:false, coronal:true, anterior:false, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:true} },
+
+    { symbol:'ɹ', place:'alveolar', manner:'aproximante', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:false, lateral:false, vozeado:true, solturaRetardada:false} },
+
+    { symbol:'l', place:'alveolar', manner:'lateral', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:true, continuo:false, nasal:false, lateral:true, vozeado:true, solturaRetardada:false} },
+    { symbol:'ʎ', place:'palatal', manner:'lateral', voiced:true, features:{consonantal:true, silabica:false, soante:true, coronal:true, anterior:false, continuo:false, nasal:false, lateral:true, vozeado:true, solturaRetardada:false} },
+  ];
+
+  // Vogais e glides, matriz para facilitar tabela
+  const vowels = [
+    [ // topo
+      {symbol:'i', features:{consonantal:false, silabica:true, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:true, baixo:false, recuado:false, arredondado:false}},
+      {symbol:'ɪ', features:{consonantal:false, silabica:true, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:true, baixo:false, recuado:false, arredondado:false}},
+      {symbol:'u', features:{consonantal:false, silabica:true, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:true, baixo:false, recuado:true, arredondado:true}},
+      {symbol:'ʊ', features:{consonantal:false, silabica:true, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:true, baixo:false, recuado:true, arredondado:true}},
+    ],
+    [ // meio
+      {symbol:'e', features:{consonantal:false, silabica:true, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:false, baixo:false, recuado:false, arredondado:false}},
+      {symbol:'o', features:{consonantal:false, silabica:true, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:false, baixo:false, recuado:true, arredondado:true}},
+    ],
+    [ // baixo
+      {symbol:'ɛ', features:{consonantal:false, silabica:true, soante:true, coronal:true, anterior:true, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:false, baixo:true, recuado:false, arredondado:false}},
+      {symbol:'ɔ', features:{consonantal:false, silabica:true, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:false, baixo:true, recuado:true, arredondado:true}},
+      {symbol:'a', features:{consonantal:false, silabica:true, soante:true, coronal:false, anterior:false, continuo:true, nasal:false, lateral:false, vozeado:true, solturaRetardada:false, alto:false, baixo:true, recuado:true, arredondado:false}},
+    ]
+  ];
+
+  // Colunas e linhas para a tabela consonantal
+  const places = ['oclusiva', 'labiodental', 'alveolar', 'postalveolar', 'palatal', 'velar', 'uvular', 'glotal'];
+  const manners = ['oclusiva', 'nasal', 'vibrante', 'tap', 'fricativa', 'africada', 'lateral', 'aproximante'];
+
+  // Guarda estado dos filtros: 'all' | true | false
+  const filters = {};
+  features.forEach(f => filters[f] = 'all');
+
+  // Cria filtros no DOM
+  const filtersContainer = document.getElementById('filters');
+  features.forEach(feature => {
+    const group = document.createElement('div');
+    group.className = 'filter-group';
+    group.dataset.feature = feature;
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = feature;
+    nameSpan.style.minWidth = '120px';
+    group.appendChild(nameSpan);
+
+    ['true', 'false', 'all'].forEach(val => {
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = feature;
+      input.value = val;
+      input.id = `${feature}_${val}`;
+      if(val === 'all') input.checked = true;
+      group.appendChild(input);
+
+      const label = document.createElement('label');
+      label.htmlFor = input.id;
+      label.textContent = val === 'true' ? '[+]' : (val === 'false' ? '[-]' : '[ ]');
+      group.appendChild(label);
+    });
+
+    filtersContainer.appendChild(group);
   });
-}
 
-function updateHighlights() {
-  const activeFeatures = Object.entries(featureState);
-  document.querySelectorAll('[data-phoneme]').forEach(el => {
-    const phoneme = el.dataset.phoneme;
-    const features = phonemeFeatures[phoneme] || [];
-    const matches = activeFeatures.every(([feat, val]) => features.includes(`${val}${feat}`));
-    el.classList.toggle('highlight', matches);
+  // Cria tabela consonantal
+  const consonantTable = document.getElementById('consonant-table');
+  // Cabeçalho
+  const thead = document.createElement('thead');
+  const trHead = document.createElement('tr');
+  trHead.appendChild(document.createElement('th')); // canto vazio
+  places.forEach(place => {
+    const th = document.createElement('th');
+    th.textContent = place;
+    trHead.appendChild(th);
   });
-}
+  thead.appendChild(trHead);
+  consonantTable.appendChild(thead);
 
-document.querySelectorAll('.filter input').forEach(input => {
-  input.addEventListener('change', () => {
-    featureState[input.name] = input.value;
-    applyRules(input.name, input.value);
-    updateHighlights();
-  });
-});
+  // Corpo da tabela
+  const tbody = document.createElement('tbody');
+
+  manners.forEach(manner => {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.textContent = manner;
+    tr.appendChild(th);
+
+    places.forEach(place =>
