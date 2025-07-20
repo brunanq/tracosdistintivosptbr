@@ -61,7 +61,7 @@ consonants.forEach(p => {
 });
 
 // Cria a tabela
-const tableContainer = document.getElementById('consonant-table');
+const tableContainer = document.getElementById('ipaGrid');
 const table = document.createElement('div');
 table.className = 'consonant-chart';
 
