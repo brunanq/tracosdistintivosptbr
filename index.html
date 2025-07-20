@@ -1,223 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Filtro de Traços Distintivos</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Filtro de Traços Distintivos</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <h1>Filtro de Traços Distintivos</h1>
+  <div id="filters" class="filters"></div>
 
-<h1>Filtro de Traços Distintivos - Fonemas</h1>
-
-<div class="container">
-
-  <div class="filters">
-    <h2>Filtros de Traços Distintivos</h2>
-    <div class="filter" data-feature="consonantal">
-      <label>Consonantal:
-        <label><input type="radio" name="consonantal" value="+" /> [+]</label>
-        <label><input type="radio" name="consonantal" value="-" /> [-]</label>
-        <label><input type="radio" name="consonantal" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="silábica">
-      <label>Silábica:
-        <label><input type="radio" name="silábica" value="+" /> [+]</label>
-        <label><input type="radio" name="silábica" value="-" /> [-]</label>
-        <label><input type="radio" name="silábica" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="soante">
-      <label>Soante:
-        <label><input type="radio" name="soante" value="+" /> [+]</label>
-        <label><input type="radio" name="soante" value="-" /> [-]</label>
-        <label><input type="radio" name="soante" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="coronal">
-      <label>Coronal:
-        <label><input type="radio" name="coronal" value="+" /> [+]</label>
-        <label><input type="radio" name="coronal" value="-" /> [-]</label>
-        <label><input type="radio" name="coronal" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="anterior">
-      <label>Anterior:
-        <label><input type="radio" name="anterior" value="+" /> [+]</label>
-        <label><input type="radio" name="anterior" value="-" /> [-]</label>
-        <label><input type="radio" name="anterior" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="contínuo">
-      <label>Contínuo:
-        <label><input type="radio" name="contínuo" value="+" /> [+]</label>
-        <label><input type="radio" name="contínuo" value="-" /> [-]</label>
-        <label><input type="radio" name="contínuo" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="nasal">
-      <label>Nasal:
-        <label><input type="radio" name="nasal" value="+" /> [+]</label>
-        <label><input type="radio" name="nasal" value="-" /> [-]</label>
-        <label><input type="radio" name="nasal" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="lateral">
-      <label>Lateral:
-        <label><input type="radio" name="lateral" value="+" /> [+]</label>
-        <label><input type="radio" name="lateral" value="-" /> [-]</label>
-        <label><input type="radio" name="lateral" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="vozeado">
-      <label>Vozeado:
-        <label><input type="radio" name="vozeado" value="+" /> [+]</label>
-        <label><input type="radio" name="vozeado" value="-" /> [-]</label>
-        <label><input type="radio" name="vozeado" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="soltura retardada">
-      <label>Soltura Retardada:
-        <label><input type="radio" name="soltura retardada" value="+" /> [+]</label>
-        <label><input type="radio" name="soltura retardada" value="-" /> [-]</label>
-        <label><input type="radio" name="soltura retardada" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="alto">
-      <label>Alto:
-        <label><input type="radio" name="alto" value="+" /> [+]</label>
-        <label><input type="radio" name="alto" value="-" /> [-]</label>
-        <label><input type="radio" name="alto" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="baixo">
-      <label>Baixo:
-        <label><input type="radio" name="baixo" value="+" /> [+]</label>
-        <label><input type="radio" name="baixo" value="-" /> [-]</label>
-        <label><input type="radio" name="baixo" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="recuado">
-      <label>Recuado:
-        <label><input type="radio" name="recuado" value="+" /> [+]</label>
-        <label><input type="radio" name="recuado" value="-" /> [-]</label>
-        <label><input type="radio" name="recuado" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-    <div class="filter" data-feature="arredondado">
-      <label>Arredondado:
-        <label><input type="radio" name="arredondado" value="+" /> [+]</label>
-        <label><input type="radio" name="arredondado" value="-" /> [-]</label>
-        <label><input type="radio" name="arredondado" value="*" checked /> [ ]</label>
-      </label>
-    </div>
-  </div>
-
-  <div class="tables-wrapper">
-    <div class="table-container">
+  <div class="container-tables">
+    <div id="consonant-table-container">
       <h2>Consoantes</h2>
-      <table id="consonant-table">
-        <thead>
-          <tr>
-            <th>Modo \ Lugar</th>
-            <th>Oclusiva</th>
-            <th>Labiodental</th>
-            <th>Alveolar</th>
-            <th>Pós-alveolar</th>
-            <th>Palatal</th>
-            <th>Velar</th>
-            <th>Uvular</th>
-            <th>Glotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th>Oclusiva</th>
-            <td data-phonemes="p,b">p b</td>
-            <td></td>
-            <td data-phonemes="t,d">t d</td>
-            <td></td>
-            <td></td>
-            <td data-phonemes="k,g">k g</td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr><th>Nasal</th>
-            <td data-phonemes="m">m</td>
-            <td></td>
-            <td data-phonemes="n">n</td>
-            <td></td>
-            <td data-phonemes="ɲ">ɲ</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr><th>Vibrante</th>
-            <td></td><td></td>
-            <td data-phonemes="r">r</td>
-            <td></td><td></td><td></td><td></td><td></td>
-          </tr>
-          <tr><th>Tap</th>
-            <td></td><td></td>
-            <td data-phonemes="ɾ">ɾ</td>
-            <td></td><td></td><td></td><td></td><td></td>
-          </tr>
-          <tr><th>Fricativa</th>
-            <td></td>
-            <td data-phonemes="f,v">f v</td>
-            <td data-phonemes="s,z">s z</td>
-            <td data-phonemes="ʃ,ʒ">ʃ ʒ</td>
-            <td></td>
-            <td data-phonemes="x,ɣ">x ɣ</td>
-            <td data-phonemes="χ,ʁ">χ ʁ</td>
-            <td data-phonemes="h,ɦ">h ɦ</td>
-          </tr>
-          <tr><th>Africada</th>
-            <td></td><td></td>
-            <td></td>
-            <td data-phonemes="tʃ,dʒ">tʃ dʒ</td>
-            <td></td><td></td><td></td><td></td>
-          </tr>
-          <tr><th>Lateral</th>
-            <td></td><td></td>
-            <td data-phonemes="l">l</td>
-            <td></td><td data-phonemes="ʎ">ʎ</td>
-            <td></td><td></td><td></td>
-          </tr>
-          <tr><th>Aproximante</th>
-            <td></td><td></td>
-            <td data-phonemes="ɹ">ɹ</td>
-            <td></td><td></td><td></td><td></td><td></td>
-          </tr>
-        </tbody>
-      </table>
+      <table id="consonant-table"></table>
     </div>
 
-    <div class="table-container">
+    <div id="vowel-table-container">
       <h2>Vogais e Glides</h2>
-      <table id="vowel-table">
-        <tbody>
-          <tr>
-            <td data-phonemes="i,ɪ" class="high">i ɪ</td>
-            <td data-phonemes="u,ʊ" class="high">u ʊ</td>
-          </tr>
-          <tr>
-            <td data-phonemes="e" class="mid">e</td>
-            <td data-phonemes="o" class="mid">o</td>
-          </tr>
-          <tr>
-            <td data-phonemes="ɛ" class="low">ɛ</td>
-            <td data-phonemes="ɔ" class="low">ɔ</td>
-            <td data-phonemes="a" class="low">a</td>
-          </tr>
-        </tbody>
-      </table>
+      <table id="vowel-table"></table>
     </div>
-
   </div>
-</div>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
