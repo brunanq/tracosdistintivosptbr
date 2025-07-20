@@ -37,7 +37,65 @@ const phonemes = [
     { symbol: 'a', type: 'vowel', height: 'low', backness: 'back', rounded: false },
     { symbol: 'ɔ', type: 'vowel', height: 'low', backness: 'back', rounded: true },
   ];
-  
+
+// Lista ordenada dos lugares e modos
+const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
+const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
+
+// Filtra as consoantes
+const consonants = phonemes.filter(p => p.type === 'consonant');
+
+// Agrupa as consoantes por manner e place
+const consonantMap = {};
+manners.forEach(manner => {
+  consonantMap[manner] = {};
+  places.forEach(place => {
+    consonantMap[manner][place] = [];
+  });
+});
+
+consonants.forEach(p => {
+  if (consonantMap[p.manner] && consonantMap[p.manner][p.place]) {
+    consonantMap[p.manner][p.place].push(p.symbol);
+  }
+});
+
+// Cria a tabela
+const tableContainer = document.getElementById('consonant-table');
+const table = document.createElement('div');
+table.className = 'consonant-chart';
+
+// Cabeçalho
+const header = document.createElement('div');
+header.className = 'chart-header';
+header.innerHTML = `<div class="corner"></div>` + places.map(place => `<div class="place">${capitalize(place)}</div>`).join('');
+table.appendChild(header);
+
+// Linhas da tabela
+manners.forEach(manner => {
+  const row = document.createElement('div');
+  row.className = 'chart-row';
+
+  const mannerCell = document.createElement('div');
+  mannerCell.className = 'manner';
+  mannerCell.textContent = capitalize(manner);
+  row.appendChild(mannerCell);
+
+  places.forEach(place => {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    const symbols = consonantMap[manner][place];
+    cell.innerHTML = symbols.join('<br>') || '';
+    row.appendChild(cell);
+  });
+
+  table.appendChild(row);
+});
+
+tableContainer.appendChild(table);
+
+//fim tabela
+
   const grid = document.getElementById('ipaGrid');
   const typeFilter = document.getElementById('typeFilter');
   
