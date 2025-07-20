@@ -1,117 +1,117 @@
-const phonemes = [
-  { symbol: "p", manner: "oclusiva", place: "bilabial", features: ["+", "consonantal", "-", "vozeado", "-", "continuo", "+", "anterior"] },
-  { symbol: "b", manner: "oclusiva", place: "bilabial", features: ["+", "consonantal", "+", "vozeado", "-", "continuo", "+", "anterior"] },
-  { symbol: "t", manner: "oclusiva", place: "alveolar", features: ["+", "consonantal", "-", "vozeado", "-", "continuo", "+", "anterior", "+", "coronal"] },
-  { symbol: "d", manner: "oclusiva", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "-", "continuo", "+", "anterior", "+", "coronal"] },
-  { symbol: "k", manner: "oclusiva", place: "velar", features: ["+", "consonantal", "-", "vozeado", "-", "continuo"] },
-  { symbol: "g", manner: "oclusiva", place: "velar", features: ["+", "consonantal", "+", "vozeado", "-", "continuo"] },
-  { symbol: "m", manner: "nasal", place: "bilabial", features: ["+", "consonantal", "+", "vozeado", "+", "nasal", "+", "soante", "+", "anterior"] },
-  { symbol: "n", manner: "nasal", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "nasal", "+", "soante", "+", "anterior", "+", "coronal"] },
-  { symbol: "ɲ", manner: "nasal", place: "palatal", features: ["+", "consonantal", "+", "vozeado", "+", "nasal", "+", "soante"] },
-  { symbol: "r", manner: "vibrante", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "soante", "+", "anterior"] },
-  { symbol: "ɾ", manner: "tap", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "soante", "+", "anterior"] },
-  { symbol: "f", manner: "fricativa", place: "labiodental", features: ["+", "consonantal", "-", "vozeado", "+", "continuo", "+", "anterior"] },
-  { symbol: "v", manner: "fricativa", place: "labiodental", features: ["+", "consonantal", "+", "vozeado", "+", "continuo", "+", "anterior"] },
-  { symbol: "s", manner: "fricativa", place: "alveolar", features: ["+", "consonantal", "-", "vozeado", "+", "continuo", "+", "anterior", "+", "coronal"] },
-  { symbol: "z", manner: "fricativa", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "continuo", "+", "anterior", "+", "coronal"] },
-  { symbol: "ʃ", manner: "fricativa", place: "pós-alveolar", features: ["+", "consonantal", "-", "vozeado", "+", "continuo", "+", "coronal"] },
-  { symbol: "ʒ", manner: "fricativa", place: "pós-alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "continuo", "+", "coronal"] },
-  { symbol: "x", manner: "fricativa", place: "velar", features: ["+", "consonantal", "-", "vozeado", "+", "continuo"] },
-  { symbol: "ɣ", manner: "fricativa", place: "velar", features: ["+", "consonantal", "+", "vozeado", "+", "continuo"] },
-  { symbol: "χ", manner: "fricativa", place: "uvular", features: ["+", "consonantal", "-", "vozeado", "+", "continuo"] },
-  { symbol: "ʁ", manner: "fricativa", place: "uvular", features: ["+", "consonantal", "+", "vozeado", "+", "continuo"] },
-  { symbol: "h", manner: "fricativa", place: "glotal", features: ["+", "consonantal", "-", "vozeado", "+", "continuo"] },
-  { symbol: "ɦ", manner: "fricativa", place: "glotal", features: ["+", "consonantal", "+", "vozeado", "+", "continuo"] },
-  { symbol: "tʃ", manner: "africada", place: "pós-alveolar", features: ["+", "consonantal", "-", "vozeado", "-", "continuo", "+", "soltura", "+", "coronal"] },
-  { symbol: "dʒ", manner: "africada", place: "pós-alveolar", features: ["+", "consonantal", "+", "vozeado", "-", "continuo", "+", "soltura", "+", "coronal"] },
-  { symbol: "ɹ", manner: "aproximante", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "soante", "+", "anterior"] },
-  { symbol: "l", manner: "lateral", place: "alveolar", features: ["+", "consonantal", "+", "vozeado", "+", "soante", "+", "lateral", "+", "anterior"] },
-  { symbol: "ʎ", manner: "lateral", place: "palatal", features: ["+", "consonantal", "+", "vozeado", "+", "soante", "+", "lateral"] },
+// Lista de fonemas selecionados e seus traços
+const fonemas = [
+  { simbolo: "p", traços: ["+consonantal", "-silábico"] },
+  { simbolo: "b", traços: ["+consonantal", "-silábico", "+vozeado"] },
+  { simbolo: "t", traços: ["+consonantal", "-silábico"] },
+  { simbolo: "d", traços: ["+consonantal", "-silábico", "+vozeado"] },
+  { simbolo: "k", traços: ["+consonantal", "-silábico"] },
+  { simbolo: "g", traços: ["+consonantal", "-silábico", "+vozeado"] },
+  { simbolo: "f", traços: ["+consonantal", "-silábico", "+contínuo"] },
+  { simbolo: "v", traços: ["+consonantal", "-silábico", "+contínuo", "+vozeado"] },
+  { simbolo: "s", traços: ["+consonantal", "-silábico", "+contínuo"] },
+  { simbolo: "z", traços: ["+consonantal", "-silábico", "+contínuo", "+vozeado"] },
+  { simbolo: "\u0283", traços: ["+consonantal", "-silábico", "+contínuo"] }, // ʃ = ʃ
+  { simbolo: "\u0292", traços: ["+consonantal", "-silábico", "+contínuo", "+vozeado"] }, // ʒ = ʒ
+  { simbolo: "m", traços: ["+consonantal", "-silábico", "+nasal", "+soante"] },
+  { simbolo: "n", traços: ["+consonantal", "-silábico", "+nasal", "+soante"] },
+  { simbolo: "\u0272", traços: ["+consonantal", "-silábico", "+nasal", "+soante"] }, // ɲ = ɲ
+  { simbolo: "l", traços: ["+consonantal", "-silábico", "+lateral", "+soante"] },
+  { simbolo: "\u028e", traços: ["+consonantal", "-silábico", "+aproximante", "+soante"] }, // ʎ = ʎ
+  { simbolo: "\u0281", traços: ["+consonantal", "-silábico", "+aproximante", "+soante"] }, // ʁ = ʁ
+  { simbolo: "t\u0283", traços: ["+consonantal", "-silábico"] }, // tʃ
+  { simbolo: "d\u0292", traços: ["+consonantal", "-silábico", "+vozeado"] }, // dʒ
 ];
 
-const vowels = [
-  { symbol: "i", row: 1, col: 1, features: ["+", "alto", "-", "baixo", "-", "recuado"] },
-  { symbol: "u", row: 1, col: 2, features: ["+", "alto", "-", "baixo", "+", "recuado", "+", "arredondado"] },
-  { symbol: "e", row: 2, col: 1, features: ["-", "alto", "-", "baixo", "-", "recuado"] },
-  { symbol: "o", row: 2, col: 2, features: ["-", "alto", "-", "baixo", "+", "recuado", "+", "arredondado"] },
-  { symbol: "ɛ", row: 3, col: 1, features: ["-", "alto", "+", "baixo", "-", "recuado"] },
-  { symbol: "ɔ", row: 3, col: 2, features: ["-", "alto", "+", "baixo", "+", "recuado", "+", "arredondado"] },
-  { symbol: "a", row: 3, col: 2, features: ["-", "alto", "+", "baixo", "+", "recuado"] },
+const vogais = [
+  { simbolo: "i", traços: ["+silábico", "-consonantal", "+alto", "+anterior"] },
+  { simbolo: "e", traços: ["+silábico", "-consonantal", "-alto", "+anterior"] },
+  { simbolo: "\u025B", traços: ["+silábico", "-consonantal", "-alto", "+anterior"] },
+  { simbolo: "a", traços: ["+silábico", "-consonantal", "+baixo"] },
+  { simbolo: "o", traços: ["+silábico", "-consonantal", "-alto", "-anterior", "+arredondado"] },
+  { simbolo: "u", traços: ["+silábico", "-consonantal", "+alto", "-anterior", "+arredondado"] },
 ];
 
-function createChart() {
-  const chart = document.getElementById("consonant-chart");
-  const manners = [...new Set(phonemes.map(p => p.manner))];
-  const places = [...new Set(phonemes.map(p => p.place))];
+const tabelaFonemas = document.getElementById("tabela-fonemas");
+const tabelaVogais = document.getElementById("tabela-vogais");
+const filtros = document.querySelectorAll("#filters input[type=radio]");
 
-  // Cabeçalho
-  const headerRow = document.createElement("div");
-  headerRow.className = "chart-row";
-  headerRow.innerHTML = `<div class="chart-header"></div>` + 
-    places.map(p => `<div class="chart-header">${p}</div>`).join("");
-  chart.appendChild(headerRow);
+function aplicarRegrasLogicas(traco, valor) {
+  const dependencias = {
+    "+consonantal": [{ traco: "silábico", valor: "-" }],
+    "+silábico": [
+      { traco: "consonantal", valor: "-" },
+      { traco: "soante", valor: "+" },
+      { traco: "contínuo", valor: "+" },
+    ],
+    "+soante": [{ traco: "vozeado", valor: "+" }],
+    "+contínuo": [{ traco: "soltura retardada", valor: "-" }],
+    "+soltura retardada": [{ traco: "contínuo", valor: "-" }],
+    "+nasal": [
+      { traco: "lateral", valor: "-" },
+      { traco: "aproximante", valor: "-" },
+      { traco: "silábico", valor: "-" },
+      { traco: "consonantal", valor: "+" },
+    ],
+    "+lateral": [
+      { traco: "nasal", valor: "-" },
+      { traco: "aproximante", valor: "-" },
+      { traco: "silábico", valor: "-" },
+      { traco: "consonantal", valor: "+" },
+    ],
+    "+aproximante": [
+      { traco: "nasal", valor: "-" },
+      { traco: "lateral", valor: "-" },
+      { traco: "silábico", valor: "-" },
+      { traco: "consonantal", valor: "+" },
+    ],
+  };
 
-  // Linhas
-  manners.forEach(manner => {
-    const row = document.createElement("div");
-    row.className = "chart-row";
-
-    const label = document.createElement("div");
-    label.className = "manner-label";
-    label.textContent = manner;
-    row.appendChild(label);
-
-    places.forEach(place => {
-      const cell = document.createElement("div");
-      cell.className = "chart-cell";
-
-      const matches = phonemes.filter(p => p.manner === manner && p.place === place);
-      matches.forEach(p => {
-        const span = document.createElement("span");
-        span.className = "phoneme";
-        span.textContent = p.symbol;
-        span.dataset.features = JSON.stringify(p.features);
-        cell.appendChild(span);
-      });
-
-      row.appendChild(cell);
+  const regras = dependencias[`${valor}${traco}`];
+  if (regras) {
+    regras.forEach(({ traco: t, valor: v }) => {
+      const input = document.querySelector(`input[name='${t}'][value='${v}']`);
+      if (input) input.checked = true;
     });
+  }
+}
 
-    chart.appendChild(row);
+function filtrarFonemas(fonemas) {
+  const criterios = {};
+  filtros.forEach(f => {
+    if (f.checked) criterios[f.name] = f.value;
+  });
+
+  return fonemas.filter(fonema => {
+    return Object.entries(criterios).every(([traco, valor]) =>
+      fonema.traços.includes(`${valor}${traco}`)
+    );
   });
 }
 
-function createVowelChart() {
-  const container = document.getElementById("vowel-chart");
-  const grid = document.createElement("div");
-  grid.className = "vowel-grid";
-
-  vowels.forEach(v => {
-    const cell = document.createElement("div");
-    cell.className = "vowel-cell vowel";
-    cell.textContent = v.symbol;
-    cell.dataset.features = JSON.stringify(v.features);
-    grid.appendChild(cell);
+function renderTabela(fonemas, container) {
+  container.innerHTML = "";
+  const tabela = document.createElement("table");
+  const linha = document.createElement("tr");
+  fonemas.forEach(f => {
+    const cel = document.createElement("td");
+    cel.className = "fonema";
+    cel.textContent = f.simbolo;
+    linha.appendChild(cel);
   });
-
-  container.appendChild(grid);
+  tabela.appendChild(linha);
+  container.appendChild(tabela);
 }
 
-function applyFilters() {
-  const checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
-  const selectedFeatures = checked.map(input => `${input.value}${input.dataset.feature}`);
-
-  const allPhonemes = document.querySelectorAll(".phoneme, .vowel");
-  allPhonemes.forEach(el => {
-    const feats = JSON.parse(el.dataset.features);
-    const match = selectedFeatures.every(sf => feats.includes(sf[0]) && feats.includes(sf.slice(1)));
-    el.classList.toggle("highlight", match);
+filtros.forEach(f => {
+  f.addEventListener("change", () => {
+    aplicarRegrasLogicas(f.name, f.value);
+    const consonantesVisiveis = filtrarFonemas(fonemas);
+    const vogaisVisiveis = filtrarFonemas(vogais);
+    renderTabela(consonantesVisiveis, tabelaFonemas);
+    renderTabela(vogaisVisiveis, tabelaVogais);
   });
-}
-
-document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener("change", applyFilters);
 });
 
-createChart();
-createVowelChart();
+// Render inicial
+renderTabela(fonemas, tabelaFonemas);
+renderTabela(vogais, tabelaVogais);
