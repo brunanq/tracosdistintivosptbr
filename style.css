@@ -13,7 +13,7 @@ h1 {
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
   margin-bottom: 25px;
 }
@@ -24,12 +24,12 @@ h1 {
   font-size: 14px;
 }
 
-/* Tabela */
+/* Tabela de consoantes */
 
 .consonant-chart {
   display: table;
   border-collapse: collapse;
-  margin: 0 auto;
+  margin: 20px auto;
   font-family: sans-serif;
 }
 
@@ -43,8 +43,6 @@ h1 {
   padding: 8px;
   font-weight: bold;
   background-color: #ccc;
-  border: 1px solid #aaa;
-  min-width: 80px;
 }
 
 .place,
@@ -56,7 +54,6 @@ h1 {
   text-align: center;
   vertical-align: middle;
   min-width: 80px;
-  white-space: nowrap;
 }
 
 .chart-header .place {
@@ -69,27 +66,53 @@ h1 {
   background-color: #eee;
 }
 
+/* Aqui está o ajuste para que os fonemas fiquem lado a lado */
 .cell {
   font-size: 20px;
+  display: flex;
+  gap: 6px; /* Espaço entre os fonemas */
+  justify-content: center;
+  flex-wrap: wrap; /* Quebra linha se precisar */
 }
 
-/* Fonemas */
-
+/* Estilo dos fonemas (quadrados) */
 .ipa-symbol {
   user-select: none;
-  display: inline-block;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-  color: #999;
-  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 6px;
   cursor: default;
+  font-weight: 400;
+  color: #999;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
 }
 
+/* Fonemas destacados pelo filtro */
 .ipa-symbol.match {
-  color: #147b43;
+  background-color: #c1f0d2;
+  border-color: #147b43;
   font-weight: 700;
+  color: #147b43;
 }
 
+/* Fonemas "desativados" (não selecionados) */
 .ipa-symbol.no-match {
+  background-color: #f5f5f5;
+  border-color: #ddd;
   color: #ccc;
   font-weight: 400;
+}
+
+/* Grid geral dos fonemas fora da tabela (se usar) */
+.ipa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+  max-width: 800px;
+  margin: auto;
 }
