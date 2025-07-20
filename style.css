@@ -1,75 +1,107 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 2rem;
-  background-color: #f5f5f5;
-  color: #333;
+  padding: 15px;
+  background: #f9f9f9;
+  color: #222;
 }
 
-header h1 {
-  text-align: center;
-  margin-bottom: 2rem;
+h1, h2 {
+  margin-bottom: 10px;
 }
 
-section {
-  margin-bottom: 2rem;
-}
-
-h2 {
-  margin-bottom: 1rem;
-}
-
-.filters-container {
+.container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 20px;
 }
 
-.toggle-group {
-  background-color: #fff;
-  padding: 0.5rem 1rem;
+.filters {
+  flex: 0 0 250px;
+  background: white;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  min-width: 150px;
+  box-shadow: 0 0 6px #ccc;
+  height: fit-content;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-.toggle-group label {
+.filter {
+  margin-bottom: 10px;
+}
+
+.filter label {
+  font-weight: 600;
   display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.2rem 0;
 }
 
-table.fonemas {
-  width: 100%;
+.filter input[type="radio"] {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.tables-wrapper {
+  flex: 1;
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+}
+
+.table-container {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #ccc;
+}
+
+table {
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
+  min-width: 350px;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
-table.fonemas th,
-table.fonemas td {
-  border: 1px solid #ccc;
-  padding: 0.75rem;
-  text-align: center;
+table th,
+table td {
+  border: 1px solid #aaa;
+  padding: 8px;
   vertical-align: middle;
 }
 
-table.fonemas th {
-  background-color: #eee;
+table th {
+  background: #ddd;
+  font-weight: 700;
 }
 
-table.fonemas span {
-  display: inline-block;
-  padding: 0.2rem 0.5rem;
+#vowel-table td.high {
+  background: #c6e5ff;
+}
+
+#vowel-table td.mid {
+  background: #a0d2ff;
+}
+
+#vowel-table td.low {
+  background: #79b9ff;
+}
+
+[data-phonemes] {
+  cursor: default;
+  user-select: none;
+  padding: 4px;
   border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.25s ease;
 }
 
 .highlight {
-  background-color: #3b82f6;
-  color: #fff;
+  background-color: #ffe066 !important;
+  font-weight: bold;
+  color: #222;
+}
+
+.filter input[type="radio"]:checked + label {
   font-weight: bold;
 }
