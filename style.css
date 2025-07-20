@@ -1,93 +1,94 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #fafafa;
+  font-family: sans-serif;
   margin: 0;
-  padding: 20px;
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-.filters-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  max-width: 900px;
-  margin: 0 auto 30px auto;
-}
-
-.filter-item {
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  background: #fff;
+  background: #f4f4f4;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
   border: 1px solid #ccc;
+  padding: 8px;
   border-radius: 8px;
 }
 
-.filter-item label {
-  margin: 5px 0;
+.filter-group label {
+  margin: 2px 0;
 }
 
-#consonant-table {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-#consonant-table th,
-#consonant-table td {
-  border: 1px solid #999;
-  text-align: center;
-  padding: 10px;
-  min-width: 50px;
-  min-height: 50px;
-  position: relative;
-}
-
-.phoneme-cell {
+.tables {
   display: flex;
-  flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
-  gap: 4px;
+  flex-wrap: wrap;
 }
 
-.phoneme {
-  padding: 5px 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  font-weight: bold;
-  color: black;
-  font-size: 1.2em;
+table {
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
-.phoneme.inactive {
-  background-color: #f0f0f0;
-  color: #999;
-}
-
-#vowel-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  max-width: 300px;
-  margin: 0 auto;
+th, td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
   text-align: center;
-  padding-top: 20px;
+  min-width: 50px;
 }
 
-#vowel-grid div {
-  padding: 10px;
+th {
   background: #e0e0e0;
-  border-radius: 4px;
-  font-size: 1.5em;
-  font-weight: bold;
 }
 
-#vowel-grid .inactive {
-  background-color: #f0f0f0;
-  color: #999;
+td.hidden {
+  display: none;
+}
+
+.vowel-table {
+  display: grid;
+  grid-template-areas:
+    ". i_u"
+    "e_o e_o"
+    "low low";
+  gap: 5px;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.vowel-table > div {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.vowel-table .i_u { grid-area: i_u; }
+.vowel-table .e_o { grid-area: e_o; }
+.vowel-table .low { grid-area: low; }
+.vowel-table span {
+  font-size: 18px;
 }
