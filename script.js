@@ -1,121 +1,115 @@
 const consonants = [
-  { symbol: 'p', voicing: false, place: 'bilabial', manner: 'plosive', type: 'consonant' },
-  { symbol: 'b', voicing: true, place: 'bilabial', manner: 'plosive', type: 'consonant' },
-  { symbol: 'm', voicing: true, place: 'bilabial', manner: 'nasal', type: 'consonant' },
-  { symbol: 't', voicing: false, place: 'alveolar', manner: 'plosive', type: 'consonant' },
-  { symbol: 'd', voicing: true, place: 'alveolar', manner: 'plosive', type: 'consonant' },
-  { symbol: 'n', voicing: true, place: 'alveolar', manner: 'nasal', type: 'consonant' },
-  { symbol: 's', voicing: false, place: 'alveolar', manner: 'fricative', type: 'consonant' },
-  { symbol: 'z', voicing: true, place: 'alveolar', manner: 'fricative', type: 'consonant' },
-  { symbol: 'k', voicing: false, place: 'velar', manner: 'plosive', type: 'consonant' },
-  { symbol: 'g', voicing: true, place: 'velar', manner: 'plosive', type: 'consonant' },
-  { symbol: 'ŋ', voicing: true, place: 'velar', manner: 'nasal', type: 'consonant' },
+  // Plosivas
+  { symbol: "p", manner: "plosive", place: "bilabial", voicing: "voiceless" },
+  { symbol: "b", manner: "plosive", place: "bilabial", voicing: "voiced" },
+  { symbol: "t", manner: "plosive", place: "alveolar", voicing: "voiceless" },
+  { symbol: "d", manner: "plosive", place: "alveolar", voicing: "voiced" },
+  { symbol: "k", manner: "plosive", place: "velar", voicing: "voiceless" },
+  { symbol: "g", manner: "plosive", place: "velar", voicing: "voiced" },
+
+  // Nasais
+  { symbol: "m", manner: "nasal", place: "bilabial", voicing: "voiced" },
+  { symbol: "n", manner: "nasal", place: "alveolar", voicing: "voiced" },
+  { symbol: "ɲ", manner: "nasal", place: "palatal", voicing: "voiced" },
+  { symbol: "ŋ", manner: "nasal", place: "velar", voicing: "voiced" },
+
+  // Fricativas
+  { symbol: "f", manner: "fricative", place: "labiodental", voicing: "voiceless" },
+  { symbol: "v", manner: "fricative", place: "labiodental", voicing: "voiced" },
+  { symbol: "s", manner: "fricative", place: "alveolar", voicing: "voiceless" },
+  { symbol: "z", manner: "fricative", place: "alveolar", voicing: "voiced" },
+  { symbol: "ʃ", manner: "fricative", place: "postalveolar", voicing: "voiceless" },
+  { symbol: "ʒ", manner: "fricative", place: "postalveolar", voicing: "voiced" },
+  { symbol: "h", manner: "fricative", place: "glottal", voicing: "voiceless" },
+  { symbol: "ʁ", manner: "fricative", place: "uvular", voicing: "voiced" },
+
+  // Africadas
+  { symbol: "tʃ", manner: "affricate", place: "postalveolar", voicing: "voiceless" },
+  { symbol: "dʒ", manner: "affricate", place: "postalveolar", voicing: "voiced" },
+
+  // Laterais
+  { symbol: "l", manner: "lateral-approximant", place: "alveolar", voicing: "voiced" },
+  { symbol: "ʎ", manner: "lateral-approximant", place: "palatal", voicing: "voiced" },
+
+  // Vibrante simples
+  { symbol: "ɾ", manner: "tap", place: "alveolar", voicing: "voiced" },
 ];
 
-const manners = ['plosive', 'nasal', 'fricative'];
-const places = ['bilabial', 'alveolar', 'velar'];
+const manners = [
+  "plosive",
+  "nasal",
+  "fricative",
+  "affricate",
+  "tap",
+  "lateral-approximant",
+];
 
-function renderTable() {
-  const table = document.createElement('table');
-  table.className = 'consonant-chart';
+const places = [
+  "bilabial",
+  "labiodental",
+  "alveolar",
+  "postalveolar",
+  "palatal",
+  "velar",
+  "uvular",
+  "glottal",
+];
 
-  const thead = document.createElement('thead');
-  const headerRow = document.createElement('tr');
+function createChart() {
+  const table = document.createElement("table");
+  table.className = "consonant-chart";
 
-  const cornerCell = document.createElement('th');
-  cornerCell.className = 'corner';
-  cornerCell.textContent = '';
-  headerRow.appendChild(cornerCell);
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
 
-  for (const place of places) {
-    const th = document.createElement('th');
-    th.className = 'place';
+  const corner = document.createElement("th");
+  corner.className = "corner";
+  headerRow.appendChild(corner);
+
+  places.forEach((place) => {
+    const th = document.createElement("th");
+    th.className = "place";
     th.textContent = place;
     headerRow.appendChild(th);
-  }
+  });
+
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  const tbody = document.createElement('tbody');
+  const tbody = document.createElement("tbody");
 
-  for (const manner of manners) {
-    const row = document.createElement('tr');
+  manners.forEach((manner) => {
+    const row = document.createElement("tr");
 
-    const mannerCell = document.createElement('td');
-    mannerCell.className = 'manner';
+    const mannerCell = document.createElement("th");
+    mannerCell.className = "manner";
     mannerCell.textContent = manner;
     row.appendChild(mannerCell);
 
-    for (const place of places) {
-      const td = document.createElement('td');
-      td.className = 'cell';
+    places.forEach((place) => {
+      const td = document.createElement("td");
+      td.className = "cell";
 
-      const matching = consonants.filter(
-        c => c.place === place && c.manner === manner
+      const sounds = consonants.filter(
+        (c) => c.place === place && c.manner === manner
       );
 
-      for (const consonant of matching) {
-        const span = document.createElement('span');
-        span.textContent = consonant.symbol;
-        span.className = 'ipa-symbol';
-        span.dataset.voicing = consonant.voicing;
-        span.dataset.place = consonant.place;
-        span.dataset.manner = consonant.manner;
+      sounds.forEach((c) => {
+        const span = document.createElement("span");
+        span.textContent = c.symbol;
+        span.classList.add("phoneme", c.voicing);
         td.appendChild(span);
-      }
+      });
 
       row.appendChild(td);
-    }
+    });
 
     tbody.appendChild(row);
-  }
+  });
 
   table.appendChild(tbody);
 
-  const container = document.getElementById('ipaGrid');
-  container.innerHTML = '';
-  container.appendChild(table);
+  document.getElementById("chart-container").appendChild(table);
 }
 
-function applyFilters() {
-  const voicing = document.getElementById('voicingFilter').value;
-  const place = document.getElementById('placeFilter').value;
-  const manner = document.getElementById('mannerFilter').value;
-
-  const cells = document.querySelectorAll('.cell');
-
-  cells.forEach(cell => {
-    const symbols = cell.querySelectorAll('.ipa-symbol');
-
-    let cellHasMatch = false;
-
-    symbols.forEach(symbol => {
-      const matches =
-        (voicing === 'all' || symbol.dataset.voicing === voicing) &&
-        (place === 'all' || symbol.dataset.place === place) &&
-        (manner === 'all' || symbol.dataset.manner === manner);
-
-      symbol.classList.toggle('match', matches);
-      if (matches) cellHasMatch = true;
-    });
-
-    cell.classList.toggle('match', cellHasMatch);
-  });
-}
-
-
-function setupFilters() {
-  document.getElementById('typeFilter').addEventListener('change', e => {
-    const type = e.target.value;
-    document.getElementById('consonantFilters').style.display =
-      type === 'consonant' ? 'block' : 'none';
-  });
-
-  document.querySelectorAll('.filters select').forEach(select => {
-    select.addEventListener('change', applyFilters);
-  });
-}
-
-renderTable();
-setupFilters();
-applyFilters();
+document.addEventListener("DOMContentLoaded", createChart);
