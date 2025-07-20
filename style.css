@@ -25,9 +25,10 @@ h1 {
   gap: 5px;
   font-weight: bold;
   user-select: none;
+  position: relative;
 }
 
-.filter-group span {
+.filter-group span.feature-name {
   min-width: 120px;
 }
 
@@ -41,6 +42,61 @@ h1 {
 .filter-group input[type="radio"] {
   cursor: pointer;
 }
+
+/* Tooltip e info icon */
+
+.info-icon {
+  display: inline-block;
+  margin-left: 6px;
+  color: #0055aa;
+  font-weight: bold;
+  cursor: help;
+  position: relative;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.info-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  max-width: 220px;
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+  pointer-events: none;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+/* Animação piscar */
+
+@keyframes blink {
+  0%, 100% { background-color: #e6ffe6; }
+  50% { background-color: #ffff99; }
+}
+
+.blink {
+  animation: blink 1s ease 0s 3;
+}
+
+/* Tabelas */
 
 .container-tables {
   display: flex;
@@ -72,10 +128,10 @@ table td {
   text-align: center;
   font-size: 1.3rem;
   cursor: default;
-  background-color: #e6ffe6; /* destaque padrão */
+  background-color: #f0f0f0;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-weight: bold;
-  color: black;
+  color: #555;
 }
 
 table td.empty {
@@ -84,11 +140,20 @@ table td.empty {
   cursor: default;
 }
 
+table td.highlight {
+  background-color: #a6e6a6 !important;
+  color: #004400 !important;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 table td.dimmed {
   background-color: #f0f0f0 !important;
   color: #ccc !important;
   cursor: default;
 }
+
+/* Responsividade */
 
 @media (max-width: 900px) {
   .container-tables {
