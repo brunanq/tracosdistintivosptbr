@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IPA Chart with Filters</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -20,7 +20,7 @@
       </select>
     </label>
 
-    <div id="consonantFilters">
+    <div id="consonantFilters" style="display: flex; gap: 15px;">
       <label>
         Voicing:
         <select id="voicingFilter">
@@ -51,14 +51,14 @@
       </label>
     </div>
 
-    <div id="vowelFilters" style="display:none;">
+    <div id="vowelFilters" style="display:none; gap: 15px;">
       <label>
         Height:
         <select id="heightFilter">
           <option value="all">All</option>
-          <option value="close">Close</option>
+          <option value="high">High</option>
           <option value="mid">Mid</option>
-          <option value="open">Open</option>
+          <option value="low">Low</option>
         </select>
       </label>
 
@@ -83,8 +83,12 @@
     </div>
   </div>
 
+  <!-- Div para tabela organizada de consoantes -->
+  <div id="consonantTableContainer"></div>
+
+  <!-- Div para grid simples de todos os fonemas (usado para filtros) -->
   <div class="ipa-grid" id="ipaGrid"></div>
+
   <script src="script.js"></script>
-  
 </body>
 </html>
