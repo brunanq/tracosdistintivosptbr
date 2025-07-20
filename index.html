@@ -2,28 +2,153 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filtro de Traços Distintivos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabela de Fonemas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Filtro de Traços Distintivos</h1>
+  <header>
+    <h1>Tabela de Fonemas</h1>
+  </header>
 
-  <div class="filters">
-    <h2>Traços</h2>
-    <div id="features"></div>
-  </div>
+  <section id="filters">
+    <h2>Filtros por traços</h2>
+    <div class="filters-container">
+      <div class="toggle-group" id="consonantal">
+        <label>consonantal:</label>
+        <label><input type="radio" name="consonantal" value="+"> [+]</label>
+        <label><input type="radio" name="consonantal" value="-"> [-]</label>
+      </div>
 
-  <div class="tables">
-    <div id="consonant-table">
-      <h2>Consoantes</h2>
-      <table></table>
+      <div class="toggle-group" id="silabico">
+        <label>silábico:</label>
+        <label><input type="radio" name="silábico" value="+"> [+]</label>
+        <label><input type="radio" name="silábico" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="soante">
+        <label>soante:</label>
+        <label><input type="radio" name="soante" value="+"> [+]</label>
+        <label><input type="radio" name="soante" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="contínuo">
+        <label>contínuo:</label>
+        <label><input type="radio" name="contínuo" value="+"> [+]</label>
+        <label><input type="radio" name="contínuo" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="soltura-retardada">
+        <label>soltura retardada:</label>
+        <label><input type="radio" name="soltura retardada" value="+"> [+]</label>
+        <label><input type="radio" name="soltura retardada" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="nasal">
+        <label>nasal:</label>
+        <label><input type="radio" name="nasal" value="+"> [+]</label>
+        <label><input type="radio" name="nasal" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="lateral">
+        <label>lateral:</label>
+        <label><input type="radio" name="lateral" value="+"> [+]</label>
+        <label><input type="radio" name="lateral" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="aproximante">
+        <label>aproximante:</label>
+        <label><input type="radio" name="aproximante" value="+"> [+]</label>
+        <label><input type="radio" name="aproximante" value="-"> [-]</label>
+      </div>
+
+      <div class="toggle-group" id="vozeado">
+        <label>vozeado:</label>
+        <label><input type="radio" name="vozeado" value="+"> [+]</label>
+        <label><input type="radio" name="vozeado" value="-"> [-]</label>
+      </div>
     </div>
-    <div id="vowel-table">
-      <h2>Vogais e Glides</h2>
-      <table></table>
-    </div>
-  </div>
+  </section>
+
+  <section>
+    <h2>Tabela de Consoantes</h2>
+    <table class="fonemas">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Oclusiva</th>
+          <th>Fricativa</th>
+          <th>Africada</th>
+          <th>Nasal</th>
+          <th>Lateral</th>
+          <th>Aproximante</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Bilabial</th>
+          <td><span>p</span> <span>b</span></td>
+          <td></td>
+          <td></td>
+          <td><span>m</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Alveolar</th>
+          <td><span>t</span> <span>d</span></td>
+          <td><span>s</span> <span>z</span></td>
+          <td><span>tʃ</span> <span>dʒ</span></td>
+          <td><span>n</span></td>
+          <td><span>l</span></td>
+          <td><span>ɾ</span></td>
+        </tr>
+        <tr>
+          <th>Velar</th>
+          <td><span>k</span> <span>g</span></td>
+          <td><span>x</span> <span>ɣ</span></td>
+          <td></td>
+          <td><span>ŋ</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Tabela de Vogais</h2>
+    <table class="fonemas">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Anterior</th>
+          <th>Central</th>
+          <th>Posterior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Alta</th>
+          <td><span>i</span> <span>ɪ</span></td>
+          <td></td>
+          <td><span>u</span> <span>ʊ</span></td>
+        </tr>
+        <tr>
+          <th>Média</th>
+          <td><span>e</span> <span>ɛ</span></td>
+          <td></td>
+          <td><span>o</span> <span>ɔ</span></td>
+        </tr>
+        <tr>
+          <th>Baixa</th>
+          <td></td>
+          <td><span>a</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
   <script src="script.js"></script>
 </body>
