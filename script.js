@@ -82,16 +82,27 @@ function applyFilters() {
   const place = document.getElementById('placeFilter').value;
   const manner = document.getElementById('mannerFilter').value;
 
-  const symbols = document.querySelectorAll('.ipa-symbol');
-  symbols.forEach(symbol => {
-    const matches =
-      (voicing === 'all' || symbol.dataset.voicing === voicing) &&
-      (place === 'all' || symbol.dataset.place === place) &&
-      (manner === 'all' || symbol.dataset.manner === manner);
+  const cells = document.querySelectorAll('.cell');
 
-    symbol.classList.toggle('match', matches);
+  cells.forEach(cell => {
+    const symbols = cell.querySelectorAll('.ipa-symbol');
+
+    let cellHasMatch = false;
+
+    symbols.forEach(symbol => {
+      const matches =
+        (voicing === 'all' || symbol.dataset.voicing === voicing) &&
+        (place === 'all' || symbol.dataset.place === place) &&
+        (manner === 'all' || symbol.dataset.manner === manner);
+
+      symbol.classList.toggle('match', matches);
+      if (matches) cellHasMatch = true;
+    });
+
+    cell.classList.toggle('match', cellHasMatch);
   });
 }
+
 
 function setupFilters() {
   document.getElementById('typeFilter').addEventListener('change', e => {
