@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const phonemes = [
-    // Consonants
     { symbol: 'p', type: 'consonant', voiced: 'false', place: 'bilabial', manner: 'plosive' },
     { symbol: 'b', type: 'consonant', voiced: 'true', place: 'bilabial', manner: 'plosive' },
     { symbol: 't', type: 'consonant', voiced: 'false', place: 'alveolar', manner: 'plosive' },
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
   const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
 
-  // Organiza consoantes em um mapa manner x place
+  // Mapa consonantes (manner x place)
   const consonantMap = {};
   manners.forEach(manner => {
     consonantMap[manner] = {};
@@ -51,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const tableContainer = document.getElementById('ipaGrid');
-  tableContainer.innerHTML = ''; // limpa o container
+  tableContainer.innerHTML = '';
 
-  // Cria cabeçalho da tabela
+  // Cabeçalho com lugares de articulação
   const header = document.createElement('div');
   header.className = 'chart-header';
   header.innerHTML = `<div class="corner"></div>` + places.map(place => `<div class="place">${capitalize(place)}</div>`).join('');
   tableContainer.appendChild(header);
 
-  // Cria linhas da tabela
+  // Linhas: cada manner + células com os símbolos dentro
   manners.forEach(manner => {
     const row = document.createElement('div');
     row.className = 'chart-row';
@@ -73,12 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const cell = document.createElement('div');
       cell.className = 'cell';
 
-      const symbols = consonantMap[manner][place];
-
-      symbols.forEach(ph => {
+      consonantMap[manner][place].forEach(ph => {
         const span = document.createElement('span');
-        span.textContent = ph.symbol;
         span.className = 'ipa-symbol';
+        span.textContent = ph.symbol;
         span.dataset.type = ph.type;
         span.dataset.voiced = ph.voiced;
         span.dataset.place = ph.place;
@@ -149,10 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     f.addEventListener('change', applyFilters)
   );
 
-  // Inicializa com os filtros aplicados
   applyFilters();
 
-  // Função auxiliar
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
