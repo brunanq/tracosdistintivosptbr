@@ -1,56 +1,78 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 2rem;
-  background: #fafafa;
-  color: #333;
+  font-family: sans-serif;
+  padding: 20px;
+  background: #fdfdfd;
 }
 
-#filters {
-  margin-bottom: 2rem;
+h1, h2 {
+  text-align: center;
 }
 
-.filter-grid {
+.filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
 }
 
-.filter-item {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  background: #f9f9f9;
-  border-radius: 6px;
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-#tabela-fonemas, #tabela-vogais {
-  margin-top: 1rem;
+.filter-group label {
+  font-weight: bold;
+}
+
+.table-container {
   overflow-x: auto;
+  margin-bottom: 40px;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  margin: auto;
 }
 
 th, td {
-  border: 1px solid #ccc;
+  border: 1px solid #999;
+  padding: 10px;
+  min-width: 50px;
   text-align: center;
-  padding: 1rem;
-  min-width: 60px;
+  vertical-align: middle;
 }
 
-.fonema {
-  display: inline-block;
-  margin: 0 0.2rem;
-  font-size: 1.2rem;
+.phoneme-cell {
+  background-color: #e0ffe0;
   font-weight: bold;
-  color: black;
-  background: #e0e0e0;
-  padding: 0.3rem;
-  border-radius: 6px;
+  transition: background 0.3s;
 }
 
-.fonema.inativo {
-  background: #f3f3f3;
+.phoneme-cell.inactive {
+  background-color: #f0f0f0;
   color: #aaa;
+  font-weight: normal;
+}
+
+.vowel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.vowel {
+  background-color: #e0ffe0;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.vowel.inactive {
+  background-color: #f0f0f0;
+  color: #aaa;
+  font-weight: normal;
 }
