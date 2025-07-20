@@ -23,6 +23,67 @@ body {
     flex-direction: column;
     font-size: 14px;
   }
+
+.consonant-chart {
+  display: table;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-family: sans-serif;
+}
+
+.chart-header,
+.chart-row {
+  display: table-row;
+}
+
+.corner {
+  display: table-cell;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #ccc;
+}
+
+.place,
+.manner,
+.cell {
+  display: table-cell;
+  padding: 10px;
+  border: 1px solid #aaa;
+  text-align: center;
+  vertical-align: middle;
+  min-width: 80px;
+}
+
+.chart-header .place {
+  font-weight: bold;
+  background-color: #ddd;
+}
+
+.manner {
+  font-weight: bold;
+  background-color: #eee;
+}
+
+.cell {
+  font-size: 1.2em;
+}
+
+.vowel-section {
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.vowel-list {
+  font-size: 1.4em;
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+}
+
   
   .ipa-grid {
     display: grid;
