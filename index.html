@@ -38,4 +38,57 @@
           <option value="alveolar">Alveolar</option>
           <option value="velar">Velar</option>
         </select>
-      </labe
+      </label>
+
+      <label>
+        Manner:
+        <select id="mannerFilter">
+          <option value="all">All</option>
+          <option value="plosive">Plosive</option>
+          <option value="nasal">Nasal</option>
+          <option value="fricative">Fricative</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="vowelFilters" style="display:none; gap: 15px;">
+      <label>
+        Height:
+        <select id="heightFilter">
+          <option value="all">All</option>
+          <option value="high">High</option>
+          <option value="mid">Mid</option>
+          <option value="low">Low</option>
+        </select>
+      </label>
+
+      <label>
+        Backness:
+        <select id="backnessFilter">
+          <option value="all">All</option>
+          <option value="front">Front</option>
+          <option value="central">Central</option>
+          <option value="back">Back</option>
+        </select>
+      </label>
+
+      <label>
+        Rounded:
+        <select id="roundedFilter">
+          <option value="all">All</option>
+          <option value="true">Rounded</option>
+          <option value="false">Unrounded</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <!-- Tabela de consoantes -->
+  <div id="consonantTableContainer"></div>
+
+  <!-- Grid com todos os fonemas para filtro -->
+  <div class="ipa-grid" id="ipaGrid"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
