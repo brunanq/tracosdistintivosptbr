@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const phonemes = [
-    // Consonants
+    // Consoantes
     { symbol: 'p', type: 'consonant', voiced: false, place: 'bilabial', manner: 'plosive' },
     { symbol: 'b', type: 'consonant', voiced: true, place: 'bilabial', manner: 'plosive' },
     { symbol: 't', type: 'consonant', voiced: false, place: 'alveolar', manner: 'plosive' },
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { symbol: 'l', type: 'consonant', voiced: true, place: 'alveolar', manner: 'lateral' },
     { symbol: 'ʎ', type: 'consonant', voiced: true, place: 'palatal', manner: 'lateral' },
 
-    // Vowels
+    // Vogais (para o filtro funcionar)
     { symbol: 'i', type: 'vowel', height: 'high', backness: 'front', rounded: false },
     { symbol: 'u', type: 'vowel', height: 'high', backness: 'back', rounded: true },
     { symbol: 'e', type: 'vowel', height: 'mid', backness: 'front', rounded: false },
@@ -39,19 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
     { symbol: 'ɔ', type: 'vowel', height: 'low', backness: 'back', rounded: true },
   ];
 
-  // Listas ordenadas para lugares e modos
+  // Lugares e modos que aparecem na tabela
   const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
   const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
 
-  // Função para capitalizar primeira letra
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // Filtra as consoantes
+  // Agrupar consoantes por manner x place para tabela
   const consonants = phonemes.filter(p => p.type === 'consonant');
-
-  // Agrupa as consoantes por manner e place
   const consonantMap = {};
   manners.forEach(manner => {
     consonantMap[manner] = {};
@@ -59,25 +56,22 @@ document.addEventListener('DOMContentLoaded', () => {
       consonantMap[manner][place] = [];
     });
   });
-
   consonants.forEach(p => {
     if (consonantMap[p.manner] && consonantMap[p.manner][p.place]) {
       consonantMap[p.manner][p.place].push(p.symbol);
     }
   });
 
-  // Cria a tabela de consoantes
+  // Montar tabela simples
   const tableContainer = document.getElementById('consonantTableContainer');
   const table = document.createElement('div');
   table.className = 'consonant-chart';
 
-  // Cabeçalho da tabela
   const header = document.createElement('div');
   header.className = 'chart-header';
   header.innerHTML = `<div class="corner"></div>` + places.map(place => `<div class="place">${capitalize(place)}</div>`).join('');
   table.appendChild(header);
 
-  // Linhas da tabela
   manners.forEach(manner => {
     const row = document.createElement('div');
     row.className = 'chart-row';
@@ -90,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     places.forEach(place => {
       const cell = document.createElement('div');
       cell.className = 'cell';
-      const symbols = consonantMap[manner][place];
-      cell.innerHTML = symbols.join('<br>') || '';
+      cell.innerHTML = consonantMap[manner][place].join('<br>') || '';
       row.appendChild(cell);
     });
 
@@ -100,27 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tableContainer.appendChild(table);
 
-  // Referências para filtros e grid
+  // Grid de todos os fonemas para filtro visual
   const grid = document.getElementById('ipaGrid');
-  const typeFilter = document.getElementById('typeFilter');
 
+  // Referências filtros
+  const typeFilter = document.getElementById('typeFilter');
   const consonantFilters = {
     voicing: document.getElementById('voicingFilter'),
     place: document.getElementById('placeFilter'),
-    manner: document.getElementById('mannerFilter')
+    manner: document.getElementById('mannerFilter'),
   };
-
   const vowelFilters = {
     height: document.getElementById('heightFilter'),
     backness: document.getElementById('backnessFilter'),
-    rounded: document.getElementById('roundedFilter')
+    rounded: document.getElementById('roundedFilter'),
   };
-
   const consonantDiv = document.getElementById('consonantFilters');
   const vowelDiv = document.getElementById('vowelFilters');
 
-  // Renderiza o grid simples de todos os fonemas (para filtros)
-  function renderChart() {
+  // Renderiza grid simples com todos os fonemas
+  function renderGrid() {
     grid.innerHTML = '';
     phonemes.forEach(ph => {
       const div = document.createElement('div');
@@ -132,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilters();
   }
 
-  // Aplica os filtros no grid simples
+  // Aplica filtros: apenas destaca os que batem com o filtro
   function applyFilters() {
     const allSymbols = document.querySelectorAll('.ipa-symbol');
     const selectedType = typeFilter.value;
@@ -142,32 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
     phonemes.forEach((ph, i) => {
       let match = true;
 
-      if (selectedType !== 'all' && ph.type !== selectedType) {
-        match = false;
-      }
+      if (selectedType !== 'all' && ph.type !== selectedType) match = false;
 
       if (ph.type === 'consonant') {
-        if (consonantFilters.voicing.value !== 'all' && String(ph.voiced) !== consonantFilters.voicing.value) {
-          match = false;
-        }
-        if (consonantFilters.place.value !== 'all' && ph.place !== consonantFilters.place.value) {
-          match = false;
-        }
-        if (consonantFilters.manner.value !== 'all' && ph.manner !== consonantFilters.manner.value) {
-          match = false;
-        }
+        if (consonantFilters.voicing.value !== 'all' && String(ph.voiced) !== consonantFilters.voicing.value) match = false;
+        if (consonantFilters.place.value !== 'all' && ph.place !== consonantFilters.place.value) match = false;
+        if (consonantFilters.manner.value !== 'all' && ph.manner !== consonantFilters.manner.value) match = false;
       }
 
       if (ph.type === 'vowel') {
-        if (vowelFilters.height.value !== 'all' && ph.height !== vowelFilters.height.value) {
-          match = false;
-        }
-        if (vowelFilters.backness.value !== 'all' && ph.backness !== vowelFilters.backness.value) {
-          match = false;
-        }
-        if (vowelFilters.rounded.value !== 'all' && String(ph.rounded) !== vowelFilters.rounded.value) {
-          match = false;
-        }
+        if (vowelFilters.height.value !== 'all' && ph.height !== vowelFilters.height.value) match = false;
+        if (vowelFilters.backness.value !== 'all' && ph.backness !== vowelFilters.backness.value) match = false;
+        if (vowelFilters.rounded.value !== 'all' && String(ph.rounded) !== vowelFilters.rounded.value) match = false;
       }
 
       if (match) {
@@ -176,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Atualiza visibilidade dos filtros conforme tipo selecionado
+  // Atualiza visibilidade dos filtros dependendo do tipo
   typeFilter.addEventListener('change', () => {
     const selected = typeFilter.value;
     consonantDiv.style.display = selected === 'consonant' ? 'flex' : 'none';
@@ -184,10 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilters();
   });
 
-  // Escuta mudanças nos filtros para atualizar
-  [...Object.values(consonantFilters), ...Object.values(vowelFilters)].forEach(filter =>
-    filter.addEventListener('change', applyFilters)
-  );
+  // Adiciona evento para aplicar filtros quando mudam
+  [...Object.values(consonantFilters), ...Object.values(vowelFilters)].forEach(filter => {
+    filter.addEventListener('change', applyFilters);
+  });
 
-  renderChart();
+  // Inicia a renderização
+  renderGrid();
 });
