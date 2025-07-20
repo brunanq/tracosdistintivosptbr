@@ -13,7 +13,7 @@ h1 {
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
   margin-bottom: 25px;
 }
@@ -24,10 +24,12 @@ h1 {
   font-size: 14px;
 }
 
+/* Tabela */
+
 .consonant-chart {
   display: table;
   border-collapse: collapse;
-  margin: 20px auto;
+  margin: 0 auto;
   font-family: sans-serif;
 }
 
@@ -41,8 +43,8 @@ h1 {
   padding: 8px;
   font-weight: bold;
   background-color: #ccc;
-  min-width: 90px;
-  text-align: center;
+  border: 1px solid #aaa;
+  min-width: 80px;
 }
 
 .place,
@@ -54,6 +56,7 @@ h1 {
   text-align: center;
   vertical-align: middle;
   min-width: 80px;
+  white-space: nowrap;
 }
 
 .chart-header .place {
@@ -67,39 +70,26 @@ h1 {
 }
 
 .cell {
-  font-size: 1.3em;
+  font-size: 20px;
 }
 
-/* Grid dos fonemas simples para filtro */
-.ipa-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 10px;
-  max-width: 800px;
-  margin: 30px auto;
-}
+/* Fonemas */
 
 .ipa-symbol {
-  padding: 4px 6px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #999;           /* cor padrão clara */
-  transition: color 0.3s ease, background-color 0.3s ease;
-  display: inline-block;
   user-select: none;
+  display: inline-block;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  color: #999;
+  font-weight: 400;
+  cursor: default;
 }
 
 .ipa-symbol.match {
-  color: #147b43;        /* verde escuro para destacado */
+  color: #147b43;
   font-weight: 700;
-  background-color: #d7f3d9;
-  border-radius: 4px;
 }
 
 .ipa-symbol.no-match {
-  color: #ccc;           /* cinza claro para desbotado */
+  color: #ccc;
   font-weight: 400;
-  background-color: transparent;
-}
-
 }
