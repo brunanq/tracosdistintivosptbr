@@ -9,85 +9,50 @@
 <body>
 
   <h1>IPA Chart</h1>
-<div id="ipaGrid"></div>
+
   <div class="filters">
     <label>
-      Type:
-      <select id="typeFilter">
+      Voicing:
+      <select id="voicingFilter">
         <option value="all">All</option>
-        <option value="consonant">Consonant</option>
-        <option value="vowel">Vowel</option>
+        <option value="true">Voiced</option>
+        <option value="false">Voiceless</option>
       </select>
     </label>
 
-    <div id="consonantFilters" style="display: flex; gap: 15px;">
-      <label>
-        Voicing:
-        <select id="voicingFilter">
-          <option value="all">All</option>
-          <option value="true">Voiced</option>
-          <option value="false">Voiceless</option>
-        </select>
-      </label>
+    <label>
+      Place:
+      <select id="placeFilter">
+        <option value="all">All</option>
+        <option value="bilabial">Bilabial</option>
+        <option value="labiodental">Labiodental</option>
+        <option value="alveolar">Alveolar</option>
+        <option value="postalveolar">Postalveolar</option>
+        <option value="alveolopalatal">Alveolopalatal</option>
+        <option value="palatal">Palatal</option>
+        <option value="velar">Velar</option>
+        <option value="uvular">Uvular</option>
+        <option value="glottal">Glottal</option>
+      </select>
+    </label>
 
-      <label>
-        Place:
-        <select id="placeFilter">
-          <option value="all">All</option>
-          <option value="bilabial">Bilabial</option>
-          <option value="alveolar">Alveolar</option>
-          <option value="velar">Velar</option>
-        </select>
-      </label>
-
-      <label>
-        Manner:
-        <select id="mannerFilter">
-          <option value="all">All</option>
-          <option value="plosive">Plosive</option>
-          <option value="nasal">Nasal</option>
-          <option value="fricative">Fricative</option>
-        </select>
-      </label>
-    </div>
-
-    <div id="vowelFilters" style="display:none; gap: 15px;">
-      <label>
-        Height:
-        <select id="heightFilter">
-          <option value="all">All</option>
-          <option value="high">High</option>
-          <option value="mid">Mid</option>
-          <option value="low">Low</option>
-        </select>
-      </label>
-
-      <label>
-        Backness:
-        <select id="backnessFilter">
-          <option value="all">All</option>
-          <option value="front">Front</option>
-          <option value="central">Central</option>
-          <option value="back">Back</option>
-        </select>
-      </label>
-
-      <label>
-        Rounded:
-        <select id="roundedFilter">
-          <option value="all">All</option>
-          <option value="true">Rounded</option>
-          <option value="false">Unrounded</option>
-        </select>
-      </label>
-    </div>
+    <label>
+      Manner:
+      <select id="mannerFilter">
+        <option value="all">All</option>
+        <option value="plosive">Plosive</option>
+        <option value="nasal">Nasal</option>
+        <option value="trill">Trill</option>
+        <option value="tap">Tap</option>
+        <option value="fricative">Fricative</option>
+        <option value="affricate">Affricate</option>
+        <option value="approximant">Approximant</option>
+        <option value="lateral">Lateral</option>
+      </select>
+    </label>
   </div>
 
-  <!-- Tabela de consoantes -->
-  <div id="consonantTableContainer"></div>
-
-  <!-- Grid com todos os fonemas para filtro -->
-  <div class="ipa-grid" id="ipaGrid"></div>
+  <div id="ipaGrid"></div>
 
   <script src="script.js"></script>
 </body>
