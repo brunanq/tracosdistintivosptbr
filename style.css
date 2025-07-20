@@ -1,4 +1,15 @@
-/* reset, corpo, etc - igual à versão anterior, só adiciono aqui toggle */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  padding: 20px;
+  color: #222;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
 .filters {
   display: flex;
@@ -109,7 +120,7 @@
   color: #e04c4c;
 }
 
-/* Tooltip info icon e piscar continuam iguais */
+/* Tooltip info icon e piscar */
 
 .info-icon {
   display: inline-block;
@@ -162,4 +173,65 @@
   animation: blink 1s ease 0s 3;
 }
 
-/* Tabelas e restante igual versão anterior */
+/* Tabelas */
+
+.container-tables {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+table {
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+  width: 400px;
+  max-width: 100%;
+}
+
+table thead th,
+table tbody th {
+  background-color: #ddd;
+  font-weight: 700;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  font-size: 1.3rem;
+  cursor: default;
+  background-color: #e6ffe6; /* destaque padrão */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  color: black;
+}
+
+table td.empty {
+  background-color: #f8f8f8;
+  color: #bbb;
+  cursor: default;
+}
+
+table td.dimmed {
+  background-color: #f0f0f0 !important;
+  color: #ccc !important;
+  cursor: default;
+}
+
+table td.highlight {
+  background-color: #a8e6a1 !important;
+  color: #004400 !important;
+  font-weight: bolder;
+}
+
+@media (max-width: 900px) {
+  .container-tables {
+    flex-direction: column;
+    align-items: center;
+  }
+}
