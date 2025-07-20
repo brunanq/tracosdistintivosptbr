@@ -1,115 +1,199 @@
-const consonants = [
-  // Plosivas
-  { symbol: "p", manner: "plosive", place: "bilabial", voicing: "voiceless" },
-  { symbol: "b", manner: "plosive", place: "bilabial", voicing: "voiced" },
-  { symbol: "t", manner: "plosive", place: "alveolar", voicing: "voiceless" },
-  { symbol: "d", manner: "plosive", place: "alveolar", voicing: "voiced" },
-  { symbol: "k", manner: "plosive", place: "velar", voicing: "voiceless" },
-  { symbol: "g", manner: "plosive", place: "velar", voicing: "voiced" },
+document.addEventListener('DOMContentLoaded', () => {
+  const phonemes = [
+    // Consonants (só os que você passou)
+    { symbol: 'p', type: 'consonant', voiced: false, place: 'bilabial', manner: 'plosive' },
+    { symbol: 'b', type: 'consonant', voiced: true, place: 'bilabial', manner: 'plosive' },
+    { symbol: 't', type: 'consonant', voiced: false, place: 'alveolar', manner: 'plosive' },
+    { symbol: 'd', type: 'consonant', voiced: true, place: 'alveolar', manner: 'plosive' },
+    { symbol: 'k', type: 'consonant', voiced: false, place: 'velar', manner: 'plosive' },
+    { symbol: 'g', type: 'consonant', voiced: true, place: 'velar', manner: 'plosive' },
 
-  // Nasais
-  { symbol: "m", manner: "nasal", place: "bilabial", voicing: "voiced" },
-  { symbol: "n", manner: "nasal", place: "alveolar", voicing: "voiced" },
-  { symbol: "ɲ", manner: "nasal", place: "palatal", voicing: "voiced" },
-  { symbol: "ŋ", manner: "nasal", place: "velar", voicing: "voiced" },
+    { symbol: 'm', type: 'consonant', voiced: true, place: 'bilabial', manner: 'nasal' },
+    { symbol: 'n', type: 'consonant', voiced: true, place: 'alveolar', manner: 'nasal' },
 
-  // Fricativas
-  { symbol: "f", manner: "fricative", place: "labiodental", voicing: "voiceless" },
-  { symbol: "v", manner: "fricative", place: "labiodental", voicing: "voiced" },
-  { symbol: "s", manner: "fricative", place: "alveolar", voicing: "voiceless" },
-  { symbol: "z", manner: "fricative", place: "alveolar", voicing: "voiced" },
-  { symbol: "ʃ", manner: "fricative", place: "postalveolar", voicing: "voiceless" },
-  { symbol: "ʒ", manner: "fricative", place: "postalveolar", voicing: "voiced" },
-  { symbol: "h", manner: "fricative", place: "glottal", voicing: "voiceless" },
-  { symbol: "ʁ", manner: "fricative", place: "uvular", voicing: "voiced" },
+    { symbol: 'r', type: 'consonant', voiced: true, place: 'alveolar', manner: 'trill' },
+    { symbol: 'ɾ', type: 'consonant', voiced: true, place: 'alveolar', manner: 'tap' },
 
-  // Africadas
-  { symbol: "tʃ", manner: "affricate", place: "postalveolar", voicing: "voiceless" },
-  { symbol: "dʒ", manner: "affricate", place: "postalveolar", voicing: "voiced" },
+    { symbol: 'f', type: 'consonant', voiced: false, place: 'labiodental', manner: 'fricative' },
+    { symbol: 'v', type: 'consonant', voiced: true, place: 'labiodental', manner: 'fricative' },
+    { symbol: 's', type: 'consonant', voiced: false, place: 'alveolar', manner: 'fricative' },
+    { symbol: 'z', type: 'consonant', voiced: true, place: 'alveolar', manner: 'fricative' },
+    { symbol: 'ʃ', type: 'consonant', voiced: false, place: 'postalveolar', manner: 'fricative' },
+    { symbol: 'ʒ', type: 'consonant', voiced: true, place: 'postalveolar', manner: 'fricative' },
+    { symbol: 'x', type: 'consonant', voiced: false, place: 'velar', manner: 'fricative' },
+    { symbol: 'ɣ', type: 'consonant', voiced: true, place: 'velar', manner: 'fricative' },
+    { symbol: 'χ', type: 'consonant', voiced: false, place: 'uvular', manner: 'fricative' },
+    { symbol: 'ʁ', type: 'consonant', voiced: true, place: 'uvular', manner: 'fricative' },
+    { symbol: 'h', type: 'consonant', voiced: false, place: 'glottal', manner: 'fricative' },
+    { symbol: 'ɦ', type: 'consonant', voiced: true, place: 'glottal', manner: 'fricative' },
 
-  // Laterais
-  { symbol: "l", manner: "lateral-approximant", place: "alveolar", voicing: "voiced" },
-  { symbol: "ʎ", manner: "lateral-approximant", place: "palatal", voicing: "voiced" },
+    { symbol: 'ɹ', type: 'consonant', voiced: true, place: 'alveolar', manner: 'approximant' },
+    { symbol: 'l', type: 'consonant', voiced: true, place: 'alveolar', manner: 'lateral' },
+    { symbol: 'ʎ', type: 'consonant', voiced: true, place: 'palatal', manner: 'lateral' },
 
-  // Vibrante simples
-  { symbol: "ɾ", manner: "tap", place: "alveolar", voicing: "voiced" },
-];
+    // Affricates
+    { symbol: 'tʃ', type: 'consonant', voiced: false, place: 'alveolopalatal', manner: 'affricate' },
+    { symbol: 'dʒ', type: 'consonant', voiced: true, place: 'alveolopalatal', manner: 'affricate' },
+  ];
 
-const manners = [
-  "plosive",
-  "nasal",
-  "fricative",
-  "affricate",
-  "tap",
-  "lateral-approximant",
-];
+  // Listas para ordem de lugares e modos
+  const places = ['bilabial', 'labiodental', 'alveolar', 'postalveolar', 'alveolopalatal', 'palatal', 'velar', 'uvular', 'glottal'];
+  const manners = ['plosive', 'nasal', 'trill', 'tap', 'fricative', 'affricate', 'approximant', 'lateral'];
 
-const places = [
-  "bilabial",
-  "labiodental",
-  "alveolar",
-  "postalveolar",
-  "palatal",
-  "velar",
-  "uvular",
-  "glottal",
-];
+  // Função utilitária para capitalizar
+  function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
 
-function createChart() {
-  const table = document.createElement("table");
-  table.className = "consonant-chart";
-
-  const thead = document.createElement("thead");
-  const headerRow = document.createElement("tr");
-
-  const corner = document.createElement("th");
-  corner.className = "corner";
-  headerRow.appendChild(corner);
-
-  places.forEach((place) => {
-    const th = document.createElement("th");
-    th.className = "place";
-    th.textContent = place;
-    headerRow.appendChild(th);
+  // Mapa para armazenar fonemas por manner/place
+  const phonemeMap = {};
+  manners.forEach(manner => {
+    phonemeMap[manner] = {};
+    places.forEach(place => {
+      phonemeMap[manner][place] = [];
+    });
   });
 
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
+  // Preenche o mapa só com fonemas que você colocou
+  phonemes.forEach(p => {
+    if (phonemeMap[p.manner] && phonemeMap[p.manner][p.place]) {
+      phonemeMap[p.manner][p.place].push(p);
+    }
+  });
 
-  const tbody = document.createElement("tbody");
+  // Referências para filtros e container da tabela
+  const container = document.getElementById('ipaGrid');
+  const typeFilter = document.getElementById('typeFilter');
+  const voicingFilter = document.getElementById('voicingFilter');
+  const placeFilter = document.getElementById('placeFilter');
+  const mannerFilter = document.getElementById('mannerFilter');
 
-  manners.forEach((manner) => {
-    const row = document.createElement("tr");
+  // Função para montar a tabela completa
+  function buildTable() {
+    container.innerHTML = '';
 
-    const mannerCell = document.createElement("th");
-    mannerCell.className = "manner";
-    mannerCell.textContent = manner;
-    row.appendChild(mannerCell);
+    const table = document.createElement('table');
+    table.className = 'consonant-chart';
 
-    places.forEach((place) => {
-      const td = document.createElement("td");
-      td.className = "cell";
+    // Cabeçalho - lugares
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
 
-      const sounds = consonants.filter(
-        (c) => c.place === place && c.manner === manner
-      );
+    headRow.appendChild(document.createElement('th')); // Canto vazio
+    places.forEach(place => {
+      const th = document.createElement('th');
+      th.textContent = capitalize(place);
+      th.className = 'place';
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
 
-      sounds.forEach((c) => {
-        const span = document.createElement("span");
-        span.textContent = c.symbol;
-        span.classList.add("phoneme", c.voicing);
-        td.appendChild(span);
+    // Corpo - modos e fonemas
+    const tbody = document.createElement('tbody');
+
+    manners.forEach(manner => {
+      const tr = document.createElement('tr');
+      const mannerTh = document.createElement('th');
+      mannerTh.textContent = capitalize(manner);
+      mannerTh.className = 'manner';
+      tr.appendChild(mannerTh);
+
+      places.forEach(place => {
+        const td = document.createElement('td');
+        td.className = 'cell';
+
+        // Adiciona fonemas na célula
+        const phonemesHere = phonemeMap[manner][place];
+
+        if (phonemesHere.length === 0) {
+          td.classList.add('empty');
+        } else {
+          phonemesHere.forEach(ph => {
+            const span = document.createElement('span');
+            span.className = 'phoneme';
+            span.textContent = ph.symbol;
+            // Guarda atributos para filtros
+            span.dataset.voiced = ph.voiced;
+            span.dataset.place = ph.place;
+            span.dataset.manner = ph.manner;
+            td.appendChild(span);
+          });
+        }
+        tr.appendChild(td);
       });
 
-      row.appendChild(td);
+      tbody.appendChild(tr);
     });
 
-    tbody.appendChild(row);
+    table.appendChild(tbody);
+    container.appendChild(table);
+  }
+
+  // Função que aplica filtros e destaca as células/fonemas
+  function applyFilters() {
+    const selectedType = typeFilter.value;
+    const voicingVal = voicingFilter.value;
+    const placeVal = placeFilter.value;
+    const mannerVal = mannerFilter.value;
+
+    // Todas as células e fonemas
+    const allCells = container.querySelectorAll('td.cell');
+    const allPhonemes = container.querySelectorAll('span.phoneme');
+
+    allPhonemes.forEach(span => {
+      let show = true;
+
+      // Tipo (consoante/vogal)
+      if (selectedType !== 'all' && 'consonant' !== selectedType) {
+        // só temos consoantes, então se filtra vogais, esconda tudo
+        show = false;
+      }
+
+      // Voicing
+      if (show && voicingVal !== 'all' && String(span.dataset.voiced) !== voicingVal) {
+        show = false;
+      }
+      // Place
+      if (show && placeVal !== 'all' && span.dataset.place !== placeVal) {
+        show = false;
+      }
+      // Manner
+      if (show && mannerVal !== 'all' && span.dataset.manner !== mannerVal) {
+        show = false;
+      }
+
+      // Aplica classe
+      if (show) {
+        span.classList.remove('inactive');
+      } else {
+        span.classList.add('inactive');
+      }
+    });
+
+    // Agora destacamos células completas que têm pelo menos um fonema ativo
+    allCells.forEach(td => {
+      const phonemesInCell = td.querySelectorAll('span.phoneme:not(.inactive)');
+      if (phonemesInCell.length > 0) {
+        td.classList.remove('dimmed');
+      } else {
+        td.classList.add('dimmed');
+      }
+    });
+  }
+
+  // Evento para mostrar/ocultar filtros conforme tipo selecionado
+  typeFilter.addEventListener('change', () => {
+    const val = typeFilter.value;
+    // Como só temos consoantes, manter os filtros consonantais sempre visíveis
+    applyFilters();
   });
 
-  table.appendChild(tbody);
+  voicingFilter.addEventListener('change', applyFilters);
+  placeFilter.addEventListener('change', applyFilters);
+  mannerFilter.addEventListener('change', applyFilters);
 
-  document.getElementById("chart-container").appendChild(table);
-}
-
-document.addEventListener("DOMContentLoaded", createChart);
+  // Inicializa tabela e filtros
+  buildTable();
+  applyFilters();
+});
