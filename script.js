@@ -99,37 +99,37 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (changedFeature) {
             case "Consonantal":
             	break;
-   
+
          	case "Silábico":
          		break;
-        	
+
          	case "Soante":
  		 		break;
-                
+
             case "Contínuo":
   				break;
-                
+
             case "Nasal":
 				break;
-				
-            case "Lateral":              
+
+            case "Lateral":
                 break;
-                
+
             case "Vozeado":
                 break;
-                
+
             case "Soltura Retardada":
                 break;
-                
+
             case "Alto":
                	break;
-                
+
            case "Baixo":
                 break;
       }
-   } 
+   }
 
-   
+
     function getPhonemeSymbols(symbols) {
         const s1 = symbols[0] ? `<span class="phoneme-symbol" data-symbol="${symbols[0].trim()}">${symbols[0]}</span>` : '';
         const s2 = symbols[1] ? `<span class="phoneme-symbol" data-symbol="${symbols[1].trim()}">${symbols[1]}</span>` : '';
@@ -213,35 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
     vowelsTable.innerHTML = `
         <thead>
             <tr>
-                <th rowspan="2" class="border-top-single border-left-single border-right-double"></th> <th colspan="2" class="feature-label-horizontal border-top-single border-bottom-single border-right-double">+alto</th> <th colspan="2" class="feature-label-horizontal border-top-single border-bottom-single border-right-single">-alto</th> </tr>
-            <tr>
-                <th class="feature-label-horizontal border-bottom-double border-right-single">-recuado</th> <th class="feature-label-horizontal border-bottom-double border-right-double">+recuado</th> <th class="feature-label-horizontal border-bottom-double border-right-single">-recuado</th> <th class="feature-label-horizontal border-bottom-double border-right-single">+recuado</th> </tr>
+                <th rowspan="4"></th>
+                <th colspan="1" class="feature-label-horizontal border-top-single border-bottom-double">-recuado</th>
+                <th colspan="2" class="feature-label-horizontal border-top-single border-bottom-double">+recuado</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
-                <td rowspan="2" class="feature-label-vertical border-left-single border-bottom-double">-baixo</td> <td data-phonemes="i" class="border-right-single border-bottom-single">${getPhonemeSymbols(["i"])}</td>
-                <td data-phonemes="ɪ" class="border-right-double border-bottom-single">${getPhonemeSymbols(["ɪ"])}</td>
-                <td data-phonemes="e" class="border-right-single border-bottom-single">${getPhonemeSymbols(["e"])}</td>
-                <td data-phonemes="o" class="border-right-single border-bottom-single">${getPhonemeSymbols(["o"])}</td>
+                <td class="feature-label-vertical border-left-single border-right-double">+alto</td>
+                <td data-phonemes="i" class="border-right-double border-bottom-single">${getPhonemeSymbols(["i"])}</td>
+                <td colspan="2" data-phonemes="u" class="border-right-single border-bottom-single">${getPhonemeSymbols(["u"])}</td>
             </tr>
             <tr>
-                <td class="empty-cell border-right-single border-bottom-double"></td>
-                <td class="empty-cell border-right-double border-bottom-double"></td>
-                <td data-phonemes="u" class="border-right-single border-bottom-double">${getPhonemeSymbols(["u"])}</td>
-                <td data-phonemes="ʊ" class="border-right-single border-bottom-double">${getPhonemeSymbols(["ʊ"])}</td>
+                <td class="feature-label-vertical border-left-single border-right-double">-baixo<br>-alto</td>
+                <td data-phonemes="e" class="border-right-double border-bottom-single">${getPhonemeSymbols(["e"])}</td>
+                <td colspan="2" data-phonemes="o" class="border-right-single border-bottom-single">${getPhonemeSymbols(["o"])}</td>
             </tr>
             <tr>
-                <td rowspan="1" class="feature-label-vertical border-left-single border-bottom-double">+baixo</td> <td colspan="2" class="empty-cell border-right-double border-bottom-double"></td>
-                <td data-phonemes="ɛ" class="border-right-single border-bottom-double">${getPhonemeSymbols(["ɛ"])}</td>
-                <td data-phonemes="ɔ,a" class="border-right-single border-bottom-double">${getPhonemeSymbols(["ɔ", "a"])}</td>
+                <td class="feature-label-vertical border-left-single border-right-double">+baixo</td>
+                <td data-phonemes="ɛ" class="border-right-double border-bottom-single">${getPhonemeSymbols(["ɛ"])}</td>
+                <td data-phonemes="a" class="border-right-single border-bottom-single">${getPhonemeSymbols(["a"])}</td>
+                <td data-phonemes="ɔ" class="border-right-single border-bottom-single">${getPhonemeSymbols(["ɔ"])}</td>
             </tr>
         </tbody>
-        <tfoot>
-            <tr class="recuado-header-row">
-                <th class="border-left-single border-right-double border-top-double"></th> <th colspan="2" class="feature-label-horizontal border-top-double border-right-double">-recuado</th>
-                <th colspan="2" class="feature-label-horizontal border-top-double border-right-single">+recuado</th>
-            </tr>
-        </tfoot>
     `;
 
 
