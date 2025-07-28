@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const distinctiveFeatures = [
         "Consonantal", "Silábico", "Soante", "Coronal", "Anterior", "Contínuo",
         "Nasal", "Lateral", "Vozeado", "Soltura Retardada", "Alto", "Baixo",
-        "Recuado", "Arredondado"
+        "Recuado", "Arredondado", "Tenso"
     ];
 
     const phonemes = [
@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { symbol: "l", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         { symbol: "ʎ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         // Vogais
-        { symbol: "i", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] },
-        { symbol: "ɪ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] }, // Glide
-        { symbol: "u", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] },
-        { symbol: "ʊ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] }, // Glide
-        { symbol: "e", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "-recuado", "-arredondado"] },
-        { symbol: "o", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "+recuado", "+arredondado"] },
-        { symbol: "ɛ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "-recuado", "-arredondado"] },
-        { symbol: "ɔ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "+recuado", "+arredondado"] },
-        { symbol: "a", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado","-alto", "+baixo", "+recuado", "-arredondado"] }
+        { symbol: "i", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado", "+tenso"] },
+        { symbol: "ɪ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado", "-tenso"] }, // Glide
+        { symbol: "u", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado", "+tenso"] },
+        { symbol: "ʊ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado", "-tenso"] }, // Glide
+        { symbol: "e", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "-recuado", "-arredondado", "+tenso"] },
+        { symbol: "o", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "+recuado", "+arredondado", "+tenso"] },
+        { symbol: "ɛ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "-recuado", "-arredondado", "+tenso"] },
+        { symbol: "ɔ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "+recuado", "+arredondado", "+tenso"] },
+        { symbol: "a", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado","-alto", "+baixo", "+recuado", "-arredondado", "+tenso"] }
     ];
 
     const menu = document.querySelector('.menu');
@@ -126,6 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
            case "Baixo":
                 break;
+                
+           case "Tenso":
+           		break;
       }
    }
 
@@ -158,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const placesOfArticulation = ["BILABIAL", "LABIODENTAL", "ALVEOLAR", "PÓS-ALVEOLAR", "PALATAL", "VELAR", "UVULAR", "FARINGAL", "GLOTAL"];
     const mannersOfArticulation = ["OCLUSIVA", "NASAL", "VIBRANTE", "TEPE", "FRICATIVA", "AFRICADA", "RETROFLEXO", "LATERAL"];
 
-    let headerRow = '<tr><th></th>';
+    let headerRow = '<th id="table-title" colspan="10">Consoantes</yh><tr><th ></th>';
     placesOfArticulation.forEach(place => {
         headerRow += `<th>${place}</th>`;
     });
@@ -212,13 +215,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const vowelsTable = document.querySelector('.vowels-table');
     vowelsTable.innerHTML = `
         <thead>
+        	<th id="table-title" colspan="4">
+        		Vogais e glides
             <tr>
                 <th rowspan="4"></th>
                 <th colspan="1" class="feature-label-horizontal border-top-single border-bottom-double">-recuado</th>
                 <th colspan="2" class="feature-label-horizontal border-top-single border-bottom-double">+recuado</th>
             </tr>
         </thead>
-        <tbody>
+       </th>   
+       <tbody>
             <tr>
                 <td class="feature-label-vertical border-left-single border-right-double">+alto</td>
                 <td data-phonemes="i,ɪ" class="border-right-double border-bottom-single">${getPhonemeSymbols(["i", "ɪ"])}</td>
@@ -233,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="feature-label-vertical border-left-single border-right-double">+baixo</td>
                 <td data-phonemes="ɛ" class="border-right-double border-bottom-single">${getPhonemeSymbols(["ɛ"])}</td>
                 <td colspan="2" data-phonemes="ɔ,a" class="border-right-single border-bottom-single">${getPhonemeSymbols(["a", "ɔ"])}</td>
-        </tbody>
+      </tbody>
     `;
 
 
