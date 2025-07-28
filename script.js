@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { symbol: "ɦ", traits: ["+consonantal", "-silábico", "+contínuo","-soante", "+vozeado", "-anterior", "-coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "tʃ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "-vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "dʒ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "+vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
-        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
+        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
         { symbol: "l", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         { symbol: "ʎ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         // Vogais
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const menu = document.querySelector('.menu');
-    const toggles = {}; // Store toggle states and elements
+    const toggles = {};
 
     distinctiveFeatures.forEach(feature => {
         const toggleContainer = document.createElement('div');
@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyContradictionRules(changedFeature) {
-        // Access state using toggles[feature].state
         switch (changedFeature) {
             case "Consonantal":
                 if (toggles["Consonantal"].state === 1) { // Consonantal ON
@@ -171,14 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Soante", 0); // Soante neutral
                     setToggleState("Silábico", 0); // Silábico neutral
                     setToggleState("Consonantal", 0); // Consonantal neutral
+                    } else if (toggles["Vozeado"].state === 0) { // Vozeado ON
+                    setToggleState("Soante", 0); // Soante neutral
+                    setToggleState("Silábico", 0); // Silábico neutral
+                    setToggleState("Consonantal", 0); // Consonantal neutral
                 }
                 break;
+                
             case "Soltura Retardada":
                 if (toggles["Soltura Retardada"].state === 1) { // Soltura Retardada ON
                     setToggleState("Contínuo", -1); // Contínuo OFF
                     setToggleState("Consonantal", 1); // Consonantal ON
                     setToggleState("Silábico", -1); // Silábico OFF
                     setToggleState("Soante", -1); // Soante OFF
+                    setToggleState("Coronal", 1) // Coronal ON
                     setToggleState("Anterior", -1); // Anterior OFF
                     setToggleState("Nasal", -1); // Nasal OFF
                     setToggleState("Lateral", -1); // Lateral OFF
@@ -187,11 +192,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Consonantal", 0); // Consonantal neutral
                     setToggleState("Silábico", 0); // Silábico neutral
                     setToggleState("Soante", 0); // Soante neutral
+                    setToggleState("Coronal", 0)// Coronal OFF
+                    setToggleState("Anterior", 0); // Anterior neutral
+                    setToggleState("Nasal", 0); // Nasal neutral
+                    setToggleState("Lateral", 0); // Lateral neutral
+                    } else if (toggles["Soltura Retardada"].state === -1) { // Soltura Retardada Neutral
+                    setToggleState("Contínuo", 0); // Contínuo neutral
+                    setToggleState("Consonantal", 0); // Consonantal neutral
+                    setToggleState("Silábico", 0); // Silábico neutral
+                    setToggleState("Soante", 0); // Soante neutral
+                    setToggleState("Coronal", 0)// Coronal OFF
                     setToggleState("Anterior", 0); // Anterior neutral
                     setToggleState("Nasal", 0); // Nasal neutral
                     setToggleState("Lateral", 0); // Lateral neutral
                 }
                 break;
+                
             case "Alto":
                 if (toggles["Alto"].state === 1) { // Alto ON
                     setToggleState("Baixo", -1); // Baixo OFF
@@ -199,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Baixo", 0); // Baixo neutral
                 }
                 break;
+                
             case "Baixo":
                 if (toggles["Baixo"].state === 1) { // Baixo ON
                     setToggleState("Alto", -1); // Alto OFF
@@ -206,12 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Alto", 0); // Alto neutral
                 }
                 break;
+                 
         }
     }
 
-    // REVISADO: Função para gerar símbolos de fonemas com a nova estrutura de divisões e um wrapper
+   
     function getPhonemeSymbols(symbols) {
-        // Remover os colchetes daqui
         const s1 = symbols[0] ? `<span class="phoneme-symbol" data-symbol="${symbols[0].trim()}">${symbols[0]}</span>` : '';
         const s2 = symbols[1] ? `<span class="phoneme-symbol" data-symbol="${symbols[1].trim()}">${symbols[1]}</span>` : '';
 
