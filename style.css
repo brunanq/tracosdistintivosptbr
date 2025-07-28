@@ -226,9 +226,10 @@ td:has(.phoneme-content-wrapper) {
 }    
 
 .collapsible{
-	max-width:450px;
+/*	max-width:450px; */
 	overflow: hidden;
 	font-weight: 500;
+	width: -moz-available;
 }
 
 .collapsible input{
@@ -236,6 +237,7 @@ td:has(.phoneme-content-wrapper) {
 }
 
 .collapsible label{
+	font-size: 16pt;
 	position: relative;
 	font-weight: 600;
 	background: #fff;
@@ -273,10 +275,11 @@ td:has(.phoneme-content-wrapper) {
 	top: -100%;
 	opacity: 0.5;
 	transition: all 0.9s ease;
+	margin-bottom: 10px;
 } 
 
 .collapsible input:checked ~ .collapsible-text{
-	max-height: 300px;
+	max-height: 1000px;
 	padding-bottom: 25px;
 	background: #fff;
 	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .1), 0 4px 11px 0 rgba(0, 0, 0, .08);
@@ -289,6 +292,12 @@ td:has(.phoneme-content-wrapper) {
 	margin-bottom: 10px;
 	padding: 15px 15px 0;
 	color: blue;
+}
+
+.collapsible-text h3 {
+    padding: 0 15px;
+    margin-top: 15px;
+    color: #333;
 }
 
 .collapsible-text p{
