@@ -9,7 +9,7 @@
     <title>IPA Distinctive Features PT-BR</title>
 </head>
 <body>
-    <h1>Traços Distintivos PT-BR</h1>
+    <h1>Tabela interativa — traços distintivos PT-BR</h1>
     <div class="menu"></div>
     <div class="tables-container">
         <table class="consonants-table"></table>
@@ -17,16 +17,104 @@
     </div>
     
     <!-- texto retrátil -->
-    <div class="wrapper">
-    	<div class="collapsible">
-    		<input type="checkbox" id="collapsible-head">
-    		<label for="collapsible-head">Texto retrátil</label>
-    		<div class="collapsible-text">
-    			<h1>Texto 1</h2>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    		</div>
-    	</div>
+   <div class="wrapper">
+  <div class="collapsible">
+
+    <div class="collapsible-item">
+      <input type="checkbox" id="collapsible-1">
+      <label for="collapsible-1">Entenda os traços distintivos</label>
+      <div class="collapsible-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
+        <h3>Consonantal</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Silábico</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Soante</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Vozeado</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Anterior</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Coronal</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Coronal</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Contínuo</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Soltura retardada</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Nasal</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Alto</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Baixo</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Recuado</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Arredondado</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+        <h3>Tenso</h3>
+        <p>Lorem ipsum dolor sit amet,</p>
+      </div>
     </div>
+
+    <div class="collapsible-item">
+      <input type="checkbox" id="collapsible-2">
+      <label for="collapsible-2">Como usar este site para seus estudos</label>
+      <div class="collapsible-text">
+        <h3>Busque por traços distintivos em comum</h#>
+        <p>Tente selecionar os traços compartilhados por um certo grupo de fonemas, tentando entender cada seleção que está fazendo. Por exemplo, se você quiser encontrar o grupo das oclusivas, pode ter uma navegação semelhante a esta:</p>
+        <p>1º) marca [-contínuo] para eliminar as fricativas;</p>
+        <p>2º) marca [-soante] para eliminar as nasais, laterais e aproximantes;</p>
+        <p>3º) marca [-soltura retardada] para eliminar o [tʃ] e o [dʒ].</p>
+        <p>Você precisou refletir sobre quais traços marcar para eliminar certos fonemas e manter outros, aprendendo quais são aqueles compartilhados e quais aqueles que tornam a seleção cada vez mais específica. Vá à seção de "Exercícios" e tente realizar outras seleões.</p>
+      </div>
+    </div>
+
+    <div class="collapsible-item">
+      <input type="checkbox" id="collapsible-3">
+      <label for="collapsible-3">Exercícios</label>
+      <div class="collapsible-text">
+        <h2>Texto 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
+      </div>
+    </div>
+
+    <div class="collapsible-item">
+      <input type="checkbox" id="collapsible-4">
+      <label for="collapsible-4">Onde aprender mais</label>
+      <div class="collapsible-text">
+        <h2>Texto 4</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+	<!-- fim do texto retrátil -->
+	
+	<!-- faz tela descer quando texto expande -->
+	<script>
+  document.querySelectorAll('.collapsible-item').forEach(item => {
+    const input = item.querySelector('input');
+    const label = item.querySelector('label');
+    const content = item.querySelector('.collapsible-text');
+
+    label.addEventListener('click', () => {
+      // Aguarda o checkbox expandir visualmente
+      setTimeout(() => {
+        if (input.checked) {
+          content.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 200); // dá tempo da animação CSS começar
+    });
+  });
+</script>
+<!-- fim da função de expansão -->
 
     <script src="script.js"></script>
 </body>
