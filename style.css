@@ -1,154 +1,249 @@
 body {
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  background-color: #fafafa;
-  padding: 20px;
-  color: #222;
-  margin: 0;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
 }
 
-h1, h2 {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    justify-content: center; /* Center the items in the menu */
 }
 
-.filters {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px 12px;
-  max-width: 100%;
-  justify-items: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-  padding: 10px;
-  margin: 0 auto 16px auto;
-  box-sizing: border-box;
-}
-
-.filter-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 700;
-  white-space: nowrap;
-  border-radius: 4px;
-  background: #f9f9f9;
-  padding: 4px 6px;
-  font-size: 11px;
-  width: 100%;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-.filter-group:hover {
-  background-color: #e0f0ff;
+.toggle-container {
+    display: flex;
+    flex-direction: column; /* Stack label and toggle */
+    align-items: center; /* Center horizontally */
+    gap: 5px;
 }
 
 .toggle-switch {
-  position: relative;
-  width: 42px;
-  height: 20px;
-  background: #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
-  flex-shrink: 0;
-}
-.toggle-switch.state-true {
-  background-color: #2ecc71;
-}
-.toggle-switch.state-false {
-  background-color: #e74c3c;
-}
-.toggle-switch.state-all {
-  background-color: #ccc;
-}
-.toggle-switch .toggle-circle {
-  position: absolute;
-  top: 2px;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 3px rgb(0 0 0 / 0.3);
-  transition: left 0.3s ease;
-}
-.toggle-switch.state-all .toggle-circle {
-  left: 13px;
-}
-.toggle-switch.state-true .toggle-circle {
-  left: 2px;
-}
-.toggle-switch.state-false .toggle-circle {
-  left: 24px;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc; /* Neutral background */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out; /* Smooth transition for background */
+    display: flex; /* Use flexbox for slider positioning */
+    align-items: center; /* Vertically center the slider */
 }
 
-.container-tables {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: nowrap;
-  width: 100%;
-  box-sizing: border-box;
+.toggle-switch.positive {
+    background-color: #4CAF50; /* Green */
 }
 
-#consonant-table-container,
-#vowel-table-container {
-  flex: 1;
-  max-width: 50%;
-  box-sizing: border-box;
+.toggle-switch.negative {
+    background-color: #f44336; /* Red */
+}
+
+.toggle-switch .slider {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.4s ease-in-out; /* Smooth transition for slider */
+    position: absolute; /* Absolute positioning for precise control */
+    left: 50%; /* Mantenha sempre 50% como ponto de partida */
+}
+
+/* Neutral state (default) */
+.toggle-switch .slider {
+    transform: translateX(-50%); /* Centraliza o slider no meio do toggle */
+}
+
+/* Positive state (right) */
+.toggle-switch.positive .slider {
+    transform: translateX(3px); /* Move 3px para a direita a partir do centro (borda a 3px da direita) */
+}
+
+/* Negative state (left) */
+.toggle-switch.negative .slider {
+    transform: translateX(-27px); /* Move -27px para a esquerda a partir do centro (borda a 3px da esquerda) */
+}
+
+
+.tables-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 10px;
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 12px;
-  background: white;
-  box-shadow: 0 0 4px rgb(0 0 0 / 0.1);
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
+/* Base styling for all table cells (th and td) */
 th, td {
-  border: 1px solid #ccc;
-  padding: 4px;
-  text-align: center;
-  font-weight: normal;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding: 8px; /* Default padding for all cells */
 }
 
-td {
-  font-size: 14px;
-  font-weight: bold;
-  cursor: default;
-  background-color: #e6ffe6;
-  color: #000;
+/* Specific padding for header cells (can override if needed, but 8px is now default) */
+th {
+    background-color: #f2f2f2;
 }
 
-td.empty {
-  background-color: #f8f8f8;
-  color: #bbb;
+/* The new wrapper div inside TD that will handle the flex layout */
+.phoneme-content-wrapper {
+    display: flex; /* Make this the flex container */
+    height: 100%; /* Ensure it takes full height of the TD */
+    width: 100%; /* Ensure it takes full width of the TD */
+    /* REMOVIDO: margin: -8px; - Isso causava a extrapolação */
 }
 
-td.dimmed {
-  background-color: #f0f0f0 !important;
-  color: #ccc !important;
+/* Adjust padding for TD when it contains the wrapper, so that the wrapper fills it */
+td:has(.phoneme-content-wrapper) {
+    padding: 0; /* Remove padding from the TD itself if it contains the wrapper */
 }
 
-@media (max-width: 900px) {
-  .filters {
-    grid-template-columns: repeat(3, 1fr);
-  }
 
-  .container-tables {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
+/* Style for each "half" of the cell (where the phoneme or empty space resides) */
+.phoneme-cell-half {
+    flex: 1; /* Each half takes an equal portion of the wrapper's width */
+    display: flex; /* Make content inside the half flex to center the symbol */
+    justify-content: center; /* Center symbol horizontally */
+    align-items: center; /* Center symbol vertically */
+    padding: 8px; /* Mantido em 8px, agora que o wrapper não extrapola, o padding será interno */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for background highlight */
+    min-height: 40px; /* Ensure a minimum height for all halves to prevent collapsing */
+}
 
-  #consonant-table-container,
-  #vowel-table-container {
-    max-width: 100%;
-  }
+/* Style for the half of the cell when it's highlighted */
+.phoneme-cell-half.highlighted-half {
+    background-color: lightblue; /* Background color for the highlighted half */
+}
+
+/* Style for empty halves, ensuring they are transparent */
+.phoneme-cell-half.empty-half {
+    background-color: transparent;
+}
+
+/* Highlight style for the phoneme symbol itself (just bold) */
+.phoneme-symbol.highlight {
+    font-weight: bold; /* Make the symbol bold when highlighted */
+    display: inline-block; /* Ensures it behaves correctly with text-align and padding */
+}
+
+/* Specific table styling for the uploaded content */
+.consonants-table {
+    flex: 2 1 450px;
+    max-width: 700px;
+    min-width: 450px;
+    overflow-x: auto;
+}
+
+.consonants-table th, .consonants-table td {
+    min-width: 28px;
+    font-size: 0.9em;
+}
+
+.vowels-table {
+    flex: 0 1 380px;
+    min-width: 350px;
+    max-width: 450px;
+    border: none;
+}
+
+.vowels-table th, .vowels-table td {
+    border: none; /* Override default border for vowel table specific cells */
+    position: relative;
+}
+
+/* Custom borders for the vowel table to match ASCII art */
+.vowels-table .border-right-double {
+    border-right: 3px double #ddd;
+}
+
+.vowels-table .border-bottom-single {
+    border-bottom: 1px solid #ddd;
+}
+
+.vowels-table .border-top-single {
+    border-top: 1px solid #ddd;
+}
+
+.vowels-table .border-left-single {
+    border-left: 1px solid #ddd;
+}
+
+.vowels-table .border-bottom-double {
+    border-bottom: 3px double #ddd;
+}
+
+/* Specific cell background and alignment for vowel table */
+.vowels-table .empty-cell {
+    background-color: #f9f9f9;
+}
+
+.vowels-table .feature-label-vertical {
+    text-align: left;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.vowels-table .feature-label-horizontal {
+    font-weight: bold;
+}
+
+/* Styling for the bottom "recuado" header in the vowel table */
+.vowels-table .recuado-header-row th {
+    background-color: #e0e0e0;
+    font-weight: bold;
+    border-top: 3px double #ddd;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 850px) {
+    .tables-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .consonants-table, .vowels-table {
+        width: 95%;
+        min-width: unset;
+        max-width: unset;
+        flex: unset;
+    }
+
+    /* For small screens, the inner flex container should become block, stacking its halves */
+    .phoneme-content-wrapper {
+        display: block; /* Revert to block behavior */
+        margin: 0; /* Remove negative margin on small screens */
+    }
+
+    /* TD should have its padding back on small screens if the wrapper is block */
+    td:has(.phoneme-content-wrapper) {
+        padding: 8px; /* Re-apply padding to the TD itself */
+    }
+
+    /* Inner halves won't need individual padding if the TD has it */
+    .phoneme-cell-half {
+        padding: 0;
+        flex: unset; /* Remove flex sizing for block behavior */
+        /* Keeping justify-content and align-items for centering if the half is small */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ensure content within halves is centered in block mode */
+    .phoneme-cell-half {
+        text-align: center;
+    }
 }
