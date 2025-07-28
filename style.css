@@ -104,7 +104,6 @@ th {
     display: flex; /* Make this the flex container */
     height: 100%; /* Ensure it takes full height of the TD */
     width: 100%; /* Ensure it takes full width of the TD */
-    /* REMOVIDO: margin: -8px; - Isso causava a extrapolação */
 }
 
 /* Adjust padding for TD when it contains the wrapper, so that the wrapper fills it */
@@ -119,9 +118,9 @@ td:has(.phoneme-content-wrapper) {
     display: flex; /* Make content inside the half flex to center the symbol */
     justify-content: center; /* Center symbol horizontally */
     align-items: center; /* Center symbol vertically */
-    padding: 8px; /* Mantido em 8px, agora que o wrapper não extrapola, o padding será interno */
+    /*padding: 8px; */
     transition: background-color 0.3s ease-in-out; /* Smooth transition for background highlight */
-    min-height: 40px; /* Ensure a minimum height for all halves to prevent collapsing */
+    min-height: 40px;
 }
 
 /* Style for the half of the cell when it's highlighted */
