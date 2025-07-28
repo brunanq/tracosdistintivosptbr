@@ -149,7 +149,7 @@ td:has(.phoneme-content-wrapper) {
 
 .consonants-table th, .consonants-table td {
     min-width: 28px;
-    font-size: 0.9em;
+    font-size: 0.7em;
 }
 
 .vowels-table {
@@ -157,6 +157,7 @@ td:has(.phoneme-content-wrapper) {
     min-width: 350px;
     max-width: 450px;
     border: none;
+    font-size: 0.7em;
 }
 
 .vowels-table th, .vowels-table td {
