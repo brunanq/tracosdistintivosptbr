@@ -69,7 +69,6 @@ body {
     transform: translateX(-27px); /* Move -27px para a esquerda a partir do centro (borda a 3px da esquerda) */
 }
 
-/* Modificações para centralizar as tabelas */
 .tables-container {
     display: flex;
     gap: 5px;
@@ -87,7 +86,10 @@ table {
     margin-bottom: 20px;
 }
 
-/* Estilo base para todas as células da tabela (th e td) */
+#table-title{
+	Font-size: 10pt;
+}
+
 th, td {
     border: 1px solid #ddd;
     text-align: center;
@@ -95,24 +97,20 @@ th, td {
     padding: 8px; /* Padding padrão para todas as células */
 }
 
-/* Padding específico para as células de cabeçalho (pode ser sobrescrito se necessário, mas 8px é o padrão agora) */
 th {
     background-color: #f2f2f2;
 }
 
-/* A nova div wrapper dentro do TD que irá lidar com o layout flex */
 .phoneme-content-wrapper {
     display: flex; /* Torna este o contêiner flex */
     height: 100%; /* Garante que ocupe a altura total do TD */
     width: 100%; /* Garante que ocupe a largura total do TD */
 }
 
-/* Ajusta o padding para TD quando ele contém o wrapper, para que o wrapper o preencha */
 td:has(.phoneme-content-wrapper) {
     padding: 0; /* Remove o padding do próprio TD se ele contém o wrapper */
 }
 
-/* Estilo para cada "metade" da célula (onde o fonema ou espaço vazio reside) */
 .phoneme-cell-half {
     flex: 1; /* Cada metade ocupa uma porção igual da largura do wrapper */
     display: flex; /* Torna o conteúdo dentro da metade flex para centralizar o símbolo */
@@ -123,23 +121,19 @@ td:has(.phoneme-content-wrapper) {
     min-height: 40px;
 }
 
-/* Estilo para a metade da célula quando está destacada */
 .phoneme-cell-half.highlighted-half {
     background-color: lightblue; /* Cor de fundo para a metade destacada */
 }
 
-/* Estilo para metades vazias, garantindo que sejam transparentes */
 .phoneme-cell-half.empty-half {
     background-color: transparent;
 }
 
-/* Estilo de destaque para o próprio símbolo fonêmico (apenas negrito) */
 .phoneme-symbol.highlight {
     font-weight: bold; /* Deixa o símbolo em negrito quando destacado */
     display: inline-block; /* Garante que se comporte corretamente com text-align e padding */
 }
 
-/* Estilo específico da tabela para o conteúdo carregado */
 .consonants-table {
     flex: 2 1 450px;
     max-width: 700px;
@@ -165,7 +159,6 @@ td:has(.phoneme-content-wrapper) {
     position: relative;
 }
 
-/* Bordas personalizadas para a tabela de vogais para corresponder ao modelo */
 .vowels-table .border-right-double {
     border-right: 3px double #ddd;
 }
@@ -186,7 +179,6 @@ td:has(.phoneme-content-wrapper) {
     border-bottom: 3px double #ddd;
 }
 
-/* Fundo de célula específico e alinhamento para a tabela de vogais */
 .vowels-table .empty-cell {
     background-color: #f9f9f9;
 }
@@ -201,7 +193,6 @@ td:has(.phoneme-content-wrapper) {
     font-weight: bold;
 }
 
-/* Estilo para o cabeçalho "recuado" na parte inferior da tabela de vogais */
 .vowels-table .recuado-header-row th {
     background-color: #e0e0e0;
     font-weight: bold;
@@ -221,7 +212,8 @@ td:has(.phoneme-content-wrapper) {
         max-width: unset;
         flex: unset;
     }
-    
+
+    /* Para telas pequenas, o contêiner flex interno deve se tornar um bloco, empilhando suas metades */
     .phoneme-content-wrapper {
         display: block; /* Volta ao comportamento de bloco */
         margin: 0; /* Remove a margem negativa em telas pequenas */
@@ -237,7 +229,7 @@ td:has(.phoneme-content-wrapper) {
         justify-content: center;
         align-items: center;
     }
-    
+
     .phoneme-cell-half {
         text-align: center;
     }
