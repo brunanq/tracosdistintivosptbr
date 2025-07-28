@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { symbol: "l", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         { symbol: "ʎ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         // Vogais
-        { symbol: "i", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] },
-        { symbol: "ɪ", traits: ["-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] }, // Glide
-        { symbol: "u", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] },
-        { symbol: "ʊ", traits: ["-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] }, // Glide
-        { symbol: "e", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "-recuado", "-arredondado"] },
-        { symbol: "o", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "+recuado", "+arredondado"] },
-        { symbol: "ɛ", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "-recuado", "-arredondado"] },
-        { symbol: "ɔ", traits: ["+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "+recuado", "+arredondado"] },
-        { symbol: "a", traits: ["+silábico", "+soante", "+contínuo", "+vozeado","-alto", "+baixo", "+recuado", "-arredondado"] }
+        { symbol: "i", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] },
+        { symbol: "ɪ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "-recuado", "-arredondado"] }, // Glide
+        { symbol: "u", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] },
+        { symbol: "ʊ", traits: ["-consonantal", "-silábico","+soante", "+contínuo", "+vozeado", "+alto", "-baixo", "+recuado", "+arredondado"] }, // Glide
+        { symbol: "e", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "-recuado", "-arredondado"] },
+        { symbol: "o", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "-baixo", "+recuado", "+arredondado"] },
+        { symbol: "ɛ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "-recuado", "-arredondado"] },
+        { symbol: "ɔ", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado", "-alto", "+baixo", "+recuado", "+arredondado"] },
+        { symbol: "a", traits: ["-consonantal", "+silábico", "+soante", "+contínuo", "+vozeado","-alto", "+baixo", "+recuado", "-arredondado"] }
     ];
 
     const menu = document.querySelector('.menu');
@@ -98,134 +98,36 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyContradictionRules(changedFeature) {
         switch (changedFeature) {
             case "Consonantal":
-                if (toggles["Consonantal"].state === 1) { // Consonantal ON
-                    setToggleState("Silábico", -1); // Silábico OFF
-                } else if (toggles["Consonantal"].state === 0) { // Consonantal Neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                    } else if (toggles["Consonantal"].state === -1) { // Consonantal Neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                }
-                break;
-                
-            case "Silábico":
-                if (toggles["Silábico"].state === 1) { // Silábico ON
-                    setToggleState("Consonantal", -1); // Consonantal OFF
-                    setToggleState("Soante", 1); // Soante ON
-                    setToggleState("Vozeado", 1); // Vozeado ON
-                } else if (toggles["Silábico"].state === 0) { // Silábico Neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Vozeado", 0); // Vozeado neutral
-                    }else if (toggles["Silábico"].state === -1) { // Silábico Neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Vozeado", 0); // Vozeado neutral
-                }
-                break;
-                
-            case "Soante":
-                if (toggles["Soante"].state === 1) { // Soante ON
-                    setToggleState("Vozeado", 1); // Vozeado ON
-                } else if (toggles["Soante"].state === 0) { // Soante Neutral
-                    setToggleState("Vozeado", 0); // Vozeado neutral
-                    }else if (toggles["Soante"].state === -1) { // Soante Neutral
-                    setToggleState("Vozeado", 0); // Vozeado neutral
-                }
-                break;
+            	break;
+   
+         	case "Silábico":
+         		break;
+        	
+         	case "Soante":
+ 		 		break;
                 
             case "Contínuo":
-                if (toggles["Contínuo"].state === 1) { // Contínuo ON
-                    setToggleState("Soltura Retardada", -1); // Soltura Retardada OFF
-                } else if (toggles["Contínuo"].state === 0) { // Contínuo Neutral
-                    setToggleState("Soltura Retardada", 0); // Soltura Retardada neutral
-                    } else if (toggles["Contínuo"].state === -1) { // Contínuo Neutral
-                    setToggleState("Soltura Retardada", 0); // Soltura Retardada neutral
-                }
-                break;
+  				break;
                 
             case "Nasal":
-                if (toggles["Nasal"].state === 1) { // Nasal ON
-                    setToggleState("Lateral", -1); // Lateral OFF
-                } else if (toggles["Nasal"].state === 0) { // Nasal Neutral
-                    setToggleState("Lateral", 0); // Lateral neutral
-                    } else if (toggles["Nasal"].state === -1) { // Nasal Neutral
-                    setToggleState("Lateral", 0); // Lateral neutral
-                }
+				break;
+				
+            case "Lateral":              
                 break;
-            case "Lateral":
-                if (toggles["Lateral"].state === 1) { // Lateral ON
-                    setToggleState("Nasal", -1); // Nasal OFF
-                } else if (toggles["Lateral"].state === 0) { // Lateral Neutral
-                    setToggleState("Nasal", 0); // Nasal neutral
-                    } else if (toggles["Lateral"].state === -1) { // Lateral Neutral
-                    setToggleState("Nasal", 0); // Nasal neutral
-                }
-                break;
+                
             case "Vozeado":
-                if (toggles["Vozeado"].state === -1) { // Vozeado OFF
-                    setToggleState("Soante", -1); // Soante OFF
-                    setToggleState("Silábico", -1); // Silábico OFF
-                    setToggleState("Consonantal", 1); // Consonantal ON
-                } else if (toggles["Vozeado"].state === 1) { // Vozeado ON
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                    } else if (toggles["Vozeado"].state === 0) { // Vozeado ON
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                }
                 break;
                 
             case "Soltura Retardada":
-                if (toggles["Soltura Retardada"].state === 1) { // Soltura Retardada ON
-                    setToggleState("Contínuo", -1); // Contínuo OFF
-                    setToggleState("Consonantal", 1); // Consonantal ON
-                    setToggleState("Silábico", -1); // Silábico OFF
-                    setToggleState("Soante", -1); // Soante OFF
-                    setToggleState("Coronal", 1) // Coronal ON
-                    setToggleState("Anterior", -1); // Anterior OFF
-                    setToggleState("Nasal", -1); // Nasal OFF
-                    setToggleState("Lateral", -1); // Lateral OFF
-                } else if (toggles["Soltura Retardada"].state === 0) { // Soltura Retardada Neutral
-                    setToggleState("Contínuo", 0); // Contínuo neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Coronal", 0)// Coronal OFF
-                    setToggleState("Anterior", 0); // Anterior neutral
-                    setToggleState("Nasal", 0); // Nasal neutral
-                    setToggleState("Lateral", 0); // Lateral neutral
-                    } else if (toggles["Soltura Retardada"].state === -1) { // Soltura Retardada Neutral
-                    setToggleState("Contínuo", 0); // Contínuo neutral
-                    setToggleState("Consonantal", 0); // Consonantal neutral
-                    setToggleState("Silábico", 0); // Silábico neutral
-                    setToggleState("Soante", 0); // Soante neutral
-                    setToggleState("Coronal", 0)// Coronal OFF
-                    setToggleState("Anterior", 0); // Anterior neutral
-                    setToggleState("Nasal", 0); // Nasal neutral
-                    setToggleState("Lateral", 0); // Lateral neutral
-                }
                 break;
                 
             case "Alto":
-                if (toggles["Alto"].state === 1) { // Alto ON
-                    setToggleState("Baixo", -1); // Baixo OFF
-                } else if (toggles["Alto"].state === 0) { // Alto Neutral
-                    setToggleState("Baixo", 0); // Baixo neutral
-                }
-                break;
+               	break;
                 
-            case "Baixo":
-                if (toggles["Baixo"].state === 1) { // Baixo ON
-                    setToggleState("Alto", -1); // Alto OFF
-                } else if (toggles["Baixo"].state === 0) { // Baixo Neutral
-                    setToggleState("Alto", 0); // Alto neutral
-                }
+           case "Baixo":
                 break;
-                 
-        }
-    }
+      }
+   } 
 
    
     function getPhonemeSymbols(symbols) {
