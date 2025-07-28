@@ -103,8 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Silábico", -1); // Silábico OFF
                 } else if (toggles["Consonantal"].state === 0) { // Consonantal Neutral
                     setToggleState("Silábico", 0); // Silábico neutral
+                    } else if (toggles["Consonantal"].state === -1) { // Consonantal Neutral
+                    setToggleState("Silábico", 0); // Silábico neutral
                 }
                 break;
+                
             case "Silábico":
                 if (toggles["Silábico"].state === 1) { // Silábico ON
                     setToggleState("Consonantal", -1); // Consonantal OFF
@@ -114,26 +117,39 @@ document.addEventListener('DOMContentLoaded', () => {
                     setToggleState("Consonantal", 0); // Consonantal neutral
                     setToggleState("Soante", 0); // Soante neutral
                     setToggleState("Vozeado", 0); // Vozeado neutral
+                    }else if (toggles["Silábico"].state === -1) { // Silábico Neutral
+                    setToggleState("Consonantal", 0); // Consonantal neutral
+                    setToggleState("Soante", 0); // Soante neutral
+                    setToggleState("Vozeado", 0); // Vozeado neutral
                 }
                 break;
+                
             case "Soante":
                 if (toggles["Soante"].state === 1) { // Soante ON
                     setToggleState("Vozeado", 1); // Vozeado ON
                 } else if (toggles["Soante"].state === 0) { // Soante Neutral
                     setToggleState("Vozeado", 0); // Vozeado neutral
+                    }else if (toggles["Soante"].state === -1) { // Soante Neutral
+                    setToggleState("Vozeado", 0); // Vozeado neutral
                 }
                 break;
+                
             case "Contínuo":
                 if (toggles["Contínuo"].state === 1) { // Contínuo ON
                     setToggleState("Soltura Retardada", -1); // Soltura Retardada OFF
                 } else if (toggles["Contínuo"].state === 0) { // Contínuo Neutral
                     setToggleState("Soltura Retardada", 0); // Soltura Retardada neutral
+                    } else if (toggles["Contínuo"].state === -1) { // Contínuo Neutral
+                    setToggleState("Soltura Retardada", 0); // Soltura Retardada neutral
                 }
                 break;
+                
             case "Nasal":
                 if (toggles["Nasal"].state === 1) { // Nasal ON
                     setToggleState("Lateral", -1); // Lateral OFF
                 } else if (toggles["Nasal"].state === 0) { // Nasal Neutral
+                    setToggleState("Lateral", 0); // Lateral neutral
+                    } else if (toggles["Nasal"].state === -1) { // Nasal Neutral
                     setToggleState("Lateral", 0); // Lateral neutral
                 }
                 break;
@@ -141,6 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (toggles["Lateral"].state === 1) { // Lateral ON
                     setToggleState("Nasal", -1); // Nasal OFF
                 } else if (toggles["Lateral"].state === 0) { // Lateral Neutral
+                    setToggleState("Nasal", 0); // Nasal neutral
+                    } else if (toggles["Lateral"].state === -1) { // Lateral Neutral
                     setToggleState("Nasal", 0); // Nasal neutral
                 }
                 break;
