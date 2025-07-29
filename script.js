@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { symbol: "ɦ", traits: ["+consonantal", "-silábico", "+contínuo","-soante", "+vozeado", "-anterior", "-coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "tʃ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "-vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "dʒ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "+vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
-        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
+        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
         { symbol: "l", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         { symbol: "ʎ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         // Vogais
