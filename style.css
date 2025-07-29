@@ -39,7 +39,7 @@ h1{
     font-weight: bold;
     padding: 5px 10px;
     transition: color 0.3s ease;
-    color: #fff;
+    color: #000;
 }
 
 .header-nav a:hover {
@@ -335,6 +335,14 @@ td:has(.phoneme-content-wrapper) {
 	padding-right: 15px;
 }
 
+/* ----- footer ----- */ 
+footer {
+  background-color: #C8102E; /* Vermelho UFMG */
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
 
 /* Media queries para telas menores */
 @media (max-width: 850px) {
