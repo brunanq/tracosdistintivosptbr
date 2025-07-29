@@ -1,31 +1,67 @@
 body {
     font-family: Poppins, sans-serif;
     font-size: 0.9em;
-    margin: 20px;
-    background-color: #f4f4f4;
+    margin: 0; 
+    background-color: #2e2e2e;
+}
+
+header {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px; 
+    border-radius: 0; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 h1{
-	font-size: 20pt;
-	text-align: center;
+	font-size: 16pt;
+	color: #C8102E;
+    margin: 0;
+    flex-basis: auto; 
+    text-align: left; 
+}
+
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; 
+    justify-content: flex-end; 
+    flex-grow: 1; 
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #000000; 
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.header-nav a:hover {
+    color: #C8102E;
 }
 
 .menu {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 30px;
     padding: 15px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    justify-content: center; /* Centraliza os itens no menu */
+    justify-content: center; 
+    width: fit-content;
+    margin: 10px auto;
+    background: #fff;
 }
 
 .toggle-container {
     display: flex;
-    flex-direction: column; /* Empilha o rótulo e o toggle */
-    align-items: center; /* Centraliza horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
     gap: 5px;
 }
 
@@ -33,20 +69,20 @@ h1{
     position: relative;
     width: 60px;
     height: 30px;
-    background-color: #ccc; /* Fundo neutro */
+    background-color: #ccc; 
     border-radius: 15px;
     cursor: pointer;
-    transition: background-color 0.4s ease-in-out; /* Transição suave para o fundo */
-    display: flex; /* Usa flexbox para posicionamento do slider */
-    align-items: center; /* Centraliza verticalmente o slider */
+    transition: background-color 0.4s ease-in-out; 
+    display: flex; 
+    align-items: center; 
 }
 
 .toggle-switch.positive {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50; 
 }
 
 .toggle-switch.negative {
-    background-color: #f44336; /* Vermelho */
+    background-color: #f44336; 
 }
 
 .toggle-switch .slider {
@@ -54,103 +90,90 @@ h1{
     height: 24px;
     border-radius: 50%;
     background-color: white;
-    transition: transform 0.4s ease-in-out; /* Transição suave para o slider */
-    position: absolute; /* Posicionamento absoluto para controle preciso */
-    left: 50%; /* Mantém sempre 50% como ponto de partida */
+    transition: transform 0.4s ease-in-out; 
+    position: absolute; 
+    left: 50%; 
 }
 
-/* Estado neutro (padrão) */
 .toggle-switch .slider {
-    transform: translateX(-50%); /* Centraliza o slider no meio do toggle */
+    transform: translateX(-50%); 
 }
 
-/* Estado positivo (direita) */
 .toggle-switch.positive .slider {
-    transform: translateX(3px); /* Move 3px para a direita a partir do centro (borda a 3px da direita) */
+    transform: translateX(3px); 
 }
 
-/* Estado negativo (esquerda) */
 .toggle-switch.negative .slider {
-    transform: translateX(-27px); /* Move -27px para a esquerda a partir do centro (borda a 3px da esquerda) */
+    transform: translateX(-27px); 
 }
 
-/* Modificações para centralizar as tabelas */
 .tables-container {
     display: flex;
     gap: 5px;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; 
     align-items: flex-start;
-    padding: 0 50px; /* Adiciona um pequeno padding nas laterais */
+    padding: 0; 
 }
 
 table {
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 #table-title{
-	Font-size: 10pt;
+	font-size: 10pt;
+	color: #C8102E;
 }
 
-/* Estilo base para todas as células da tabela (th e td) */
+
 th, td {
     border: 1px solid #ddd;
     text-align: center;
-    box-sizing: border-box; /* Inclui padding e borda na largura e altura total do elemento */
-    padding: 6px; /* Padding padrão para todas as células */
+    box-sizing: border-box; 
+    padding: 6px; 
 }
 
-/* Padding específico para as células de cabeçalho (pode ser sobrescrito se necessário, mas 8px é o padrão agora) */
 th {
     background-color: #f2f2f2;
 }
 
-/* A nova div wrapper dentro do TD que irá lidar com o layout flex */
 .phoneme-content-wrapper {
-    display: flex; /* Torna este o contêiner flex */
-    height: 100%; /* Garante que ocupe a altura total do TD */
-    width: 100%; /* Garante que ocupe a largura total do TD */
+    display: flex; 
+    height: 100%; 
+    width: 100%; 
 }
 
-/* Ajusta o padding para TD quando ele contém o wrapper, para que o wrapper o preencha */
 td:has(.phoneme-content-wrapper) {
-    padding: 0; /* Remove o padding do próprio TD se ele contém o wrapper */
+    padding: 0; 
 }
 
-/* Estilo para cada "metade" da célula (onde o fonema ou espaço vazio reside) */
 .phoneme-cell-half {
-    flex: 1; /* Cada metade ocupa uma porção igual da largura do wrapper */
-    display: flex; /* Torna o conteúdo dentro da metade flex para centralizar o símbolo */
-    justify-content: center; /* Centraliza o símbolo horizontalmente */
-    align-items: center; /* Centraliza o símbolo verticalmente */
-    /*padding: 8px; */
-    transition: background-color 0.3s ease-in-out; /* Transição suave para o destaque do fundo */
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: background-color 0.3s ease-in-out; 
     min-height: 40px;
 }
 
-/* Estilo para a metade da célula quando está destacada */
 .phoneme-cell-half.highlighted-half {
-    background-color: lightblue; /* Cor de fundo para a metade destacada */
+    background-color: #F2F751; 
 }
 
-/* Estilo para metades vazias, garantindo que sejam transparentes */
 .phoneme-cell-half.empty-half {
     background-color: transparent;
 }
 
-/* Estilo de destaque para o próprio símbolo fonêmico (apenas negrito) */
 .phoneme-symbol.highlight {
-    font-weight: bold; /* Deixa o símbolo em negrito quando destacado */
-    display: inline-block; /* Garante que se comporte corretamente com text-align e padding */
+    font-weight: bold; 
+    display: inline-block; 
 }
 
-/* Estilo específico da tabela para o conteúdo carregado */
 .consonants-table {
-    flex: 2 1 450px;
+    flex: 0 0 450px; /* ALTERADO: flex-grow e flex-shrink para 0, flex-basis para 450px */
     max-width: 700px;
     min-width: 450px;
     overflow-x: auto;
@@ -161,8 +184,12 @@ td:has(.phoneme-content-wrapper) {
     font-size: 0.9em;
 }
 
+.consonants-table td:first-child {
+    font-weight: bold;
+}
+
 .vowels-table {
-    flex: 0 1 380px;
+    flex: 0 0 380px; /* ALTERADO: flex-grow e flex-shrink para 0, flex-basis para 380px */
     min-width: 350px;
     max-width: 450px;
     border: none;
@@ -170,13 +197,10 @@ td:has(.phoneme-content-wrapper) {
 }
 
 .vowels-table th, .vowels-table td {
-   /* border: none; /* Sobrescreve a borda padrão para células específicas da tabela de vogais */
     position: relative;
 }
 
-/* Bordas personalizadas para a tabela de vogais para corresponder ao modelo */
 .vowels-table .border-right-double {
-   /* border-right: 3px double #ddd; */
 }
 
 .vowels-table .border-bottom-single {
@@ -192,10 +216,8 @@ td:has(.phoneme-content-wrapper) {
 }
 
 .vowels-table .border-bottom-double {
-   /* border-bottom: 3px double #ddd; */
 }
 
-/* Fundo de célula específico e alinhamento para a tabela de vogais */
 .vowels-table .empty-cell {
     background-color: #f9f9f9;
 }
@@ -210,12 +232,13 @@ td:has(.phoneme-content-wrapper) {
     font-weight: bold;
 }
 
-/* Estilo para o cabeçalho "recuado" na parte inferior da tabela de vogais */
 .vowels-table .recuado-header-row th {
     background-color: #e0e0e0;
     font-weight: bold;
     border-top: 3px double #ddd;
 }
+
+
 
 /*----------- Texto retrátil -----------*/
     
@@ -226,10 +249,9 @@ td:has(.phoneme-content-wrapper) {
 }    
 
 .collapsible{
-/*	max-width:450px; */
 	overflow: hidden;
 	font-weight: 500;
-	width: -moz-available;
+	width: 50%;
 }
 
 .collapsible input{
@@ -242,9 +264,9 @@ td:has(.phoneme-content-wrapper) {
 	font-weight: 600;
 	background: #fff;
 	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .1), rgba(0, 0, 0, .08);
-	color: blue;
+	color: #C8102E;
 	display: block;
-	margin-bottom: 10px;
+	margin: 10px auto;
 	cursor: pointer;
 	padding: 15px;
 	border-radius: 4px;
@@ -258,7 +280,8 @@ td:has(.phoneme-content-wrapper) {
 	top:15px;
 	width: 18px;
 	height: 18px;
-	background: url(arrow.svg) no-repeat 0 0;
+	 background: url(arrow.svg) no-repeat center center;
+    background-size: contain;
 	transition: all 0.9s ease;
 }
 
@@ -291,7 +314,7 @@ td:has(.phoneme-content-wrapper) {
 .collapsible-text h2{
 	margin-bottom: 10px;
 	padding: 15px 15px 0;
-	color: blue;
+	color: #C8102E;
 }
 
 .collapsible-text h3 {
@@ -321,12 +344,12 @@ td:has(.phoneme-content-wrapper) {
     }
 
     .phoneme-content-wrapper {
-        display: block; /* Volta ao comportamento de bloco */
-        margin: 0; /* Remove a margem negativa em telas pequenas */
+        display: block; 
+        margin: 0; 
     }
 	
     td:has(.phoneme-content-wrapper) {
-        padding: 8px; /* Reaplica o padding ao próprio TD */
+        padding: 8px; 
     }
 	
     .phoneme-cell-half {
@@ -340,5 +363,28 @@ td:has(.phoneme-content-wrapper) {
         text-align: center;
     }
     
-    
-    
+    /* Ajustes para o header em telas menores */
+    header {
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding-bottom: 10px; 
+    }
+
+    h1 {
+        text-align: center; 
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+
+    .header-nav {
+        margin-top: 10px; 
+        width: 100%; 
+        justify-content: center; 
+        margin-bottom: 10px; 
+    }
+
+    .menu {
+        margin-top: 10px; 
+        margin-bottom: 10px;
+    }
+}
