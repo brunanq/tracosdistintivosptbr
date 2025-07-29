@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const consonantHeader = document.createElement('thead');
     const consonantBody = document.createElement('tbody');
 
-    const placesOfArticulation = ["BILABIAL", "LABIODENTAL", "ALVEOLAR", "PÓS-ALVEOLAR", "PALATAL", "VELAR", "UVULAR", "FARINGAL", "GLOTAL"];
+    const placesOfArticulation = ["BILABIAL", "LABIODENTAL", "ALVEOLAR", "PÓS-ALVEOLAR", "PALATAL", "  VELAR  ", "UVULAR", "FARINGAL", "GLOTAL"];
     const mannersOfArticulation = ["OCLUSIVA", "NASAL", "VIBRANTE", "TEPE", "FRICATIVA", "AFRICADA", "APROXIMANTE", "LATERAL"];
 
 
@@ -175,11 +175,22 @@ document.addEventListener('DOMContentLoaded', () => {
         placesOfArticulation.forEach(place => {
             let cellContent = '';
             let phonemesInCell = [];
+            let isGrayedOut = false;
+
+        if (
+            (manner === "LATERAL" && (place === "BILABIAL" || place === "LABIODENTAL")) ||
+            (manner === "VIBRANTE" && place === "  VELAR  ") ||
+            (manner === "TEPE" && place === "  VELAR  ") ||
+            (place === "FARINGAL" && (manner === "OCLUSIVA" || manner === "NASAL" || manner === "LATERAL")) ||
+            (place === "GLOTAL" && (manner === "OCLUSIVA" || manner === "NASAL" || manner === "VIBRANTE" || manner === "TEPE" || manner === "LATERAL"))
+        ) {
+            isGrayedOut = true;
+        }
 
             if (manner === "OCLUSIVA") {
                 if (place === "BILABIAL") { phonemesInCell = ["p", "b"]; }
                 else if (place === "ALVEOLAR") { phonemesInCell = ["t", "d"]; }
-                else if (place === "VELAR") { phonemesInCell = ["k", "g"]; }
+                else if (place === "  VELAR  ") { phonemesInCell = ["k", "g"]; }
             } else if (manner === "NASAL") {
                 if (place === "BILABIAL") { phonemesInCell = ["m"]; }
                 else if (place === "ALVEOLAR") { phonemesInCell = ["n"]; }
@@ -192,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (place === "LABIODENTAL") { phonemesInCell = ["f", "v"]; }
                 else if (place === "ALVEOLAR") { phonemesInCell = ["s", "z"]; }
                 else if (place === "PÓS-ALVEOLAR") { phonemesInCell = ["ʃ", "ʒ"]; }
-                else if (place === "VELAR") { phonemesInCell = ["x", "ɣ"]; }
+                else if (place === "  VELAR  ") { phonemesInCell = ["x", "ɣ"]; }
                 else if (place === "UVULAR") { phonemesInCell = ["χ", "ʁ"]; }
                 else if (place === "GLOTAL") { phonemesInCell = ["h", "ɦ"]; }
             } else if (manner === "AFRICADA") {
@@ -203,13 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (place === "ALVEOLAR") { phonemesInCell = ["l"]; }
                 else if (place === "PALATAL") { phonemesInCell = ["ʎ"]; }
             }
-            cellContent = getPhonemeSymbols(phonemesInCell); // Passa o array para a função
-            row += `<td data-phonemes="${phonemesInCell.join(',')}">${cellContent}</td>`;
-        });
-        row += '</tr>';
-        consonantBody.innerHTML += row;
+            cellContent = getPhonemeSymbols(phonemesInCell);
+        row += `<td data-phonemes="${phonemesInCell.join(',')}" ${isGrayedOut ? 'class="grayed-out-cell"' : ''}>${cellContent}</td>`;
+    });
+    row += '</tr>';
+    consonantBody.innerHTML += row;
     });
     consonantTable.appendChild(consonantBody);
+    
 
 
     // Vowels Table Generation
@@ -289,3 +301,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
