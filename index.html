@@ -9,19 +9,28 @@
     <title>IPA Distinctive Features PT-BR</title>
 </head>
 <body>
-    <h1>Tabela interativa — traços distintivos PT-BR</h1>
-    <div class="menu"></div>
+    <header>
+        <h1>Tabela interativa — traços distintivos PT-BR</h1>
+        
+        <nav class="header-nav">
+            <a href="#collapsible-1-section">Entenda os traços distintivos</a>
+            <a href="#collapsible-2-section">Como usar este site para estudos</a>
+            <a href="#collapsible-3-section">Exercícios</a>
+            <a href="#collapsible-4-section">Aprenda mais</a>
+        </nav>
+
+       
+    </header>
+     <div class="menu"></div> 
     <div class="tables-container">
         <table class="consonants-table"></table>
         <table class="vowels-table"></table>
     </div>
     
-    <!-- texto retrátil -->
-   <div class="wrapper">
+    <div class="wrapper">
   <div class="collapsible">
 
-    <div class="collapsible-item">
-      <input type="checkbox" id="collapsible-1">
+    <div class="collapsible-item" id="collapsible-1-section"> <input type="checkbox" id="collapsible-1">
       <label for="collapsible-1">Entenda os traços distintivos</label>
       <div class="collapsible-text">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
@@ -37,11 +46,9 @@
         <p>Lorem ipsum dolor sit amet,</p>
         <h3>Coronal</h3>
         <p>Lorem ipsum dolor sit amet,</p>
-        <h3>Coronal</h3>
-        <p>Lorem ipsum dolor sit amet,</p>
         <h3>Contínuo</h3>
         <p>Lorem ipsum dolor sit amet,</p>
-        <h3>Soltura retardada</h3>
+        <h3>Soltura Retardada</h3>
         <p>Lorem ipsum dolor sit amet,</p>
         <h3>Nasal</h3>
         <p>Lorem ipsum dolor sit amet,</p>
@@ -58,8 +65,7 @@
       </div>
     </div>
 
-    <div class="collapsible-item">
-      <input type="checkbox" id="collapsible-2">
+    <div class="collapsible-item" id="collapsible-2-section"> <input type="checkbox" id="collapsible-2">
       <label for="collapsible-2">Como usar este site para seus estudos</label>
       <div class="collapsible-text">
         <h3>Busque por traços distintivos em comum</h#>
@@ -71,8 +77,7 @@
       </div>
     </div>
 
-    <div class="collapsible-item">
-      <input type="checkbox" id="collapsible-3">
+    <div class="collapsible-item" id="collapsible-3-section"> <input type="checkbox" id="collapsible-3">
       <label for="collapsible-3">Exercícios</label>
       <div class="collapsible-text">
         <h2>Texto 3</h2>
@@ -80,8 +85,7 @@
       </div>
     </div>
 
-    <div class="collapsible-item">
-      <input type="checkbox" id="collapsible-4">
+    <div class="collapsible-item" id="collapsible-4-section"> <input type="checkbox" id="collapsible-4">
       <label for="collapsible-4">Onde aprender mais</label>
       <div class="collapsible-text">
         <h2>Texto 4</h2>
@@ -92,9 +96,6 @@
   </div>
 </div>
 
-	<!-- fim do texto retrátil -->
-	
-	<!-- faz tela descer quando texto expande -->
 	<script>
   document.querySelectorAll('.collapsible-item').forEach(item => {
     const input = item.querySelector('input');
@@ -113,9 +114,39 @@
       }, 200); // dá tempo da animação CSS começar
     });
   });
-</script>
-<!-- fim da função de expansão -->
 
-    <script src="script.js"></script>
+  // Função para rolagem suave ao clicar nos links do header, ajustando para o topo
+  
+  document.querySelectorAll('.header-nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            // Marca o checkbox (expande)
+            const checkbox = targetElement.querySelector('input[type="checkbox"]');
+            if (checkbox && !checkbox.checked) {
+                checkbox.checked = true;
+            }
+
+            // Aguarda animação e faz scroll
+            setTimeout(() => {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerHeight - 20;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }, 200); // tempo da transição do collapsible
+        }
+    });
+});
+
+</script>
+<script src="script.js"></script>
 </body>
 </html>
