@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { symbol: "ɦ", traits: ["+consonantal", "-silábico", "+contínuo","-soante", "+vozeado", "-anterior", "-coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "tʃ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "-vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "dʒ", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "+vozeado", "-anterior", "+coronal", "+soltura retardada", "-nasal", "-lateral", "-aproximante"] },
-        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
+        { symbol: "ɹ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "+aproximante"] },
         { symbol: "l", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         { symbol: "ʎ", traits: ["+consonantal", "-silábico", "-contínuo","+soante", "+vozeado", "-anterior", "+coronal", "-soltura retardada", "-nasal", "+lateral", "-aproximante"] },
         // Vogais
@@ -159,7 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const consonantBody = document.createElement('tbody');
 
     const placesOfArticulation = ["BILABIAL", "LABIODENTAL", "ALVEOLAR", "PÓS-ALVEOLAR", "PALATAL", "VELAR", "UVULAR", "FARINGAL", "GLOTAL"];
-    const mannersOfArticulation = ["OCLUSIVA", "NASAL", "VIBRANTE", "TEPE", "FRICATIVA", "AFRICADA", "RETROFLEXO", "LATERAL"];
+    const mannersOfArticulation = ["OCLUSIVA", "NASAL", "VIBRANTE", "TEPE", "FRICATIVA", "AFRICADA", "APROXIMANTE", "LATERAL"];
+
 
     let headerRow = '<th id="table-title" colspan="10">Consoantes</yh><tr><th ></th>';
     placesOfArticulation.forEach(place => {
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (place === "GLOTAL") { phonemesInCell = ["h", "ɦ"]; }
             } else if (manner === "AFRICADA") {
                 if (place === "PÓS-ALVEOLAR") { phonemesInCell = ["tʃ", "dʒ"]; }
-            } else if (manner === "RETROFLEXO") {
+            } else if (manner === "APROXIMANTE") {
                 if (place === "PÓS-ALVEOLAR") { phonemesInCell = ["ɹ"]; }
             } else if (manner === "LATERAL") {
                 if (place === "ALVEOLAR") { phonemesInCell = ["l"]; }
