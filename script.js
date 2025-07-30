@@ -221,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     consonantBody.innerHTML += row;
     });
     consonantTable.appendChild(consonantBody);
-    
 
 
     // Vowels Table Generation
@@ -236,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <th colspan="2" class="feature-label-horizontal border-top-single border-bottom-double">+recuado</th>
             </tr>
         </thead>
-       </th>   
+       </th>
        <tbody>
             <tr>
                 <td class="feature-label-vertical border-left-single border-right-double">+alto</td>
@@ -255,6 +254,38 @@ document.addEventListener('DOMContentLoaded', () => {
       </tbody>
     `;
 
+    // Add event listeners to phoneme cells
+    document.querySelectorAll('.phoneme-cell-half').forEach(cellHalf => {
+        cellHalf.addEventListener('click', (event) => {
+            const symbolSpan = cellHalf.querySelector('.phoneme-symbol');
+            if (symbolSpan) {
+                const clickedSymbol = symbolSpan.dataset.symbol;
+                displayPhonemeFeaturesInMenu(clickedSymbol);
+            }
+        });
+    });
+
+    function displayPhonemeFeaturesInMenu(symbol) {
+        for (const feature in toggles) {
+            setToggleState(feature, 0); // Set all toggles to neutral
+        }
+
+        const selectedPhoneme = phonemes.find(p => p.symbol === symbol);
+
+        if (selectedPhoneme) {
+            selectedPhoneme.traits.forEach(trait => {
+                const isPositive = trait.startsWith('+');
+                const featureName = trait.substring(1); // Remove '+' or '-'
+
+                const matchedFeature = distinctiveFeatures.find(f => f.toLowerCase().replace(/ /g, '') === featureName.toLowerCase().replace(/ /g, ''));
+
+                if (matchedFeature) {
+                    setToggleState(matchedFeature, isPositive ? 1 : -1);
+                }
+            });
+            highlightPhonemes(); // Re-highlight based on the newly set toggles
+        }
+    }
 
     function highlightPhonemes() {
         // 1. Limpa todos os destaques existentes
@@ -264,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.phoneme-cell-half').forEach(div => {
             div.classList.remove('highlighted-half'); // Remove cor de fundo da div "metade da célula"
         });
-
 
         // 2. Obtém os filtros ativos
         const activeFilters = [];
@@ -298,6 +328,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+        });
+    }
+
+    // Lógica para o novo botão "Zerar Filtros"
+    const resetButton = document.getElementById('resetMenuButton');
+    if (resetButton) {
+        resetButton.addEventListener('click', () => {
+            for (const feature in toggles) {
+                setToggleState(feature, 0); // Define todos os toggles para o estado neutro (0)
+            }
+            highlightPhonemes(); // Limpa o destaque das tabelas
         });
     }
 });
