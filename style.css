@@ -30,19 +30,24 @@ h1{
   margin-left: 10px;
 }
 
+.navbar .navbar-brand{
+	margin-left:
+}
+
 .navbar .nav-link:hover, .navbar .nav-link.active {
-  color: #ccc;
+  color: #fdb813;
   transition: color 0.8s ease;
 }
 
 .container {
 	min-width: fit-content;
 }
+
 .menu {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    padding: 15px;
+    padding: 0 10px 15px;
     border-radius: 8px;
     justify-content: center; 
     width: fit-content;
@@ -98,6 +103,10 @@ h1{
     transform: translateX(-27px); 
 }
 
+.phoneme-cell-half {
+    cursor: pointer;
+}
+
 .tables-container {
     display: flex;
     gap: 5px;
@@ -151,7 +160,7 @@ td:has(.phoneme-content-wrapper) {
 }
 
 .phoneme-cell-half.highlighted-half {
-    background-color: #F2F751; 
+    background-color: #fcfc49; 
 }
 
 .phoneme-cell-half.empty-half {
@@ -172,7 +181,7 @@ td:has(.phoneme-content-wrapper) {
 
 .consonants-table th, .consonants-table td {
     min-width: 28px;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .consonants-table td:first-child {
@@ -184,7 +193,7 @@ td:has(.phoneme-content-wrapper) {
     min-width: 350px;
     max-width: 450px;
     border: none !important!;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .vowels-table th, .vowels-table td {
@@ -246,7 +255,7 @@ td:has(.phoneme-content-wrapper) {
     
 .wrapper{
 	display: flex;
-	padding-top: 50px;
+	padding: 20px 0;
 	justify-content: center;
 }    
 
@@ -264,8 +273,8 @@ td:has(.phoneme-content-wrapper) {
 	font-size: 16pt;
 	position: relative;
 	font-weight: 600;
-	background: #ccc;
-	color: #C8102E;
+	background: #f2f2f2;
+	color: #058ec7;
 	display: block;
 	margin: 10px auto;
 	cursor: pointer;
@@ -283,7 +292,7 @@ td:has(.phoneme-content-wrapper) {
 	height: 18px;
 	 background: url(arrow.svg) no-repeat center center;
     background-size: contain;
-	transition: all 0.9s ease;
+	transition: all 0.5s ease;
 }
 
 .collapsible input:checked + label:after{
@@ -314,7 +323,7 @@ td:has(.phoneme-content-wrapper) {
 .collapsible-text h2{
 	margin-bottom: 10px;
 	padding: 15px 15px 0;
-	color: #C8102E;
+	color: #058ec7;
 	font-size: 12pt;
 	}
 	
@@ -336,7 +345,8 @@ td:has(.phoneme-content-wrapper) {
 
 /* ----- footer ----- */ 
 footer {
-  background-color: #C8102E; /* Vermelho UFMG */
+  background-color: #C8102E;
+  padding: 0 100px; 
 }
 
 footer a:hover {
