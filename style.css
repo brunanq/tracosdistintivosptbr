@@ -4,6 +4,10 @@ body {
     margin: 0; 
 }
 
+*, ::after, ::before {
+  box-sizing: initial;
+}
+
 header {
     display: flex; 
     flex-wrap: wrap; 
@@ -261,7 +265,7 @@ td:has(.phoneme-content-wrapper) {
 
 .collapsible{
 	overflow: hidden;
-	font-weight: 500;
+	font-weight: normal;
 	width: 50%;
 }
 
@@ -329,6 +333,7 @@ td:has(.phoneme-content-wrapper) {
 	
 .collapsible-text h2 p{
 	color: black;
+	font-weight: normal;
 }
 
 .collapsible-text h3 {
