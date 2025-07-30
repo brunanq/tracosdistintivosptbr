@@ -4,10 +4,6 @@ body {
     margin: 0; 
 }
 
-*, ::after, ::before {
-  box-sizing: initial;
-}
-
 header {
     display: flex; 
     flex-wrap: wrap; 
