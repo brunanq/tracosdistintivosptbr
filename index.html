@@ -30,8 +30,18 @@
 	</nav>
 	
 	<!-- menu traços; tabelas -->
-     <div class="container my-4">
-  		<div class="menu mb-3"></div>
+     <div class="container my-3">
+  		<div class="menu mb-2"></div>
+        <button id="resetMenuButton" class="btn btn-sm btn-outline-dark mb-2">Zerar filtros</button>
+        <div class="tables-container row justify-content-center">
+  		<div class="col-lg-auto mb-3">
+      		<table class="consonants-table table table-bordered table-sm text-center"></table>
+    	</div>
+    	<div class="col-lg-auto mb-3">
+      		<table class="vowels-table table table-bordered table-sm text-center"></table>
+    	</div>
+  		</div>
+	</div>
   		<div class="tables-container row justify-content-center">
   		<div class="col-lg-auto mb-3">
       		<table class="consonants-table table table-bordered table-sm text-center"></table>
@@ -42,7 +52,7 @@
   		</div>
 	</div>
 
-    <div class="container">
+    <div class="container" id="wrappercontainer">
   <div class="wrapper">
     <div class="collapsible w-100">
     
@@ -55,48 +65,51 @@
       			<div class="collapsible-text">
         			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
         			<h3>Consonantal</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Silábico</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Soante</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Coronal</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Anterior</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Contínuo</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Nasal</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Lateral</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Nasal</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Sonoro</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Soltura retardada</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Alto</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Baixo</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Recuado</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Arredondado</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         			<h3>Tenso</h3>
-        			<p>Lorem ipsum dolor sit amet,</p>
+        			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       			</div>
     		</div>
      	<div class="collapsible-item" id="collapsible-2-section"> <input type="checkbox" id="collapsible-2">
       		<label for="collapsible-2">Como usar este site para seus estudos</label>
       		<div class="collapsible-text">
-        		<h2>Busque por traços distintivos em comum</h#>
+        		<h2>Busque por traços distintivos em comum</h>
         		<p>Tente selecionar os traços compartilhados por um certo grupo de fonemas, tentando entender cada seleção que está fazendo. Por exemplo, se você quiser encontrar o grupo das oclusivas, pode ter uma navegação semelhante a esta:</p>
         		<p>1º) marca [-contínuo] para eliminar as fricativas;</p>
         		<p>2º) marca [-soante] para eliminar as nasais, laterais e aproximantes;</p>
         		<p>3º) marca [-soltura retardada] para eliminar o [tʃ] e o [dʒ].</p>
         		<p>Você precisou refletir sobre quais traços marcar para eliminar certos fonemas e manter outros, aprendendo quais são aqueles compartilhados e quais aqueles que tornam a seleção cada vez mais específica. Vá à seção de "Exercícios" e tente realizar outras seleções.</p>
+        		<h2>Identifique os traços que diferenciam um fonema de outro</h>
+        		<p>Interaja com a tabela buscando entender quais os traços que definem um fonema e qual deles, quando alterado, aponta pra outro.</p>
+        		<p>Essa estratégia será relevante sobretudo entre fonemas com modos e/ou lugares de articulação em comum. Por exemplo, se você clicar em uma [+soante], e depois em outra, verá que o que as difere serão os traços [±nasal], [±lateral] ou [±anterior].</p>
       		</div>
     	</div>
 
@@ -172,12 +185,12 @@
 </div>
     
 	<!-- footer -->
-	<footer class="text-white mt-5">
+	<footer class="text-white">
   	<div class="container py-4">
     	<div class="row">
       	<div class="col-md-4 mb-3">
         	<h5>Sobre</h5>
-        	<p>Projeto de fonética interativa com tabelas IPA e filtros de traços distintivos.</p>
+        	<p>Projeto de fonologia com o objetivo de facilitar o aprendizado de traços distintivos do Português brasileiro por meio de tabela interativa.</p>
       	</div>
       	<div class="col-md-4 mb-3">
         	<h5>Links úteis</h5>
@@ -190,8 +203,8 @@
       	</div>
       	<div class="col-md-4 mb-3">
         	<h5>Contato</h5>
-        	<p>Email: contato@exemplo.com</p>
-        	<p>Desenvolvido por Bruna Queiroz</p>
+        	<p>Email: brunacnq@gmail.com</p>
+        	<p>Desenvolvido por Bruna Queiroz.</p>
       	</div>
     	</div>
     	<div class="text-center border-top pt-3">
@@ -211,18 +224,22 @@
       // Aguarda o checkbox expandir visualmente
       setTimeout(() => {
         if (input.checked) {
-          content.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          const headerHeight = document.querySelector('.navbar').offsetHeight; // Obtém a altura da sua navbar
+          const labelPosition = label.getBoundingClientRect().top + window.scrollY;
+          // Ajusta a posição para que a label fique visível, um pouco abaixo da navbar
+          const offsetPosition = labelPosition - headerHeight - 10; // -10 para um pequeno espaçamento extra
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
           });
         }
       }, 200); // dá tempo da animação CSS começar
     });
   });
 
-  // Função para rolagem suave ao clicar nos links do header, ajustando para o topo
-  
-  document.querySelectorAll('.header-nav a').forEach(anchor => {
+  // A outra função de rolagem (para links de navegação) permanece inalterada
+  document.querySelectorAll('.navbar-nav a').forEach(anchor => { // Ajustado seletor para .navbar-nav a
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
 
@@ -238,9 +255,9 @@
 
             // Aguarda animação e faz scroll
             setTimeout(() => {
-                const headerHeight = document.querySelector('header').offsetHeight;
+                const headerHeight = document.querySelector('.navbar').offsetHeight; // Use a navbar real
                 const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - headerHeight - 20;
+                const offsetPosition = elementPosition - headerHeight - 10; // Ajuste também aqui para consistência
 
                 window.scrollTo({
                     top: offsetPosition,
@@ -250,7 +267,6 @@
         }
     });
 });
-
 </script>
 <script src="script.js"></script>
 </body>
