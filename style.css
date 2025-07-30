@@ -1,7 +1,16 @@
+html, body {
+    overflow-x: hidden; /* Adicione esta linha */
+    width: 100%; /* Garante que ocupem 100% da largura do viewport */
+}
+
 body {
       font-family: "Roboto Mono", monospace;
     font-size: 0.9em;
     margin: 0; 
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
 }
 
 header {
@@ -40,7 +49,7 @@ h1{
 }
 
 .container {
-	min-width: fit-content;
+    min-width: fit-content; 
 }
 
 .menu {
