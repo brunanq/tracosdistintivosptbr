@@ -1,6 +1,6 @@
 html, body {
-    overflow-x: hidden; /* Adicione esta linha */
-    width: 100%; /* Garante que ocupem 100% da largura do viewport */
+    overflow-x: hidden;
+    width: 100%; 
 }
 
 body {
@@ -248,16 +248,16 @@ td:has(.phoneme-content-wrapper) {
 }
 
 .grayed-out-cell {
-    background-color: #DADADA !important; /* Cinza claro */
-    color: #aaa !important; /* Texto mais claro */
+    background-color: #DADADA !important;
+    color: #aaa !important;
 }
 
 .grayed-out-cell .phoneme-cell-half {
-    background-color: transparent !important; /* Remove o fundo das metades */
+    background-color: transparent !important; 
 }
 
 .grayed-out-cell .phoneme-symbol {
-    color: #aaa !important; /* Texto dos símbolos mais claro */
+    color: #aaa !important;
 }
 
 /*----------- Texto retrátil -----------*/
@@ -283,7 +283,7 @@ td:has(.phoneme-content-wrapper) {
 	position: relative;
 	font-weight: 600;
 	background: #f2f2f2;
-	color: #058ec7;
+	color: #C8102E;
 	display: block;
 	margin: 10px auto;
 	cursor: pointer;
