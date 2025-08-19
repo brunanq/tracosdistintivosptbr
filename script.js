@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const phonemes = [
-        // Consoantes
+        // Consoantesss
         { symbol: "p", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "-vozeado", "+anterior", "-coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "b", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "+vozeado", "+anterior", "-coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
         { symbol: "t", traits: ["+consonantal", "-silábico", "-contínuo","-soante", "-vozeado", "+anterior", "+coronal", "-soltura retardada", "-nasal", "-lateral", "-aproximante"] },
